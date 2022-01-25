@@ -1,0 +1,154 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+
+body{
+	background-image: url('../tools/textu1.png');			
+} 
+
+header{
+	background-color: #fdfdfd;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	height: 150px;	
+}
+
+header .img{
+	background-image: url('../tools/sigest-n.svg');
+	background-size: 70%;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin: 1.5%;
+	width: 20%;
+	height: 150px;
+	margin-top: -0px;
+
+}
+
+.principal{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	height: 500px;
+	padding: 0px; 
+	margin: 0px;
+}
+
+.principal .imagen{
+	background-image: url("../tools/sigest.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 75%;
+	transition: all 2.8s ease;
+}
+
+.principal .imagen:hover{	
+	background-size: 106%;
+}
+
+.principal .marcoLogin{
+	position: relative;
+	width: 25%;
+}
+
+.loginA{
+	background-color: #f2fdf2;
+	padding: 30px;
+	position: absolute;
+	top: -50px;
+	right: 0px;
+	width: 100%;
+	height: 600px;
+	border-radius: 11% 0px;
+	box-shadow: 5px 3px 6px rgba(0,0,0,0.2);
+}
+
+.loginA h1{
+	text-align: center;
+	letter-spacing: 5px;
+	margin-bottom: 50px;
+}
+
+.loginA input{
+	border-radius:10px;
+	font-size: 1.5em;
+	height: 60px;
+	margin-bottom: 30px;
+}
+
+.loginA .mensajes{
+	background-color: rgba(0,0,0,0.0);
+}
+
+#enviar{
+	width: 100%;
+	padding: 10px;
+	margin-top: 10px;
+	font-size: 2.1em;
+}
+
+.footer-section{
+	padding: 2px;
+}
+
+.footer-section:first-child{
+	border-right: 2px solid #22b2a0;
+}
+
+.footer-section:last-child{
+	border-right: 2px solid #22b2a0;
+}
+
+.footer-section .contenido{
+	margin-top: 40px;
+	height: 100%;
+	padding: 30px;
+}
+
+.main-footer{
+	color: #fff;
+	background-color: #22b2a0;
+	font-size: 0.8em;
+	padding: 20px;
+	width: 100%;
+	height: 250px;
+}
+
+
+
+.principal .marcoMantenimiento{
+	position: relative;
+	width: 40%;
+}
+
+
+.principal .imagen_mantenimiento{
+	background-image: url("../vistas/img/mantenimiento.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 70%;
+	width: 60%;
+	transition: all 2.8s ease;
+}
+
+
+.mantenimiento_mensaje{
+	background-color: #FFD970;
+	padding: 30px;
+	position: absolute;
+	top: 50px;
+	left: 0px;
+	width: 100%;
+	height: 400px;
+}
+
+.mantenimiento_mensaje h1{
+	background-color: #8F6C0D;
+	color: #fff;
+	text-align: center;
+	letter-spacing: 5px;
+	margin-bottom: 50px;
+	width: 100%;
+}

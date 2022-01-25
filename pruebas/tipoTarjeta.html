@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style>
+		*{
+			padding: 0px;
+			margin: 0px;
+		}
+		.contenedor{
+			position: relative;
+			float: left;
+			width: 30%;
+			border: 1px solid rgba(0,0,0,0.2);
+
+		}
+
+		.contenedor-img{
+			position: relative;
+			overflow: hidden;
+			margin-top: 0px;
+		}
+
+		.contenedor-img:hover .descripcion{
+			top: 0;
+			transition: 0.5s ease-out;
+		}
+
+		.img{
+			display: block;
+			width: 100%;
+		}
+
+		.descripcion{
+			display: flex;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+			top: -100%;
+			position: absolute;
+			color: #fff;
+			background-color: rgba(50,25,150,0.3);
+			padding: 0px;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="contenedor">
+		<div class="contenedor-img">
+			<h3>Ejemplo 1</h3>
+			<img src="../IMAGENES/Usuarios/estudiante1.png" class="img" alt="">
+			<p class="descripcion">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut harum, dolores et, doloremque ut minus, distinctio quasi ullam reprehenderit accusamus unde porro nisi mollitia ipsum cupiditate eaque. Natus reprehenderit, quisquam.
+			</p>
+		</div>
+	</div>
+
+
+ <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
+  <input name="merchantId"    type="hidden"  value="508029"   >
+  <input name="accountId"     type="hidden"  value="512321" >
+  <input name="description"   type="hidden"  value="Ejemplo de pago con payu"  >
+  <input name="referenceCode" type="hidden"  value="PagoVI001" >
+  <input name="amount"        type="hidden"  value="125000"   >
+  <input name="tax"           type="hidden"  value="0"  >
+  <input name="taxReturnBase" type="hidden"  value="0" >
+  <input name="currency"      type="hidden"  value="COP" >
+  <input name="signature"     type="hidden"  value="35fc79ab05357b6ea71d3c5164735191"  >
+  <input name="test"          type="hidden"  value="1" >
+  <input name="buyerEmail"    type="hidden"  value="cliente_1@test.com" >
+  <input name="responseUrl"    type="hidden"  value="http://www.vicommerce.co" >
+  <input name="confirmationUrl"    type="hidden"  value="http://www.vicommerce.co/player.php?vid=2" >
+  <input name="Submit"        type="submit"  value="Prueba Pagar" >
+</form>
+</body>
+</html>
