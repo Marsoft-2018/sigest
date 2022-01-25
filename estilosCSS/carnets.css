@@ -1,0 +1,209 @@
+ @font-face {
+   font-family: 'barras';
+   src: url('../fonts/Code39.ttf');
+
+}
+
+@font-face{
+    font-family: 'titulo2';
+    src: url('../fonts/CODE_Bold.otf');
+}
+
+.marcoH{
+    float:left;
+    margin:0px;
+    padding: 1px;
+    height: 231px;
+    width: 373px;
+    background: no-repeat;
+}
+.marcoV{
+    float:left;
+    margin:0px;
+    padding: 1px;
+    height: 370px;
+    width: 240px;
+    background: no-repeat;
+}
+.institucion{
+    font-family: impact;
+    font-size: 15px;
+    float: left;
+    margin: 2px;
+    width: 100%;
+}
+.institucionV{
+    font-family: impact;
+    font-size: 14px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+.conBorde{
+    -webkit-text-stroke: 0.5px #fff;
+}
+
+.color1{
+    color: #04204D;
+}
+.color2{
+    color: #AF0011;
+}
+.color3{
+    color: #0F6E00;
+}
+.membrete{        
+    font-size: 5px;
+    margin: 0px;
+    width: 100%;
+    height: 20px;
+}
+.sede{
+    font-family: titulo2;
+    font-size: 13px;
+    margin: 0px;
+    height: 15px;
+}
+
+.escudo1{
+    position: relative;
+    margin-right: 5px;
+    width: 60px;
+    height: 60px;
+}
+.escudo1 img{
+    position: absolute;
+    margin-top: 0px;
+    width: 100%;
+    height: 100%;
+}
+.escudo2{
+    position: relative;
+    margin: 0 auto;
+    margin-top: 5px;
+    width: 60px;
+    height: 60px;
+}
+.escudo2 img{
+    position: absolute;
+    margin-top: 0px;
+    width: 100%;
+    height: 100%;
+}
+.escudo3{
+    margin: 0 auto;
+    width: 70px;
+    height: 70px;
+}
+.escudo3 img{
+    margin-top: 0px;
+    width: 70px;
+    height: 70px;
+}
+.foto1{
+    position: relative;
+    margin: 0 auto;
+    width: 85px;
+    height: 85px;
+}
+.foto1 img{
+    position: absolute;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
+
+#fotoUs{
+    margin:0 auto;border-radius:10px;
+}
+
+.tipo1{
+    width: 98%;
+    border-collapse: collapse;
+    /*border: 1px solid #f00;*/
+    height: 231px;
+    clear: both;
+    margin: 0 auto;
+}
+.tipo1 td{
+    border-collapse: collapse;
+   /*border: 1px solid #000;*/
+    padding: 0px
+}
+
+.tipo2{
+    width: 98%;
+    border-collapse: collapse;
+    /*border: 1px solid #f00;*/
+    height: 100%;
+    margin: 0 auto;
+}
+
+.tipo2 td{
+    border-collapse: collapse;
+   /* border: 1px solid #000;*/
+    padding: 0px;
+    width: 240px;
+}
+
+.dato{
+    width: 80%;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0.5);
+    border: 1px solid #fff;
+    font-family: arial,verdana,calibri;
+}
+
+.dato2{
+    width: 90%;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0.5);
+    border: 1px solid #fff;
+    font-family: arial,verdana,calibri;
+    font-size: 11px;
+}
+
+.datoV1{
+    margin: 0 auto;
+    width: 90%;
+    height: 20px;
+    padding: 2px;
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0.5);
+    border: 1px solid #fff;
+    text-align: center;
+    font-family: arial,verdana,calibri;
+}
+.datoV2{        
+    font-size: 11px;
+}
+
+.codigo{
+    font-family: barras;  
+    font-size: 14px;
+    background-color: #fff;
+    text-align: center;
+    padding: 1px;
+    float: left;
+    text-align: center;
+    margin: 0px;
+    margin-top: 5px;
+    width: 95%;
+    height: 20px;
+}
+
+.codigoV{
+    font-family: barras;   
+    font-size: 18px;
+    background-color: #fff;
+    text-align: center;
+    padding: 1px;
+    float: right;
+    text-align: center;
+    margin: 0px;
+    margin-right: 10px;
+    width: 46%;
+    height: 26px;
+}

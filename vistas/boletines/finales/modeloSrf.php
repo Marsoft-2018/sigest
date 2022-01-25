@@ -1,0 +1,149 @@
+<!Doctype html>
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" type="text/css">
+    <link href="../css/bootstraps3.1.css" rel="stylesheet">
+    <style>
+    .ocultar{
+            width:100%;
+            height:50px;
+            padding:5px;
+            background-color:rgba(141, 127,140,0.5);
+            border-radius:10px;
+            border:1px solid rgba(240,230,150,0.5);
+    }
+
+    @media print
+    {
+        .ocultar{
+            display: none;
+            visibility:hidden;
+        }
+    }
+    .bloq-areas td{
+        border:1px solid #000;
+        font-size: 10px;
+    }
+    .c{
+        text-align: center;
+    }
+
+    .l{
+        text-align: left;
+    }
+
+    .r{
+        text-align: right;
+    }
+
+    .cn{
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .ln{
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .rn{
+        text-align: right;
+        font-weight: bold;
+    }
+ 
+</style>
+
+<?php
+   // include("../../Controladores/ctrlBoletin.php");
+
+
+echo "</head>";
+echo "<body>";
+echo "<div class='ocultar'>";
+echo "La pagina Cargada es: $pagina.";
+echo "<form action='http://localhost/marsoft/Controladores/ctrlBoletin.php' method='post' style='float:left;'>";
+    echo "<input type='hidden' name='sede' value='$sede' >";
+    echo "<input type='hidden' name='curso' value='$curso' >";
+    echo "<input type='hidden' name='topeMinDeAreasEnBoletin' value='$topeMinDeAreasEnBoletin' >";
+    echo "<input type='hidden' name='anho' value='$anho' >";
+    echo "<input type='hidden' name='periodo' value='$periodoBol' >";
+    echo "<input type='hidden' name='centro' value='$centro' >";
+    echo "Pagina:<input type='number' name='Pg' value='$pagina' >";
+    echo "Cantidad de Boletines:<input type='number' name='Cant' value='$registros' >";
+    echo "<input type='submit' class='btn btn-primary' value='Ver Boletines' style='margin-left:20px;'>";
+    echo "</form>";
+    echo '<button class="btn btn-primary" onclick="javascript:window.print()" style="float:left;margin-left:20px;margin-right:20px;"><i class="fa fa-print"></i>Imprimir</button>';
+echo "</div>";   
+    
+    foreach ($objInst->cargar() as $key => $value) {
+       $nombreInstitucion = $value['nombre'];
+       $ciudad = $value['ciudad'];
+       $aprobacion = $value['membrete'];
+       $escudo = $value['logo'];
+    }
+if($periodoBol != 'Final'){//Verifico cual periodo se quiere consultar si es diferente del final se imprime el periodo    correspondiente
+    //echo "la sede es: $sede y el curso es: $curso el anho es: $anho<BR>";
+
+
+    $sqltodoslosalumnos = "";
+    $sqlAreas = $objPensum->cargarPensum();
+    $objEstudiantes->sede= $sede;
+    $objEstudiantes->curso= $curso;
+    $objEstudiantes->anho= $anho;
+    $objEstudiantes->Rinicio= $Rinicio;
+    $objEstudiantes->registros= $registros;
+    if(isset($_POST['Estudiante'])){
+        $listaEstudiantes = $_POST['Estudiante'];
+        $sqltodoslosalumnos = $objEstudiantes->ConsultaEstudiantesEspecificos($listaEstudiantes,$Rinicio,$registros);
+    }else{
+        $sqltodoslosalumnos = $objEstudiantes->listar();
+        //var_dump($sqltodoslosalumnos);
+    }
+
+    
+    foreach ($sqltodoslosalumnos as $campo) {
+       $idMatricula = $campo['idMatricula'];
+       $noLista++;
+    ?>            
+        <div >
+            <?php include("encabezadoM2.php") ?>
+            <?php 
+                foreach ($sqlAreas as $key => $area) {
+                    include("../vistas/boletines/bloqueAreas-M2.php");
+                ?>  
+       
+                    <div style="width: 100%; height: 20px;"></div>
+                    <?php 
+                }
+            ?>  
+
+            <?php 
+                include("pieM2.php");
+             ?>
+                        
+            <table class="MsoTableGrid" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse; border:none; margin-top: 40px;">
+                <tr>                            
+                    <td valign="top" style="width: 40%; padding:0cm 5.4pt 0cm 5.4pt">
+                        <p class=MsoNormal align=center style='margin-bottom:0cm; margin-bottom:.0001pt; text-align:left;line-height:normal'>
+                            <b>
+                                <span lang=ES-AR><?php echo $directorGrupo; ?></span>
+                            </b>
+                        </p>
+                        <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt; text-align:left;line-height:normal'>
+                            <span lang=ES-AR>
+                                Dir. De Grupo
+                            </span>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+            <h1 style='page-break-after:always'></h1>
+
+    <?php 
+    }
+}
+ ?>
+</body>
+</html>
