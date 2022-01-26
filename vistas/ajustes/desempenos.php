@@ -5,6 +5,7 @@
             <th >Desempeño</th>
             <th style='width:20%;'>Limite Inferior(de)</th>
             <th style='width:20%;'>Limite Superior(hasta)</th>
+            <th>Ícono</th>
             <th colspan='2' >Acciones</th>
         </tr>
     </thead>
@@ -26,7 +27,10 @@
                         <input type="text" class="form form-control" id="LS<?php echo $desemp['idDes'] ?>"  required value="<?php echo $desemp['limiteSup'] ?>" style="margin:0px;border:0px;text-align:right;" onchange="modificarDes(this.id,this.value)">
                     </td>                    
                     <td style="margin:0px; padding: 3px; text-align:center;" >
-                        <img src="vistas/img/Iconos/eliminar.png" id="<?php echo $desemp['idDes'] ?>" width="20" height="20" title="Eliminar" class="iconosAcciones apuntado2" onclick="eliminarDes(this.id)"></img>
+                        <img src="vistas/img/desempenos/<?php echo $desemp['emoticon'] ?>" id="<?php echo $desemp['idDes'] ?>" width="25" height="25" title="cambiar imágen" class="iconosAcciones" onclick="cambiarEmoticon(this.id)"></img>
+                    </td>                    
+                    <td style="margin:0px; padding: 3px; text-align:center;" >
+                        <img src="vistas/img/Iconos/eliminar.png" id="<?php echo $desemp['idDes'] ?>" width="20" height="20" title="Eliminar desempeño" class="iconosAcciones apuntado2" onclick="eliminarDes(this.id)"></img>
                     </td>   
                 </tr>
             <?php
