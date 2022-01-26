@@ -2,11 +2,17 @@
     abstract class ConectarPDO{
         private $host = "localhost";
         private $bdt = "colegio7_sigest";
+        //Conexion servidor remoto
+        /*
         //private $bdt = "colegio7_pruebas";
-        //private $usuario= "colegio7_root";
-        //private $password = "Sigest2021**";
+        private $usuario= "colegio7_root";
+        private $password = "Sigest2021**";
+        */
+        
+        //Conexion local
         private $usuario= "root";
-        private $password = "";
+        //private $password = ""; //password xampp
+        private $password = "password"; //password para linux
 
         private $link;
         protected $Conexion;
