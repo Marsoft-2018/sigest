@@ -20,10 +20,10 @@
                 <th rowspan="2">No.</th>
                 <th rowspan="2">CÓDIGO</th>
                 <th rowspan="2">ESTUDIANTE</th>
-                <th colspan="<?php echo $numCriterios+2 ?>" style="text-align: center; border-left: 1px solid #099daf; border-right: 1px solid #099daf; background-color: #079; " >CALIFICACIONES 80%</th>
-                <th rowspan="2">DESEMPEÑO</th>
-                <th rowspan="2">LOGRO</th>
+                <th colspan="<?php echo $numCriterios+2 ?>" style="text-align: center; border-left: 1px solid #099daf; border-right: 1px solid #099daf; background-color: #079; " >CALIFICACIONES</th>
                 <th rowspan="2">INASISTENCIAS</th>
+                <th rowspan="2">LOGROS CARGADOS</th>
+                <th rowspan="2"></th>
             </tr>
             <tr>
                 <?php 
@@ -39,17 +39,18 @@
                     $nt++;
                 }
                 ?>
-                <th style='color: #fff; background-color: #098; text-align: center;' colspan="2"><span title="Calificación definitiva en el periodo">Def.</span></th>
+                <th style='color: #fff; background-color: #098; text-align: center;' ><span title="Calificación definitiva en el periodo">Def.</span></th>
+                <th style='color: #fff; background-color: #098; text-align: center;' >DESEMPEÑO</th>
             </tr>
         </thead>
         <tbody>
             <?php 
                 foreach ($objEstudiante->listarCurso() as $estudiante) { ?>
-                <tr class="apuntado2" style="color:#000000;font-size: 11px; border-bottom:1px solid #cecece; height: 20px; padding: 0px;margin: 0px;">
+                <tr class="apuntado2" style="color:#000000;font-size: 1em; border-bottom:1px solid #cecece; height: 20px; padding: 0px;margin: 0px;">
                     <td style='padding:0px; margin: 0px; width:20px;'><?php echo $cont; ?></td>
-                    <td style='padding:0px; margin: 0px; width:80px;font-size:12px;'>
+                    <td style='padding:0px; margin: 0px; width:80px;'>
                         <?php echo $estudiante['idMatricula'] ?></td>
-                    <td style='padding:0px; margin: 0px; font-size:11px; width: 20%;'>
+                    <td style='padding:0px; margin: 0px; font-size:1.1em; font-weight: bold; width: 32%;'>
                         <?php 
                             echo strtoupper($estudiante['PrimerApellido']." ".$estudiante['SegundoApellido']." ".$estudiante['PrimerNombre']." ".$estudiante['SegundoNombre']) 
                         ?>                    
@@ -113,18 +114,9 @@
                             }
                         ?>
                         <input type='text' 
-                            style="margin: 0px; height: 100%; background-color: #afAc;  font-size: 1.3em; padding: 5px;"  class="form form-control def<?php echo $estudiante['idMatricula'] ?>"
+                            style="margin: 0px; height: 100%; background-color: #afAc;  font-size: 1.1em; font-weight: bold; padding: 5px;"  class="form form-control def<?php echo $estudiante['idMatricula'] ?>"
                             value ="<?php echo $nota ?>" 
                             id ="<?php echo $estudiante['idMatricula'] ?>" readonly>
-                    </td>
-                    <td  style='padding: 0px; margin: 0px; width: 20px; text-align: center;'>
-                        <i class='fa fa-trash eliminarNota' 
-                            id='el<?php echo $estudiante['idMatricula'] ?>' 
-                            onclick='eliminarNota(<?php echo $estudiante['idMatricula'] ?>,1)' 
-                            style="<?php if($nota == ""){ echo $oculto; }elseif($nota > 0){ echo $visible; } ?> padding-top: 6px; padding-bottom: 5px;" 
-                            title ="Eliminar calificación"
-
-                            ></i>
                     </td>
                     <td  style='padding: 0px; margin: 0px; width: 10%;'>
                         <?php 
@@ -158,8 +150,16 @@
                             <?php echo $des; ?>
                         </div> 
                     </td>
-                    <td style="width:30%; height: 20px; padding: 0px; margin: 0px;">
-                        <div class="" style="text-align:left; font-size:9px; width: 100%; overflow: hidden;height: 25px;margin: 0px;" id="log<?php echo $estudiante['idMatricula'] ?>" >
+                    <td  style='padding: 0px; width: 50px; height: 20px; margin: 0px;'>
+                        <div style='height: 100%; margin: 0px; padding: 0px; width: 100%;'>
+                            <input type='text' class='form-control' style='padding: 5px; text-align:center; margin:0px; height: 100%;' value='<?php echo $faltas ?>' id="<?php echo "ina".$estudiante['idMatricula'] ?>" onchange='modificarFalta(<?php echo $estudiante['idMatricula'] ?>,this.value)'>
+                        </div>
+                    </td>
+                    <td style="height: 20px; padding: 0px; margin: 0px;">
+                        <button class="btn btn-secondary" style="margin: 0px;"  data-toggle="modal" data-target="#staticBackdrop" >
+                            <i class="fa fa-eye"></i>
+                        </button>
+                        <!-- <div class="" style="text-align:left; font-size:9px; width: 100%; overflow: hidden;height: 25px;margin: 0px;" id="log<?php echo $estudiante['idMatricula'] ?>" >
                             <?php 
                                 $objLogros = new Logro();
                                 $objLogros->periodo = $_POST['periodo'];
@@ -167,14 +167,14 @@
                                 $objLogros->codArea = $_POST['codArea'];
                                 $objLogros->tabla = $tabla;
                                 $objLogros->calificacion = $nota;
-                                $objLogros->cargar();
+                                //$objLogros->cargar();
                             ?>                        
-                        </div>
+                        </div> -->
                     </td>
-                    <td  style='padding: 0px; width: 50px; height: 20px; margin: 0px;'>
-                        <div style='height: 100%; margin: 0px; padding: 0px; width: 100%;'>
-                            <input type='text' class='form-control' style='padding: 5px; text-align:center; margin:0px; height: 100%;' value='<?php echo $faltas ?>' id="<?php echo "ina".$estudiante['idMatricula'] ?>" onchange='modificarFalta(<?php echo $estudiante['idMatricula'] ?>,this.value)'>
-                        </div>
+                    <td style="padding: 0px">
+                        <button class="btn btn-success" style="margin: 0px;" data-toggle="modal" data-target="#staticBackdrop" onclick="cargarNotasGuardadasEstudiante()" >
+                            <i class="fa fa-gears"></i>
+                        </button>
                     </td>
                 </tr>
             <?php 

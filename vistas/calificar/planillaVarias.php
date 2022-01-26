@@ -22,7 +22,7 @@
                 <th rowspan="2">ESTUDIANTE</th>
                 <th colspan="<?php echo $numCriterios+2 ?>" style="text-align: center; border-left: 1px solid #099daf; border-right: 1px solid #099daf; background-color: #079; " >CALIFICACIONES</th>
                 <th rowspan="2">DESEMPEÑO</th>
-                <th rowspan="2">LOGRO</th>
+                <th rowspan="2">LOGROS CARGADOS</th>
                 <th rowspan="2">INASISTENCIAS</th>
             </tr>
             <tr>
