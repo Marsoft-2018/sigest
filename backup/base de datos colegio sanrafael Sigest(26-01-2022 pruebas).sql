@@ -1,8 +1,8 @@
 /*
-SQLyog Community v13.1.7 (64 bit)
+SQLyog Ultimate v11.11 (64 bit)
 MySQL - 8.0.27-0ubuntu0.21.10.1 : Database - colegio7_sigest
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 

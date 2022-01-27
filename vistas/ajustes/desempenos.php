@@ -44,7 +44,8 @@
             <td colspan="4" style="height:23px;"><h3>Nuevo Desempeño</h3></td>
         </tr> 
             <tr>
-                <td>Desempeño<br>
+                <td>
+                    <label>Desempeño</label>
                     <select id="desemNuevo" required class="form-control">
                        <option value="">Seleccione..</option>
                        <option value="BAJO">BAJO</option>
@@ -54,11 +55,17 @@
                     </select>
                     
                 </td>
-                <td>Lím. Inferior (De):<br>
+                <td>
+                    <label>Lím. Inferior (De):</label>
                     <input type="number" class="form-control" id="limitInfNuevo" required value="" placeholder="Límite inferior" step="any" min="0">
                 </td>
-                <td>Lím. Superior (Hasta):<br>
+                <td>
+                    <label>Lím. Superior (Hasta):</label>
                     <input type="number" class="form-control" id="limitSupNuevo" required value="" placeholder="Límite Superior" step="any" min="0">
+                </td>
+                <td>
+                    <label for="imagen">Icono</label>
+                    <input type="file" name="emoticon" id="imagen" class="form form-control">
                 </td>
                 <td align="center">
                    <button type="submit" id="btnAjDesemp" class="btn btn-primary" style="margin-top:20px;"><i class="fa fa-plus"></i> Agregar</button>                                                                  
