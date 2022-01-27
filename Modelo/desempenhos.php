@@ -23,12 +23,15 @@
         }
 
         public function cargar(){
-            $this->sql = "SELECT limiteInf, limiteSup, CONCEPT FROM desempenos WHERE CODINST = 1 ORDER BY limiteInf DESC";
+            $this->sql = "SELECT limiteInf, limiteSup, CONCEPT, emoticon FROM desempenos WHERE CODINST = 1 ORDER BY limiteInf DESC";
             try {
+                $notaN = "";
                 $stm = $this->Conexion->prepare($this->sql);
                 $stm->execute();
                 $datos = $stm->fetchAll(PDO::FETCH_ASSOC);
-                $notaN = round($this->nota,1);
+                if($this->nota > 0){
+                    $notaN = round($this->nota,1);
+                }
                foreach ($datos as $concep) {
                    if($notaN >= $concep['limiteInf'] && $notaN <= $concep['limiteSup']){
                         $this->CONCEPT = $concep['CONCEPT'];
