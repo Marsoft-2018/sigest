@@ -431,6 +431,8 @@
     <script type='text/javascript' src="js/boletines.js"></script>
     <script type="text/javascript" src="js/promover.js"></script>
     <script type="text/javascript" src="js/nivelaciones.js"></script>
+    <script type="text/javascript" src="js/grados.js"></script>
+    <script type="text/javascript" src="js/niveles.js"></script>
 
     <!-- <script src="complementos/DataTables/datatables.js"></script>   -->
   </body>

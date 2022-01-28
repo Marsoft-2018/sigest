@@ -3,6 +3,8 @@
     require("../Modelo/Conect.php");
     require("../Modelo/Institucion.php");
     require("../Modelo/anhoLectivo.php");
+    require("../Modelo/nivel.php");
+    require("../Modelo/grado.php");
     require("../Modelo/periodos.php");
     require("../Modelo/desempenhos.php");
     require("../Modelo/criterios.php");
@@ -105,6 +107,8 @@
                     <div>
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#cudAnho" data-toggle="tab">Año Lectivo</a></li>
+                            <li><a href="#cudNiveles" data-toggle="tab">Niveles</a></li>
+                            <li><a href="#cudGrados" data-toggle="tab">Grados</a></li>
                             <li><a href="#cudPeriodo" data-toggle="tab">Periodos</a></li>
                             <li><a href="#cudDesempeno" data-toggle="tab">Desempeños</a></li>
                             <li><a href="#cudCriterios" data-toggle="tab">Criterios</a></li>
@@ -153,6 +157,22 @@
                                         <span id='resulAnno'></span>
                                     </div>
                                 </div>                        
+                            </div>
+                            <div class="tab-pane fade" id="cudNiveles">
+                                <h4>Niveles educativos manejados en la institución</h4>
+                                <div id='nivelessMarco'>
+                                    <?php 
+                                        require("ajustes/niveles/listado.php");
+                                    ?>
+                                </div>                                
+                            </div>
+                            <div class="tab-pane fade" id="cudGrados">
+                                <h4>Listado de grados de la institución</h4>
+                                <div id='gradosMarco'>
+                                    <?php 
+                                        require("ajustes/grados/listado.php");
+                                    ?>
+                                </div>                                
                             </div>
                             <div class="tab-pane fade" id="cudPeriodo">
                                 <h3>Nuevo Periodo</h3>                                    
