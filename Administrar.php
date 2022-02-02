@@ -318,11 +318,12 @@
           
 
         </section>
-        <!-- prueba de ventana modal para agregar matriculas // -->
+
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog fade in" role="document" style="width: 70%;">
             <div class="modal-content">
               <div class="modal-header">
+                <span class="modal-title" id="tituloModal" style="font-size: 2em; font-weight: bold; text-transform: uppercase"></span>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>

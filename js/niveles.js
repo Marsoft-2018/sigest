@@ -2,7 +2,8 @@ function nuevoNivel(){
     $('#cargasFormulario').html("");
     $.ajax({
         type: "POST",
-        url: "vistas/ajustes/niveles/formulario.php",
+        url: "Controladores/ctrlNiveles.php",
+        data:{accion:"nuevo"},
         success: function(data){
             $('#cargasFormulario').html(data);
         },

@@ -1,6 +1,6 @@
 <?php 
 
-class grados extends ConectarPDO{
+class Grado extends ConectarPDO{
     public $sede;
     public $CODNIVEL;
     public $CODGRADO;
@@ -26,6 +26,19 @@ class grados extends ConectarPDO{
             echo $reg;
         } catch (Exception $e) {
             echo "Error: ".$e;
+        }
+    }
+
+    public function cargar(){
+        $this->sql = "SELECT * FROM grados WHERE CODGRADO = ?";
+        try {
+            $stm = $this->Conexion->prepare($this->sql);
+            $stm->bindparam(1,$this->CODGRADO);
+            $stm->execute();
+            $reg = $stm->fetchAll(PDO::FETCH_ASSOC);
+            return $reg;
+        } catch (Exception $e) {
+            
         }
     }
 
