@@ -21,7 +21,7 @@
 		$visible = "display:block;";
 		$objSede = new Sede();
 	}
-        $objGrad = new grados();
+        $objGrad = new Grado();
     	$objJornada = new Jornada();
 
 	$anho = date("Y");
@@ -56,7 +56,7 @@
 			    <div class="row">
 			        <div class='col-md-12' id='listaGradosAsoc'>
 			            <?php 
-			                $objGrad = new grados();
+			                $objGrad = new Grado();
 			                $objGrad->sede = $objSede->CODSEDE;
 			                if (isset($_POST['sede'])) {
 			                    include("listaCursos.php");

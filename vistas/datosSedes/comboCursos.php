@@ -2,7 +2,7 @@
 	require("../../Modelo/Conect.php");
 	require("../../Modelo/curso.php");
 
-	$objGr = new grados();
+	$objGr = new Grado();
 	$objGr->codSede = $_POST['sede'];
 ?>
 

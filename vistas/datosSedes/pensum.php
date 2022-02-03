@@ -18,7 +18,7 @@
 
     $cont=1; 
     $cantGrados = 0;
-    $objGrad = new grados();
+    $objGrad = new Grado();
     $objArea = new Area();
     $objAnhos = new Anho();
     $objArea->codSede = $objSede->CODSEDE;

@@ -10,7 +10,7 @@
         require("../../Modelo/Estudiante.php");
         require("../../Modelo/jornada.php");
         require("../../Modelo/matricula.php");  
-        $objGrad = new Grados();
+        $objGrad = new Grado();
         $objJornada = new Jornada();    
         $objGrad->sede = $_POST['sede'];
     }else{

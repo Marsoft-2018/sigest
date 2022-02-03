@@ -10,7 +10,7 @@
         require("../../Modelo/grado.php");
         require("../../Modelo/anhoLectivo.php");
 
-        $objGrad = new grados();
+        $objGrad = new Grado();
         $objArea = new Area();
         $objAnhos = new Anho();
         $objArea->codSede = $sede;

@@ -10,10 +10,10 @@
 
     if(isset($_POST['accion'])){
         $accion = $_POST['accion'];
-        $objGrado = new grados();
+        $objGrado = new Grado();
     }elseif(isset($_GET['accion'])){
         $accion = $_GET['accion'];
-        $objGrado = new grados();
+        $objGrado = new Grado();
     }
 
     switch ($accion) {
