@@ -115,7 +115,7 @@ class Grado extends ConectarPDO{
             $stm = $this->Conexion->prepare($this->sql);
             $stm->bindParam(1, $this->CODGRADO);
             if($stm->execute()){
-                $reg = "resgistro eliminado con éxito";
+                $reg = "Registro eliminado con éxito";
             }else{
                 $reg = "Falló la eliminación del registro";
             }

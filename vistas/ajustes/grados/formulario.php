@@ -1,5 +1,6 @@
 <?php
     $opcion = "agregarGrado()";
+    $CODNIVEL = "";
     $CODGRADO = "";
     $NOMGRADO = "";
     $nomCampo = "";
@@ -9,16 +10,18 @@
         $objGrado = new Grado();
         $objGrado->CODGRADO = $CODGRADO;
         foreach ($objGrado->cargar() as $grado) {
+            $CODNIVEL = $grado["CODNIVEL"];
             $NOMGRADO = $grado["NOMGRADO"];
             $nomCampo = $grado["nomCampo"];
             $estiloDesempeno = $grado["estiloDesempeno"];
+            $opcion = "modificarGrado('".$CODGRADO."')";
         }
     }
 
 ?>
 
 <div class="container-fluid">
-<form action="" method="POST" onsubmit="return agregarGrado()">
+<form action="" method="POST" onsubmit="return <?php echo $opcion ?>">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12 form-group">
             <label for="exampleInputEmail1">Nivel</label>
@@ -29,7 +32,7 @@
                     $objNivel->idInst = $_SESSION['institucion'];
 
                     foreach ($objNivel->listar() as $key => $nivel) { ?>
-                        <option value="<?php echo $nivel['CODNIVEL'] ?>"><?php echo $nivel['NOMBRE_NIVEL'] ?></option>
+                        <option value="<?php echo $nivel['CODNIVEL']; ?>" <?php if($nivel['CODNIVEL'] == $CODNIVEL){ echo 'selected'; } ?> ><?php echo $nivel['NOMBRE_NIVEL'] ?></option>
                     <?php
                     }                                                   
                 ?>                    
@@ -69,9 +72,9 @@
             <label for="estiloDesempeno">Estilo desempeño</label>
             <select name="estiloDesempeno" id="estiloDesempeno" class="form-control" required>
                 <option value="">Seleccione..</option>
-                <option value="CONCEPTO">CONCEPTO</option>
-                <option value="ICONO">ICONO</option>
-                <option value="AMBOS">AMBOS</option>                                     
+                <option value="CONCEPTO" <?php if($estiloDesempeno == 'CONCEPTO'){ echo 'selected'; }?>>CONCEPTO</option>
+                <option value="ICONO" <?php if($estiloDesempeno == 'ICONO'){ echo 'selected'; }?>>ICONO</option>
+                <option value="AMBOS" <?php if($estiloDesempeno == 'AMBOS'){ echo 'selected'; }?>>AMBOS</option>                                     
             </select> 
         </div>
     </div>

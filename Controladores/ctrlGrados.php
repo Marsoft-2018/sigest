@@ -11,19 +11,27 @@
             break;
 
         case 'agregar':
-            
+            $objGrado = new Grado();
+            $objGrado->CODNIVEL = $_POST['CODNIVEL'];
+            $objGrado->CODGRADO = $_POST['CODGRADO'];
+            $objGrado->NOMGRADO = $_POST["NOMGRADO"];
+            $objGrado->nomCampo = $_POST["nomCampo"];
+            $objGrado->estiloDesempeno = $_POST["estiloDesempeno"];
+            $objGrado->agregar();
             break;
 
         case 'cargar':
             
             break;
 
-        case 'editar':
-            
-            break;
-
         case 'modificar':
-                
+            $objGrado = new Grado();
+            $objGrado->CODNIVEL = $_POST['CODNIVEL'];
+            $objGrado->CODGRADO = $_POST['CODGRADO'];
+            $objGrado->NOMGRADO = $_POST["NOMGRADO"];
+            $objGrado->nomCampo = $_POST["nomCampo"];
+            $objGrado->estiloDesempeno = $_POST["estiloDesempeno"];
+            $objGrado->modificar();    
             break;
 
 
