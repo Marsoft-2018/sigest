@@ -24,7 +24,7 @@
         } 
         
         public function verCarga(){
-            $this->sql = "SELECT axs.`Abreviatura`,axs.`Nombre`, cr.`CODGRADO`,cr.`grupo`, cr.codCurso FROM cargaacademica_new ca INNER JOIN areasxsedes_2 axs ON axs.`id` = ca.`codArea` INNER JOIN cursos cr ON cr.`codCurso` = ca.`codCurso` WHERE ca.codProfesor = ? AND ca.anho = ? ORDER BY axs.`Nombre`, cr.`CODGRADO` ASC";
+            $this->sql = "SELECT axs.`Abreviatura`,axs.`Nombre`, cr.`CODGRADO`,cr.`grupo`, cr.codCurso, gr.NOMGRADO, gr.nomCampo FROM cargaacademica_new ca INNER JOIN areasxsedes_2 axs ON axs.`id` = ca.`codArea` INNER JOIN cursos cr ON cr.`codCurso` = ca.`codCurso` INNER JOIN grados gr ON gr.CODGRADO = cr.CODGRADO WHERE ca.codProfesor = ? AND ca.anho = ? ORDER BY axs.`Nombre`, cr.`CODGRADO` ASC";
             try {
                 $stm = $this->Conexion->prepare($this->sql);
                 $stm->bindparam(1,$this->codProfesor);

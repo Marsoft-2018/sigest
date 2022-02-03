@@ -19,13 +19,13 @@ class Grado extends ConectarPDO{
             $stm->bindParam(4, $this->nomCampo);
             $stm->bindParam(5, $this->estiloDesempeno);
             if($stm->execute()){
-                $reg = "resgistro agregado con éxito";
+                $reg = '<div class="alert alert-success" role="alert">Registro agregado con éxito</div>';
             }else{
-                $reg = "Falló al agregar el registro";
+                $reg = '<div class="alert alert-warning" role="alert">Falló al agregar el registro</div>';
             }
             echo $reg;
         } catch (Exception $e) {
-            echo "Error: ".$e;
+            echo '<div class="alert alert-danger" role="alert">Error al agregar el registro: '.$e.'</div>';
         }
     }
 

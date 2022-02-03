@@ -26,7 +26,7 @@
             <select id='newGrado' style='margin:0px;font-size: 12px;' class='form form-control'>
                 <option value=''>Seleccione...</option>
                 <?php 
-                    $objGrado = new grados();
+                    $objGrado = new Grado();
                     foreach ($objGrado->listar() as $key => $gr) {
                         echo "<option value='".$gr['CODGRADO']."'>".strtoupper($gr['NOMGRADO'])." - ".$gr['CODNIVEL']."</option>";
                     }

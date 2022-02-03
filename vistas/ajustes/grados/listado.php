@@ -19,10 +19,10 @@
             foreach ($objGrado->listar() as $grado) {
             ?>
                 <tr>
-                    <td style="margin:0px; padding: 0px; text-align:center;font-size: 11px;">
+                    <td style="margin:0px; padding: 0px; text-align:center;">
                         <?php echo $grado['CODGRADO'] ?>
                     </td>
-                    <td style="margin:0px; padding: 0px;">
+                    <td style="margin:0px; padding: 0px; text-transform: uppercase;">
                         <?php echo $grado['NOMGRADO'] ?>
                     </td>   
                     <td style="margin:0px; padding: 0px; ">
@@ -31,7 +31,7 @@
                     <td style="margin:0px; padding: 0px; ">
                         <?php echo $grado['estiloDesempeno'] ?>
                     </td>                   
-                    <td style="margin:0px; padding: 3px; text-align:center;" >
+                    <td style="margin:0px; padding: 0px; text-align:center;" >
                         <button class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop"  onclick="eliminarGrado(<?php echo $grado['CODGRADO'] ?>)" ><i class="fa fa-trash"></i></button>
                         <button class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop"  onclick="editarGrado(<?php echo $grado['CODGRADO'] ?>)" ><i class="fa fa-pencil"></i></button>
                     </td>   

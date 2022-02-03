@@ -11,6 +11,7 @@
             break;
 
         case 'agregar':
+            echo var_dump($_REQUEST);
             $objGrado = new Grado();
             $objGrado->CODNIVEL = $_POST['CODNIVEL'];
             $objGrado->CODGRADO = $_POST['CODGRADO'];

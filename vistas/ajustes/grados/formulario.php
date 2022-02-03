@@ -21,11 +21,10 @@
 ?>
 
 <div class="container-fluid">
-<form action="" method="POST" onsubmit="return <?php echo $opcion ?>">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12 form-group">
             <label for="exampleInputEmail1">Nivel</label>
-            <select id="CODNIVEL" required class="form-control">
+            <select id="idNivel"  class="form-control" required onchange="codigoNivel(this.value)">
                 <option value="">Seleccione..</option>
                 <?php
                     $objNivel = new Nivel();
@@ -81,11 +80,12 @@
     <hr>
     <div class="row">
         <div class="col-md-6">
-            <button type="submit" id="btnAjgrado" class="btn btn-primary" style="font-size: 1.2em; padding: 10px; width: 100%; box-sizing: border-box;"><i class="fa fa-plus"></i> Guardar</button>
+            <button type="button" id="btnAjgrado" class="btn btn-primary" style="font-size: 1.2em; padding: 10px; width: 100%; box-sizing: border-box;" onclick="<?php echo $opcion ?>"><i class="fa fa-plus"></i> Guardar</button>
         </div>
         <div class="col-md-6">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-size: 1.2em; padding: 10px; width: 100%; box-sizing: border-box;">Cancelar</button>
         </div>
-    </div>        
-</form>
+    </div> 
+    <hr>
+    <div id="respuestasGrados"></div>  
 </div>

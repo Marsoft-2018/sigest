@@ -83,6 +83,7 @@
         $objSede = new Sede();
         $sede  = $objSede->sedeCurso($curso);
         $grado = $campo['CODGRADO']."°";
+        if($campo['CODGRADO']<=0){ $grado = $campo['NOMGRADO']; }
         $grupo = $campo['grupo'];
         $area = $campo['Nombre'];
         
