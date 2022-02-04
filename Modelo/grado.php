@@ -7,6 +7,7 @@ class Grado extends ConectarPDO{
     public $NOMGRADO;
     public $nomCampo;
     public $estiloDesempeno;
+    public $codigoAnterior;
     private $sql;
 
     public function agregar(){        
@@ -55,9 +56,10 @@ class Grado extends ConectarPDO{
     }
 
     public function listarPorNivel(){
-        $this->sql = "SELECT * FROM grados WHERE CODNIVEL='".$this->CODNIVEL."'";
+        $this->sql = "SELECT * FROM grados WHERE CODNIVEL= ?";
         try {
             $stm = $this->Conexion->prepare($this->sql);
+            $stm->bindparam(1,$this->CODNIVEL);
             $stm->execute();
             $reg = $stm->fetchAll(PDO::FETCH_ASSOC);
             return $reg;
@@ -91,21 +93,23 @@ class Grado extends ConectarPDO{
     }
 
     public function modificar(){        
-        $this->sql = "UPDATE grados SET NOMGRADO = ?, nomCampo = ?, estiloDesempeno = ? WHERE CODGRADO = ?";
+        $this->sql = "UPDATE grados SET CODNIVEL = ?, CODGRADO = ?, NOMGRADO = ?, nomCampo = ?, estiloDesempeno = ? WHERE CODGRADO = ?";
         try {
             $stm = $this->Conexion->prepare($this->sql);
-            $stm->bindParam(1, $this->NOMGRADO);
-            $stm->bindParam(2, $this->nomCampo);
-            $stm->bindParam(3, $this->estiloDesempeno);
-            $stm->bindParam(4, $this->CODGRADO);
+            $stm->bindParam(1, $this->CODNIVEL);
+            $stm->bindParam(2, $this->CODGRADO);
+            $stm->bindParam(3, $this->NOMGRADO);
+            $stm->bindParam(4, $this->nomCampo);
+            $stm->bindParam(5, $this->estiloDesempeno);
+            $stm->bindParam(6, $this->codigoAnterior);
             if($stm->execute()){
-                $reg = "resgistro actualizado con éxito";
+                $reg = '<div class="alert alert-success" role="alert">Registro actualizado con éxito</div>';
             }else{
-                $reg = "Falló la actualización del registro";
+                $reg = '<div class="alert alert-warning" role="alert">Falló al actualizar el registro</div>';
             }
             echo $reg;
         } catch (Exception $e) {
-            echo "Error: ".$e;
+            echo '<div class="alert alert-danger" role="alert">No se pudo modificar el registro, Error: '.$e.'</div>';
         }
     }
 
@@ -115,13 +119,13 @@ class Grado extends ConectarPDO{
             $stm = $this->Conexion->prepare($this->sql);
             $stm->bindParam(1, $this->CODGRADO);
             if($stm->execute()){
-                $reg = "Registro eliminado con éxito";
+                $reg = '<div class="alert alert-success" role="alert">Registro Eliminado con éxito</div>';
             }else{
-                $reg = "Falló la eliminación del registro";
+                $reg = '<div class="alert alert-warning" role="alert">Falló al tratar de eliminar el registro</div>';
             }
             echo $reg;
         } catch (Exception $e) {
-            echo "Error: ".$e;
+            echo '<div class="alert alert-danger" role="alert">No se pudo eliminar el registro, Error: '.$e.'</div>';
         }
     }    
 }

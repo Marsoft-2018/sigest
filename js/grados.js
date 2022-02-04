@@ -30,8 +30,8 @@ function editarGrado(id){
     });
 }
 
-
 function agregarGrado(){
+    $('#respuestasGrados').html("");
     let accion = "agregar";
     let CODGRADO = $("#CODGRADO").val();
     let NOMGRADO = $("#NOMGRADO").val();
@@ -49,6 +49,7 @@ function agregarGrado(){
             $("#nomCampo").val("");
             $("#estiloDesempeno").val("");
             $('#respuestasGrados').html(data);
+            mostrarGrados();
         },
         error: function(err){
             console.log("Error: "+err);
@@ -57,22 +58,26 @@ function agregarGrado(){
     return false;
 }
 
-function codigoNivel(id){
-
-    let idNivel = $("#idNivel").val();
-    alert("CODIGO DEL NIVEL: "+idNivel);
-
-}
-
 function modificarGrado(id){
-    $('#cargasFormulario').html("");
-    $('#tituloModal').html("Formulario para Grados");
+    $('#respuestasGrados').html("");
+    let accion = "modificar";
+    let CODGRADO = $("#CODGRADO").val();
+    let NOMGRADO = $("#NOMGRADO").val();
+    let idNivel = $("#idNivel").val();
+    let nomCampo = $("#nomCampo").val();
+    let estiloDesempeno = $("#estiloDesempeno").val();
     $.ajax({
         type: "POST",
         url: "Controladores/ctrlGrados.php",
-        data:{accion:"editar", CODGRADO:id},
+        data:{accion:accion, id:id, CODGRADO:CODGRADO,NOMGRADO:NOMGRADO,CODNIVEL:idNivel,nomCampo:nomCampo, estiloDesempeno:estiloDesempeno},
         success: function(data){
-            $('#cargasFormulario').html(data);
+            $("#CODGRADO").val("");
+            $("#NOMGRADO").val("");
+            $("#idNivel").val("");
+            $("#nomCampo").val("");
+            $("#estiloDesempeno").val("");
+            $('#respuestasGrados').html(data);
+            mostrarGrados();
         },
         error: function(err){
             console.log("Error: "+err);
@@ -82,14 +87,27 @@ function modificarGrado(id){
 
 
 function eliminarGrado(id){
-    $('#cargasFormulario').html("");
-    $('#tituloModal').html("Formulario para Grados");
     $.ajax({
         type: "POST",
         url: "Controladores/ctrlGrados.php",
-        data:{accion:"editar", CODGRADO:id},
+        data:{accion:"eliminar", CODGRADO:id},
         success: function(data){
-            $('#cargasFormulario').html(data);
+            alertify.message(data);
+            mostrarGrados();
+        },
+        error: function(err){
+            console.log("Error: "+err);
+        }
+    });
+}
+
+function mostrarGrados(){    
+    $.ajax({
+        type: "POST",
+        url: "Controladores/ctrlGrados.php",
+        data:{accion:"mostrar"},
+        success: function(data){
+            $('#gradosMarco').html(data);
         },
         error: function(err){
             console.log("Error: "+err);
