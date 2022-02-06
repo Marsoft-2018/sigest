@@ -14,13 +14,13 @@
 				$stm->bindParam(2, $this->NOMBRE_NIVEL);
 				$stm->bindParam(3, $this->orden);
 				if($stm->execute()){
-					$reg = "resgistro agregado con éxito";
+					$reg = '<div class="alert alert-success" role="alert">Registro agregado con éxito</div>';
 				}else{
-					$reg = "Falló al agregar el registro";
+					$reg = '<div class="alert alert-warning" role="alert">Falló al agregar el registro</div>';
 				}
 				echo $reg;
 			} catch (Exception $e) {
-				echo "Error: ".$e;
+				echo '<div class="alert alert-danger" role="alert">Error al agregar el registro: '.$e.'</div>';
 			}
 		}
 
@@ -57,13 +57,13 @@
 				$stm->bindParam(2, $this->orden);
 				$stm->bindParam(3, $this->CODNIVEL);
 				if($stm->execute()){
-					$reg = "resgistro modificado con éxito";
+					$reg = '<div class="alert alert-success" role="alert">Registro actualizado con éxito</div>';
 				}else{
-					$reg = "Falló al tratar de modificar el registro";
+					$reg = '<div class="alert alert-warning" role="alert">Falló al actualizar el registro</div>';
 				}
 				echo $reg;
 			} catch (Exception $e) {
-				echo "Error: ".$e;
+				echo '<div class="alert alert-danger" role="alert">No se pudo modificar el registro, Error: '.$e.'</div>';
 			}
 		}
 
@@ -73,13 +73,13 @@
 				$stm = $this->Conexion->prepare($this->sql);
 				$stm->bindParam(1, $this->CODNIVEL);
 				if($stm->execute()){
-					$reg = "resgistro Eliminado con éxito";
+					$reg = '<div class="alert alert-success" role="alert">Registro Eliminado con éxito</div>';
 				}else{
-					$reg = "Falló al tratar de eliminar el registro";
+					$reg = '<div class="alert alert-warning" role="alert">Falló al tratar de eliminar el registro</div>';
 				}
 				echo $reg;
 			} catch (Exception $e) {
-				echo "Error: ".$e;
+				echo '<div class="alert alert-danger" role="alert">No se pudo eliminar el registro, Error: '.$e.'</div>';
 			}
 		}
 		

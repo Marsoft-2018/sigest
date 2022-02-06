@@ -11,11 +11,11 @@
         <?php
             $objCriterio = new Criterio();
             $objCriterio->codinst = $_SESSION['institucion'];
-            foreach ($objCriterio->Listar() as $key => $criterio) {
+            foreach ($objCriterio->Listar() as $criterio) {
                ?>
                 <tr class="apuntado">
                     <td align="right" style="margin:0px; padding: 0px; text-align:left;font-size: 11px;">
-                        <input type="text" class="form form-control" id="Cl<?php echo $criterio[''] ?>" value="<?php echo $criterio['codCriterio'] ?>" readonly="true" style="margin:0px;border:0px;">
+                        <input type="text" class="form form-control" id="Cl<?php echo $criterio['codCriterio'] ?>" value="<?php echo $criterio['codCriterio'] ?>" readonly="true" style="margin:0px;border:0px;">
                     </td>                                            
                     <td style="margin:0px; padding: 0px; text-align:left;font-size: 11px;">
                         <input type="text" class="form form-control" id="NC<?php echo $criterio['codCriterio'] ?>" value="<?php echo $criterio['nomCriterio'] ?>" style="margin:0px;border:0px;">

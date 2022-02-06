@@ -152,7 +152,7 @@
                     <li><a href="#" onclick='menu(this.id)' id='vistas/sedes.php'><i class="fa fa-circle-o"></i>Listado Sedes</a></li>
                     <li>
                       <a href="#" onclick='menu(this.id)' id='vistas/datosSedes/organizacionCursos.php'>
-                        <i class="fa fa-circle-o"></i> Niveles/Grados
+                        <i class="fa fa-circle-o"></i> Grupos/Cursos
                       </a>
                     </li>
                     <li class="treeview">

@@ -1,5 +1,5 @@
 <button type="button" id="btnNuevoGrado" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"  onclick="nuevoGrado()" style="width: 50%; margin:20px 0px; padding:7px;">
-    <i class="fa fa-plus"></i> Nuevo
+    <i class="fa fa-plus"></i> Nuevo grado
 </button>                                                                  
                 
 <table class='table table-striped' style='font-size:12px;'>
@@ -9,7 +9,7 @@
             <th style='width:20%;'>Nombre</th>
             <th style='width:20%;'>Abreviatura</th>
             <th>Estilo desempeño</th>
-            <th colspan='2' >Acciones</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody id='tGrados'>                                            

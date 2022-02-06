@@ -38,7 +38,6 @@
             $objGrado->NOMGRADO = $_POST["NOMGRADO"];
             $objGrado->nomCampo = $_POST["nomCampo"];
             $objGrado->estiloDesempeno = $_POST["estiloDesempeno"];
-            $objGrado->agregar();
             $objGrado->modificar();    
             break;
 

@@ -1,60 +1,61 @@
+<?php
+    $opcion = "agregarNivel()";    
+    $CODNIVEL = "";
+    $NOMBRE_NIVEL = "";
+    $orden = "";
+    
+    if(isset($_POST['CODNIVEL'])){
+        $CODNIVEL = $_POST['CODNIVEL'];
+        $objNivel = new Nivel();
+        $objNivel->CODNIVEL = $CODNIVEL;
+        foreach ($objNivel->cargar() as $Nivel) {
+            $CODNIVEL = $Nivel["CODNIVEL"];
+            $NOMBRE_NIVEL = $Nivel["NOMBRE_NIVEL"];
+            $orden = $Nivel["orden"];
+            $opcion = "modificarNivel('".$CODNIVEL."')";
+        }
+    }
 
-<table class='table table-striped' style='font-size:12px;'>
-    <thead>
-        <tr style='background-color: #AABED9;'>
-            <th >Abreviatura/código</th>
-            <th style='width:40%;'>Nombre</th>
-            <th >No. orden</th>
-            <th colspan='2' >Acciones</th>
-        </tr>
-    </thead>
-    <tbody id='tNiveles'>                                            
-        <?php
-            $objNivel = new Nivel();
-            $objNivel->idInst = $_SESSION['institucion'];
+?>
 
-            foreach ($objNivel->listar() as $key => $nivel) {
-            ?>
-                <tr class="apuntado">
-                    <td style="margin:0px; padding: 0px; text-align:center;font-size: 11px;">
-                        <input type="text" class="form form-control" id="DE<?php echo $nivel['CODNIVEL'] ?>" value="<?php echo $nivel['CODNIVEL'] ?>" required style="margin:0px;border:0px;" onchange="modificarNivel(this.id,this.value)">
-                    </td>
-                    <td style="margin:0px; padding: 0px;">
-                        <input type="text" class="form form-control" id="LI<?php echo $nivel['CODNIVEL'] ?>"  required value="<?php echo $nivel['NOMBRE_NIVEL'] ?>" style="margin:0px;border:0px;" onchange="modificarNivel(this.id,this.value)">                
-                    </td>   
-                    <td style="margin:0px; padding: 0px; ">
-                        <input type="text" class="form form-control" id="LS<?php echo $nivel['CODNIVEL'] ?>"  required value="<?php echo $nivel['orden'] ?>" style="margin:0px;border:0px;text-align:center;" onchange="modificarNivel(this.id,this.value)">
-                    </td>                   
-                    <td style="margin:0px; padding: 3px; text-align:center;" >
-                        <img src="vistas/img/Iconos/eliminar.png" id="<?php echo $nivel['CODNIVEL'] ?>" width="20" height="20" title="Eliminar nivele" class="iconosAcciones apuntado2" onclick="eliminarNivel(this.id)"></img>
-                    </td>   
-                </tr>
-            <?php
-            }                                                    
-        ?>
-    </tbody>
-</table>
-<form action="" method="POST" onsubmit="return agregarNivel()">
-    <table>
-        <tr>
-            <td colspan="4" style="height:23px;"><h3>Nuevo nivel</h3></td>
-        </tr> 
-            <tr>
-                <td>
-                    <label>Abreviatura</label>
-                    <input type="text" name="CODNIVEL" id="CODNIVEL" required class="form-control">                    
-                </td>
-                <td>
-                    <label>Nombre</label>
-                    <input type="text" class="form-control" name="NOMBRE_NIVEL" id="NOMBRE_NIVEL" required value="">
-                </td>
-                <td>
-                    <label>No. de orden</label>
-                    <input type="number" class="form-control" name="orden" id="orden" required value="" title="Ingrese aquí el número par el orden de prioridad en el nivel" step="any" min="0">
-                </td>
-                <td>
-                   <button type="submit" id="btnAjnivel" class="btn btn-primary" style="margin-top:20px;"><i class="fa fa-plus"></i> Agregar</button>                                                                  
-                </td>
-            </tr>
-    </table>
-</form>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6 form-group">
+            <label for="exampleInputPassword1">Nombre</label>
+            <input type="text" class="form-control" name="NOMBRE_NIVEL" id="NOMBRE_NIVEL" placeholder="Ingrese aquí el nombre del Nivel" list="listaNiveles" value="<?php echo $NOMBRE_NIVEL ?>" >
+            <datalist id="listaNiveles">
+                <option value="PREESCOLAR">
+                <option value="BASICA PRIMARIA">
+                <option value="BASICA SECUNDARIA">
+                <option value="MEDIA VOCACIONAL">
+                <option value="CICLO I">
+                <option value="CICLO II">
+                <option value="CICLO III">
+                <option value="CICLO IV">
+                <option value="CICLO V">
+                <option value="CICLO VI">
+            </datalist>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3 form-group">
+            <label for="exampleInputEmail1">Abreviatura/Código</label>
+            <input type="text" class="form-control" name="CODNIVEL" id="CODNIVEL" aria-describedby="codigohelp" value="<?php echo $CODNIVEL ?>">
+            <small id="codigohelp" class="form-text text-muted">Ingrese una abreviatura única para cada nivel</small>
+        </div>
+        <div class="col-sm-12 col-md-3 form-group">
+            <label for="orden">Orden de prioridad</label>
+            <input type="number" class="form-control" name="orden" id="orden" value="<?php echo $orden ?>">
+            <small id="codigohelp" class="form-text text-muted">Enumere los niveles en orden de prioridad</small>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <button type="button" id="btnAjNivel" class="btn btn-primary" style="font-size: 1.2em; padding: 10px; width: 100%; box-sizing: border-box;" onclick="<?php echo $opcion ?>"><i class="fa fa-plus"></i> Guardar</button>
+        </div>
+        <div class="col-md-6">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-size: 1.2em; padding: 10px; width: 100%; box-sizing: border-box;">Cancelar</button>
+        </div>
+    </div> 
+    <hr>
+    <div id="respuestasNiveles"></div>  
+</div>

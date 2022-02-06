@@ -160,7 +160,7 @@
                             </div>
                             <div class="tab-pane fade" id="cudNiveles">
                                 <h4>Niveles educativos manejados en la institución</h4>
-                                <div id='nivelessMarco'>
+                                <div id='NivelesMarco'>
                                     <?php 
                                         require("ajustes/niveles/listado.php");
                                     ?>
