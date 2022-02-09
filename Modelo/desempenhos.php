@@ -83,6 +83,18 @@
             }
         }
 
+        public function load(){
+            $this->sql = "SELECT * FROM desempenos WHERE idDes = ? ORDER BY limiteInf DESC";
+            try {
+                $stm = $this->Conexion->prepare($this->sql);
+                $stm->bindparam(1,$this->idDes);
+                $stm->execute();
+                $datos = $stm->fetchAll(PDO::FETCH_ASSOC);
+                return $datos;
+            } catch (Exception $e) {
+                echo "Ocurrió un error al tratar de obtener los desempeños. ".$e;
+            }  
+        }
 
     }
 ?>

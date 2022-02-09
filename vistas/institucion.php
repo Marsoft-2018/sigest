@@ -210,9 +210,9 @@
                             </div>
                             <div class="tab-pane fade" id="cudDesempeno">
                                 <h4>Escala valorativa para desempeños</h4>
-                                <div id='desempenhosMarco'>
+                                <div id='DesempenosMarco'>
                                     <?php 
-                                        require("ajustes/desempenos.php");
+                                        require("ajustes/desempenos/listado.php");
                                     ?>
                                 </div>                                
                             </div>
