@@ -1,0 +1,36 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.contenedor-planilla {
+  /*background-color: #3a3d8f;
+  color: #fff;*/
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.form-digitar{
+  flex-grow: 1;
+
+}
+
+.agregados{
+  flex-grow: 2;
+  padding: 20px 40px;
+}
+
+.contenedor-planilla .dt-basicos {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.contenedor-planilla .dt-basicos img {
+  flex-grow: 1;
+  background-color: #fff;
+  height: 200px;
+  width: 200px;
+  margin: 5px;
+}/*# sourceMappingURL=planilla.css.map */

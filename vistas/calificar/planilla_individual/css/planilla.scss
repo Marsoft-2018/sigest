@@ -1,0 +1,29 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background-color: #10113a;
+    color: #fff;
+}
+
+.contenedor-planilla{
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 10px;
+    .dt-basicos{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;    
+        img{
+            flex-grow: 1;
+            background-color: #fff;
+            height: 200px;
+            width: 200px;
+            margin: 5px;
+        }
+    }
+
+}

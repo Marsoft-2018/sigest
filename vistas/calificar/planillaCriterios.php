@@ -113,8 +113,7 @@
                                // $accionCampo = "modificarNota(".$estudiante['idMatricula'].",this.value)";
                             }
                         ?>
-                        <input type='text' 
-                            style="margin: 0px; height: 100%; background-color: #afAc;  font-size: 1.1em; font-weight: bold; padding: 5px;"  class="form form-control def<?php echo $estudiante['idMatricula'] ?>"
+                        <input type='text' style="margin: 0px; height: 100%; background-color: #afAc;  font-size: 1.1em; font-weight: bold; padding: 5px;"  class="form form-control def<?php echo $estudiante['idMatricula'] ?>"
                             value ="<?php echo $nota ?>" 
                             id ="<?php echo $estudiante['idMatricula'] ?>" readonly>
                     </td>

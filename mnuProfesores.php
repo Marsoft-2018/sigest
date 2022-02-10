@@ -282,6 +282,9 @@
     <script src="js/ajustarParametros.js"></script>
     <script src="js/main.js"></script>  
     <script type='text/javascript' src="js/logros.js"></script> 
-
+    <script type="text/javascript" src="js/grados.js"></script>
+    <script type="text/javascript" src="js/niveles.js"></script>
+    <script type="text/javascript" src="js/desempenos.js"></script>
+    <script type="text/javascript" src="js/calificaciones.js"></script>
   </body>
 </html>

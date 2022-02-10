@@ -1648,21 +1648,3 @@ function calcularEdad()
         document.getElementById("edad").value="La fecha es incorrecta";
     }
 }
-
-function cargarNotasGuardadasEstudiante(){
-    //var sede=document.getElementById('sede').value;
-    var anho = $('#anho').val();
-    var curso = $('#curso').val();
-    $('#cargasFormulario').html("");
-    $.ajax({
-        type: "POST",
-        url: "vistas/calificar/planillaIndividual.php",
-        data: {idMatricula:'123', anho:anho, curso:curso},
-        success: function(data){
-            $('#cargasFormulario').html(data);
-        },
-        error: function(err){
-            console.log("Error: "+err);
-        }
-    });
-}

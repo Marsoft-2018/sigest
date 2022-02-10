@@ -35,33 +35,32 @@ function editarDesempeno(id){
 
 function agregarDesempeno(){
     $('#respuestasDesempenos').html("");
-    var imagen = $("#emoticon")[0].files[0];
-    console.log("Archivo: "+imagen.name);
-    var form_data = new FormData(formDesempenos);
-    form_data.append('accion', "agregar");
-    form_data.append('CONCEPT', $("#CONCEPT").val());
-    form_data.append('limiteInf', $("#limiteInf").val());
-    form_data.append('limiteSup', $("#limiteSup").val());
-    form_data.append('emoticon', imagen);
-    // $.ajax({
-    //     type: "POST",
-    //     url: "Controladores/ctrlDesempenos.php",
-    //     data:   form_data,
-    //     success: function(data){
-    //         // $("#idDes").val("");
-    //         // $("#CONCEPT").val("");
-    //         // $("#limiteInf").val("");
-    //         // $("#limiteSup").val("");
-    //         // $("#emoticon").val("");
+    var datosFormulario = new FormData();
+    datosFormulario.append('accion', "agregar");
+    datosFormulario.append('CONCEPT', $("#CONCEPT").val());
+    datosFormulario.append('limiteInf', $("#limiteInf").val());
+    datosFormulario.append('limiteSup', $("#limiteSup").val());
+    //datosFormulario.append('emoticon', $("#emoticon")[0].files[0]);
+
+    $.ajax({
+        type: "POST",
+        url: "Controladores/ctrlDesempenos.php",
+        data: datosFormulario,
+        success: function(data){
+            // $("#idDes").val("");
+            // $("#CONCEPT").val("");
+            // $("#limiteInf").val("");
+            // $("#limiteSup").val("");
+            // $("#emoticon").val("");
             
-    //         $('#respuestasDesempenos').html(data);
-    //         mostrarDesempenos();
-    //     },
-    //     error: function(err){
-    //         console.log("Error: "+err);
-    //     }
-    // });
-    return false;
+            $('#respuestasDesempenos').html(data);
+            //mostrarDesempenos();
+        },
+        error: function(err){
+            console.log("Error: "+err);
+        }
+    });
+    //return false;
 }
 
 function modificarDesempeno(id){

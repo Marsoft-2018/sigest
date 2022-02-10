@@ -14,17 +14,16 @@
         case 'agregar':
             echo var_dump($_REQUEST);
             $objDesempeno = new Desempenos();
-            $objDesempeno->CODNIVEL = $_POST['CODNIVEL'];
-            $objDesempeno->CODDesempeno = $_POST['CODDesempeno'];
-            $objDesempeno->NOMDesempeno = $_POST["NOMDesempeno"];
-            $objDesempeno->nomCampo = $_POST["nomCampo"];
-            $objDesempeno->estiloDesempeno = $_POST["estiloDesempeno"];
+            $objDesempeno->emoticon = $_POST['emoticon'];
+            $objDesempeno->CONCEPT = $_POST["CONCEPT"];
+            $objDesempeno->limiteInf = $_POST["limiteInf"];
+            $objDesempeno->limiteSup = $_POST["limiteSup"];
             //$objDesempeno->Guardar();
             break;
 
         case 'cargar':
             $objDesempeno = new Desempenos();
-            $objDesempeno->CODDesempeno = $_POST['CODDesempeno'];
+            $objDesempeno->idDes = $_POST['idDes'];
             echo json_encode($objDesempeno->cargar());            
             break;
         case 'mostrar':
@@ -34,11 +33,11 @@
             //echo var_dump($_REQUEST);
             $objDesempeno = new Desempenos();
             $objCodigoAnterior = $_POST['id'];
-            $objDesempeno->CODNIVEL = $_POST['CODNIVEL'];
-            $objDesempeno->CODDesempeno = $_POST['CODDesempeno'];
-            $objDesempeno->NOMDesempeno = $_POST["NOMDesempeno"];
-            $objDesempeno->nomCampo = $_POST["nomCampo"];
-            $objDesempeno->estiloDesempeno = $_POST["estiloDesempeno"];
+            $objDesempeno->emoticon = $_POST['emoticon'];
+            $objDesempeno->idDes = $_POST['idDes'];
+            $objDesempeno->CONCEPT = $_POST["CONCEPT"];
+            $objDesempeno->limiteInf = $_POST["limiteInf"];
+            $objDesempeno->limiteSup = $_POST["limiteSup"];
             //$objDesempeno->modificar();    
             break;
 
@@ -49,13 +48,13 @@
 
         case 'listarPorNivel':
             $objDesempeno = new Desempenos();
-            $objDesempeno->CODNIVEL = $_POST['CODNIVEL'];
+            $objDesempeno->emoticon = $_POST['emoticon'];
             //echo json_encode($objDesempeno->listarPorNivel());
             break;
     
         case 'eliminar':
             $objDesempeno = new Desempenos();
-            $objDesempeno->CODDesempeno = $_POST['CODDesempeno'];
+            $objDesempeno->idDes = $_POST['idDes'];
             $objDesempeno->eliminar();
             break;
 
