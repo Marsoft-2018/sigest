@@ -6,6 +6,8 @@
     require("../Modelo/periodos.php");
     require("../Modelo/areas.php");
     require("../Modelo/logros.php");
+    require("../Modelo/Estudiante.php");
+    require("../Modelo/criterios.php");
 
     $accion = "";
 
@@ -343,7 +345,10 @@
             $planilla=new planillaDeFaltas();
             $planilla->quitarFalta($estudiante,$dia,$mes,$anho,$periodo,$area);            
             break;
-        
+        case 'verPlanillaIndividual':
+            
+            include_once("../Vistas/calificar/planilla_individual/index.php");
+            break;
         default:
             
             break;

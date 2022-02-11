@@ -640,16 +640,18 @@ function guardarNotasVarias(){
     return false;
 }
 
-function cargarNotasGuardadasEstudiante(){
+function cargarNotasGuardadasEstudiante(idMatricula){
     //var sede=document.getElementById('sede').value;
     $('#cargasFormulario').html("");
     $('#tituloModal').html("Formulario de calificaciones");
     var anho = $('#anho').val();
     var curso = $('#curso').val();
+    var area = $("#areas").val();
+    var periodo = $("#periodo").val();
     $.ajax({
         type: "POST",
-        url: "vistas/calificar/planilla_individual/index.html",
-        data: {idMatricula:'123', anho:anho, curso:curso},
+        url: "Controladores/ctrlCalificaciones.php",
+        data: {accion:"verPlanillaIndividual", idMatricula:idMatricula, area:area, anho:anho, curso:curso, periodo:periodo},
         success: function(data){
             $('#cargasFormulario').html(data);
         },

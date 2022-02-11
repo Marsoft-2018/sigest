@@ -370,6 +370,20 @@ mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudi
                 $count++;
             }
         }
+
+        public function cargarPorIdMatricula(){
+            $this->sql = "SELECT est.Documento, est.PrimerNombre, est.SegundoNombre, est.PrimerApellido, est.SegundoApellido, est.sexo, mt.estado, mt.idMatricula, mt.anho, est.tipoDocumento, mt.NombreAcudiente, est.num_interno ,est.foto
+            FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento WHERE mt.idMatricula = ?";
+            try {
+                $stm = $this->Conexion->prepare($this->sql);
+                $stm->bindparam(1,$this->idMatricula);
+                $stm->execute();
+                $datos = $stm->fetchAll(PDO::FETCH_ASSOC);
+                return $datos;
+            } catch (Exception $e) {
+                echo "Ocurrió un error al cargar los datos ".$e;    
+            }                                  
+        }
         
     }
 
