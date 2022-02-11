@@ -1,5 +1,5 @@
 <?php 
-    echo var_dump($_REQUEST);
+    //echo var_dump($_REQUEST);
     $objEstudiante = new Estudiante();
     $objEstudiante->idMatricula = $_POST['idMatricula'];
     $nombre = "";
@@ -14,6 +14,34 @@
 
 ?>
 
+<!-- Nota definitiva -->
+<?php 
+    $nota = "";
+    $faltas = 0;
+    $objCalificacion = new Calificacion();
+    $objCalificacion->periodo = $_POST['periodo'];
+    $objCalificacion->idMatricula = $_POST['idMatricula'];
+    $objCalificacion->codArea = $_POST['area'];
+    $objCalificacion->Anho = $_POST['anho'];
+    $objCalificacion->curso = $_POST['curso'];
+    $objCalificacion->tabla = "Area";
+
+    foreach ($objCalificacion->cargar() as $notaArea) {
+        $nota = $notaArea['NOTA'];
+        $faltas =  $notaArea['Faltas'];
+    }   
+?>
+
+<!-- logros -->
+<?php 
+    $objLogros = new Logro();
+    $objLogros->periodo = $_POST['periodo'];
+    $objLogros->codCurso = $_POST['curso'];
+    $objLogros->codArea = $_POST['area'];
+    $objLogros->tabla = "Area";
+    $objLogros->calificacion = $nota;
+?> 
+
 <div class="contenedor-planilla">
     <div class="form-digitar">
         <div class="dt-basicos">
@@ -24,8 +52,8 @@
             </div>
         </div>
         <hr>
-        <h3>CALIFICACIONES</h3>
-        <div class="con-calificaciones">
+        <div class="con-calificaciones" style="display: none;"> 
+            <h3>CALIFICACIONES</h3>
             <form action="#">
                 <div class="notas">
                 <?php 
@@ -75,45 +103,56 @@
 
     </div>
     <div class="agregados">
-        <h3>CALIFICACIONES AGREGADAS</h3>
-        <table class="table table-striped">
-            <?php 
-                $nt = 1;
-                $objCriterios = NEW Criterio();
-                foreach ($objCriterios->Listar() as $value) { 
-                    $nt++;
-                    $notaCriterio = "";
-                    $objNotaCriterio = new Calificacion();
-                    $objNotaCriterio->periodo = $_POST['periodo'];
-                    $objNotaCriterio->idMatricula = $estudiante['idMatricula'];
-                    $objNotaCriterio->codArea = $_POST['area'];
-                    $objNotaCriterio->Anho = $_POST['anho'];
-                    $objNotaCriterio->curso = $_POST['curso'];
-                    $objNotaCriterio->tabla = "Area";
-                    $objNotaCriterio->idCriterio = $value['codCriterio'];
+        <div class="seccionNotas">
+            <div class="divListaDeNotas" id="listaDeNotas">
+                <h3>CALIFICACIONES AGREGADAS</h3>
+                <table class="table table-striped">
+                    <?php 
+                        $nt = 1;
+                            $objNotaCriterio = new Calificacion();
+                            $objNotaCriterio->periodo = $_POST['periodo'];
+                            $objNotaCriterio->idMatricula = $estudiante['idMatricula'];
+                            $objNotaCriterio->codArea = $_POST['area'];
+                            $objNotaCriterio->Anho = $_POST['anho'];
+                            $objNotaCriterio->curso = $_POST['curso'];
+                            $objNotaCriterio->tabla = "Area";
+                        foreach ($objNotaCriterio->listarNotasPorCriterio() as $campo) {   ?>
+                        <tr>
+                            <th>
+                                NOTA <?php echo $nt; ?>
+                            </th>
+                            <td>
+                                <div><?php echo $notaCriterio; ?></div>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" title="Eliminar nota" onclick="eliminarNotaEspecifica('<?php echo $campo['id'] ?>')"> <i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr> 
+                        <?php
+                            $nt++;
+                        }
+                        ?>
 
-                    $notaCriterio = $objNotaCriterio->cargarPorCriterio();
-                    if($notaCriterio == ""){
-                        $accionCampo = "agregarNotaCriterio(".$estudiante['idMatricula'].",this.value,".$value['codCriterio'].",'Area')";
-                    }else{
-                        $accionCampo = "modificarNotaCriterio(".$estudiante['idMatricula'].",this.value,".$value['codCriterio'].",'Area')";
-                    }
+                </table>
+            </div>
+            <div class="divDefinitiva" >
+                <?php 
+                    $des = "";
+                    $objDesempeno = new Desempenos();
+                    $objDesempeno->nota = $nota;
+                    $des = $objDesempeno->cargar();
                 ?>
-                <tr>
-                    <th>
-                        NOTA <?php echo $nt; ?>
-                    </th>
-                    <td>
-                        <div><?php echo $notaCriterio; ?></div>
-                    </td>
-                </tr> 
-                <?php
-                }
-                ?>
-
-        </table>
-        <h4>Logro</h4>
-        <textarea name="logro" id="logro" cols="30" rows="10" readonly="true" class="form form-control">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus soluta impedit dolore quia velit doloribus mollitia qui eius dicta sequi totam necessitatibus autem accusantium facere perspiciatis earum, quos libero nulla.
-        </textarea>
+                <h4>NOTA DEFINITIVA</h4>
+                <div class="notaDef" id="notaDefinitiva"><?php echo $nota; ?></div>
+                <h5>DESEMPEÑO</h5>
+                <span id="divDesempeño" class="marcoDesempeno <?php echo $des; ?>"><?php echo $des; ?></span>
+            </div>
+        </div>
+        <div class="seccionLogros" style="width: 100%;" >             
+            <h4>Logros</h4>
+            <div id="logro" readonly="true" >
+                <?php $objLogros->cargar(); ?>
+            </div>
+        </div>
     </div>
 </div>

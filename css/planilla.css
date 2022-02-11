@@ -17,7 +17,37 @@
 
 .agregados{
   flex-grow: 2;
-  padding: 20px 40px;
+  padding: 0px 40px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 60%;
+}
+.seccionNotas{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 7px;
+}
+
+.seccionNotas .divDefinitiva{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 12px;
+}
+
+.divDefinitiva .notaDef{
+  padding: 20px;
+  background-color: #121db8;
+  color:#fff;
+  font-size: 5em;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 0px 0px 2px rgba(0,0,0,0.5);
 }
 
 .contenedor-planilla .dt-basicos {
@@ -34,3 +64,44 @@
   width: 200px;
   margin: 5px;
 }/*# sourceMappingURL=planilla.css.map */
+
+.marcoDesempeno{
+  display:flex; 
+  box-sizing: border-box;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  width:100%;
+  margin: 0px;
+  border-radius: 5px 0px 0px 5px;
+  padding: 3px 10px;
+  font-size: 1.3em;
+}
+.seccionLogros{
+  background-color: #0dad5a56;
+  padding: 10px;
+}
+#logro{
+  line-height: 1.2em;
+  font-size: 1.2em;
+}
+.BAJO{
+  color : #fff;
+  background-color: #ff2C10;
+}
+    
+.BASICO{
+  color : #fff;
+  background-color: #EDAF22;
+}
+    
+.ALTO{
+  color : #fff;
+  background-color: #02AaFF;
+}
+    
+.SUPERIOR{
+  color : #fff;
+  background-color: #0DAd59;
+}
+    

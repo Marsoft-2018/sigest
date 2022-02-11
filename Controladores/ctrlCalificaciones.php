@@ -346,8 +346,7 @@
             $planilla->quitarFalta($estudiante,$dia,$mes,$anho,$periodo,$area);            
             break;
         case 'verPlanillaIndividual':
-            
-            include_once("../Vistas/calificar/planilla_individual/index.php");
+            include_once("../vistas/calificar/planilla_individual/index.php");
             break;
         default:
             

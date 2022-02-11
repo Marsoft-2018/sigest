@@ -125,33 +125,15 @@
                             $objDesempeno = new Desempenos();
                             $objDesempeno->nota = $nota;
                             $des = $objDesempeno->cargar();
-                            switch ($des) {
-                                case 'BAJO':
-                                    $color = "#fff";
-                                    $fondo = "#ff2C10";
-                                    break;
-                                case 'BASICO':
-                                    $color = "#fff";
-                                    $fondo = "#EDAF22";
-                                    break;
-                                case 'ALTO':
-                                    $color = "#fff";
-                                    $fondo = "#02AaFF";
-                                    break;
-                                case 'SUPERIOR':
-                                    $color = "#fff";
-                                    $fondo = "#0DAd59";
-                                    break;
-                            }
                         ?>
-                        <div style="display:flex; justify-content: flex-start; flex-direction: row; align-items: center; width:100%; margin: 0px; border-top: 0px solid <?php echo $fondo; ?>; border-right: 0px solid <?php echo $fondo; ?>; border-bottom: 1px solid <?php echo $fondo; ?>; border-left: 8px solid <?php echo $fondo; ?>; border-radius: 5px 0px 0px 5px;"
+                        <div class="marcoDesempeno <?php echo $des; ?>"
                             id="des<?php echo $estudiante['idMatricula'] ?>" class="form form-control" >
                             <?php echo $des; ?>
                         </div> 
                     </td>
-                    <td  style='padding: 0px; width: 50px; height: 20px; margin: 0px;'>
+                    <td  style='padding: 0px; width: 50px; margin: 0px;'>
                         <div style='height: 100%; margin: 0px; padding: 0px; width: 100%;'>
-                            <input type='text' class='form-control' style='padding: 5px; text-align:center; margin:0px; height: 100%;' value='<?php echo $faltas ?>' id="<?php echo "ina".$estudiante['idMatricula'] ?>" onchange='modificarFalta(<?php echo $estudiante['idMatricula'] ?>,this.value)'>
+                            <input type='text' class='form form-control' style="text-align: center;" value='<?php echo $faltas ?>' id="<?php echo "ina".$estudiante['idMatricula'] ?>" onchange='modificarFalta(<?php echo $estudiante['idMatricula'] ?>,this.value)'>
                         </div>
                     </td>
                     <td style="height: 20px; padding: 0px; margin: 0px; width:70px;">
