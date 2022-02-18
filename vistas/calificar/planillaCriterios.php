@@ -22,8 +22,7 @@
                 <th rowspan="2">ESTUDIANTE</th>
                 <th colspan="<?php echo $numCriterios+2 ?>" style="text-align: center; border-left: 1px solid #099daf; border-right: 1px solid #099daf; background-color: #079; " >CALIFICACIONES</th>
                 <th rowspan="2">INASISTENCIAS</th>
-                <th rowspan="2"  colspan="2"></th>
-                <th rowspan="2" style="witdh: 70px;"></th>
+                <th rowspan="2"></th>
             </tr>
             <tr>
                 <?php 
@@ -131,16 +130,16 @@
                             <?php echo $des; ?>
                         </div> 
                     </td>
-                    <td  style='padding: 0px; width: 50px; margin: 0px;'>
+                    <td  style='padding: 0px; margin: 0px;'>
                         <div style='height: 100%; margin: 0px; padding: 0px; width: 100%;'>
                             <input type='text' class='form form-control' style="text-align: center;" value='<?php echo $faltas ?>' id="<?php echo "ina".$estudiante['idMatricula'] ?>" onchange='modificarFalta(<?php echo $estudiante['idMatricula'] ?>,this.value)'>
                         </div>
                     </td>
-                    <td style="height: 20px; padding: 0px; margin: 0px; width:70px;">
+                  <!--     <td style="height: 20px; padding: 0px; margin: 0px; width:70px;">
                         <button class="btn btn-info" style="margin: 0px;"  data-toggle="modal" data-target="#staticBackdrop" >
                             <i class="fa fa-language"> </i>Ver Logros
                         </button>
-                        <!-- <div class="" style="text-align:left; font-size:9px; width: 100%; overflow: hidden;height: 25px;margin: 0px;" id="log<?php echo $estudiante['idMatricula'] ?>" >
+                      <div class="" style="text-align:left; font-size:9px; width: 100%; overflow: hidden;height: 25px;margin: 0px;" id="log<?php echo $estudiante['idMatricula'] ?>" >
                             <?php 
                                 $objLogros = new Logro();
                                 $objLogros->periodo = $_POST['periodo'];
@@ -150,11 +149,11 @@
                                 $objLogros->calificacion = $nota;
                                 //$objLogros->cargar();
                             ?>                        
-                        </div> -->
-                    </td>
-                    <td style="padding: 0px">
-                        <button class="btn btn-success" style="margin: 0px;" data-toggle="modal" data-target="#staticBackdrop" onclick="cargarNotasGuardadasEstudiante('<?php echo $estudiante['idMatricula'] ?>')" >
-                            <i class="fa fa-wrench"> </i>Ajustar
+                        </div>
+                    </td> -->
+                    <td style="padding: 0px;">
+                        <button class="btn btn-success" style="width: 100%; margin: 1px;" data-toggle="modal" data-target="#staticBackdrop" onclick="cargarNotasGuardadasEstudiante('<?php echo $estudiante['idMatricula'] ?>')" >
+                            <i class="fa fa-gear"></i> Detalles
                         </button>
                     </td>
                 </tr>

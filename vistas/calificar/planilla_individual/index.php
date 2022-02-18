@@ -122,9 +122,12 @@
                                 NOTA <?php echo $nt; ?>
                             </th>
                             <td>
-                                <div><?php echo $notaCriterio; ?></div>
+                                <div>
+                                    <input type="number" name="" id="<?php echo $campo['id'] ?>" step="any" class="form form-control" value="<?php echo $campo['nota']; ?>" >    
+                                </div>
                             </td>
                             <td>
+                                <button class="btn btn-success" title="Guardar nota" onclick="guardarNotaEspecifica('<?php echo $campo['id'] ?>')"> <i class="fa fa-check"></i></button>
                                 <button class="btn btn-danger" title="Eliminar nota" onclick="eliminarNotaEspecifica('<?php echo $campo['id'] ?>')"> <i class="fa fa-trash"></i></button>
                             </td>
                         </tr> 
@@ -156,3 +159,5 @@
         </div>
     </div>
 </div>
+<hr>
+<button class="btn btn-warning"  data-dismiss="modal" style="width: 30%; padding:10px;right:30px;"> Cerrar</button>

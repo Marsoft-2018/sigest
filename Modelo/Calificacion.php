@@ -415,7 +415,7 @@
         }
 
         public function listarNotasPorCriterio(){
-            $this->sql = "SELECT id,nota, idCriterio FROM notas_varias WHERE periodo =? AND idMatricula =? AND id_AreaAsignatura = ? AND anho = ? AND idCurso = ?";
+            $this->sql = "SELECT id,nota, idCriterio FROM notas_varias WHERE periodo =? AND idMatricula =? AND id_AreaAsignatura = ? AND anho = ? AND idCurso = ? AND tipo = ?";
             try {
                 $stm = $this->Conexion->prepare($this->sql);
                 $stm->bindparam(1,$this->periodo);
@@ -423,6 +423,7 @@
                 $stm->bindparam(3,$this->codArea);
                 $stm->bindparam(4,$this->Anho);
                 $stm->bindparam(5,$this->curso);
+                $stm->bindparam(6,$this->tabla);
                 $stm->execute();
                 $datos = $stm->fetchAll(PDO::FETCH_ASSOC);
                 return $datos;
