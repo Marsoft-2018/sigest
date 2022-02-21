@@ -437,6 +437,7 @@
     <script type="text/javascript" src="js/niveles.js"></script>
     <script type="text/javascript" src="js/desempenos.js"></script>
     <script type="text/javascript" src="js/calificaciones.js"></script>
+    <script type="text/javascript" src="js/planillas.js"></script>
 
     <!-- <script src="complementos/DataTables/datatables.js"></script>   -->
   </body>

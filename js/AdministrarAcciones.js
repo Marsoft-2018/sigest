@@ -218,54 +218,7 @@ function buscarEstudiante(dato){
         $("#modulo").load('class/buscar.php',{Institucion:institucion,dato:dato});  
     }
 }
-
-
-function cargarLista(modulo){
-    //alertify.success("El modulo es: "+modulo);
-    var curso = document.getElementById('curso').value;
-    var anho = $("#anho").val();
-    switch(modulo) {
-        case 1:
-            var accion = 'lista';
-            var area = $('#areas').val();
-            var periodo = $('#periodo').val();
-            if(area == ""){
-                alertify.error("Por favor Seleccione el área para poder continuar");
-            }else if(periodo == ""){
-                alertify.error("Por favor Seleccione el periodo para poder continuar");
-            }else{
-                $('#bloquear').slideDown('fast');
-                $("#tablaPlanilla").load("vistas/calificar/planilla.php",{
-                        accion:accion, curso:curso, codArea:area, periodo:periodo, anho:anho
-                    },function(){
-                        alertify.success("Lista Cargada con éxito");
-                        $('#bloquear').slideUp('fast');
-                });                  
-            }
-            //alertify.success("La sede es: "+curso);
- 
-            break;
-        case 2:
-            var sede = document.getElementById('sede').value;
-            var accion='listadoEstudiantes';
-            //alertify.success("La sede es: "+curso);
-            $("#listadoEstudiantesSede").load("vistas/datosSedes/listadoEstudiantes.php",
-              {
-                accion: accion,
-                curso: curso,
-                anho: anho,
-                sede: sede
-              },function(){
-                alertify.success("Cargado con éxito");
-                $(".dataTable").dataTable();
-                cargarResumen(sede,anho);
-            });
-            break;
-    }
-    
-    return false;
-}//ok
-      
+     
 function editarEstudiante(modulo,id,idMatricula){ 
     
     var sede = $("#sede").val();
