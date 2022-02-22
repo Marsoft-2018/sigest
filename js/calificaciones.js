@@ -27,15 +27,22 @@ function ValidarPeriodo(){
     });*/
 }
 
-function cargarDesemp(idMatricula,nota){
+function cargarDesemp(idMatricula,nota,grado){
     var accion  ='Desempeno';
     var area    = $("#areas").val();
     var curso   = $("#curso").val();
     var periodo = $("#periodo").val();
-    var anho    = $("#anho").val();        
-    $("#des"+idMatricula).load("Controladores/ctrlCalificaciones.php",{accion:accion, nota:nota},function(){
-        /*alertify.success("El estudiante es: "+codigo+" Nota es: "+nota+" El Curso es: "+curso);
-        alertify.success("El Area es: "+area+" El periodo es: "+periodo+" El Año es: "+anho);*/
+    var anho    = $("#anho").val();     
+    $.ajax({
+        url:"Controladores/ctrlCalificaciones.php",
+        type:"POST",
+        data:{accion:accion, nota:nota,grado:grado},
+        success: function(data){
+            $("#des"+idMatricula).html(data);
+        },
+        error: function(err){
+            console.log("Error: "+err);
+        }
     });
 }
 
@@ -205,7 +212,7 @@ function modificarFalta(idMatricula,falta){
 
 //Acciones pra las notas por criterio
   
-function agregarNotaCriterio(idMatricula,nota,criterio,tabla){
+function agregarNotaCriterio(idMatricula,nota,criterio,tabla,grado){
     var accion  = "agregarNotaCriterio";
     var area    = $("#areas").val();
     var curso   = $("#curso").val();
@@ -227,22 +234,28 @@ function agregarNotaCriterio(idMatricula,nota,criterio,tabla){
             tabla:tabla
         },
         beforeSend: function(){
-
+            $("#cargando"+criterio+"_"+idMatricula).fadeIn();
+            $("#"+criterio+"_"+idMatricula).fadeOut();
+            console.log("Ocultando al input: "+"#"+criterio+"_"+idMatricula);
         },
         success: function(data){
             alertify.success(data);
             console.log('test: '+data);
             $("#"+criterio+"_"+idMatricula).attr('onchange','');
-            $("#"+criterio+"_"+idMatricula).attr('onchange',"modificarNotaCriterio('"+idMatricula+"',this.value,"+criterio+",'"+tabla+"');");
-            definitivaCriterios(idMatricula,nota,criterio,tabla);
+            $("#"+criterio+"_"+idMatricula).attr('onchange',"modificarNotaCriterio('"+idMatricula+"',this.value,"+criterio+",'"+tabla+"','"+grado+"');");
+            definitivaCriterios(idMatricula,nota,criterio,tabla,grado);
         },
         error:function(res){
             alertify.error(res);
+        },
+        complete: function(){
+            $("#cargando"+criterio+"_"+idMatricula).fadeOut();
+            $("#"+criterio+"_"+idMatricula).fadeIn();
         }
     });
 }
   
-function modificarNotaCriterio(idMatricula,nota,criterio,tabla){
+function modificarNotaCriterio(idMatricula,nota,criterio,tabla,grado){
     var accion  = "modificarNotaCriterio";
     var area    = $("#areas").val();
     var curso   = $("#curso").val();
@@ -264,22 +277,24 @@ function modificarNotaCriterio(idMatricula,nota,criterio,tabla){
             tabla:tabla
         },
         beforeSend: function(){
-
+            $("#cargando"+criterio+"_"+idMatricula).fadeIn();
+            $("#"+criterio+"_"+idMatricula).fadeOut('fast');
         },
         success: function(data){
             alertify.success(data);
-            console.log('test: '+data);
-            $("#"+criterio+"_"+idMatricula).attr('onchange','');
-            $("#"+criterio+"_"+idMatricula).attr('onchange','modificarNotaCriterio(this.id,this.value);');
-            definitivaCriterios(idMatricula,nota,criterio,tabla);
+            definitivaCriterios(idMatricula,nota,criterio,tabla,grado);
         },
         error:function(res){
             alertify.error(res);
+        },
+        complete: function(){
+            $("#cargando"+criterio+"_"+idMatricula).fadeOut();
+            $("#"+criterio+"_"+idMatricula).fadeIn();
         }
     });
 }
 
-function definitivaCriterios(idMatricula,nota,criterio,tabla){
+function definitivaCriterios(idMatricula,nota,criterio,tabla,grado){
     var accion  = "definitivaCriterios";
     var area    = $("#areas").val();
     var curso   = $("#curso").val();
@@ -305,7 +320,7 @@ function definitivaCriterios(idMatricula,nota,criterio,tabla){
         },
         success: function(data){
             $("#"+idMatricula).val(data);
-            cargarDesemp(idMatricula,data);
+            cargarDesemp(idMatricula,data,grado);
             cargarLogro(idMatricula,data);
             mostrarInasistencias(idMatricula);
             console.log('test: '+data);
@@ -347,16 +362,18 @@ function guardarDefinitiva(idMatricula,nota,tabla){
             tabla   : tabla
         },
         beforeSend: function(){
-
         },
         success: function(data){
             alertify.success(data);
             $("#"+idMatricula).attr('onchange','');
             $("#"+idMatricula).attr('onchange','modificarNota(this.id,this.value)');
-            $("#el"+idMatricula).fadeIn();
+            //$("#el"+idMatricula).fadeIn();
         },
         error:function(res){
             alertify.error(res);
+        },
+        complete: function(){
+
         }
     });
 }

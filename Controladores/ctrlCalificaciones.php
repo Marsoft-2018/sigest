@@ -8,6 +8,7 @@
     require("../Modelo/logros.php");
     require("../Modelo/Estudiante.php");
     require("../Modelo/criterios.php");
+    require("../Modelo/curso.php");
 
     $accion = "";
 
@@ -21,7 +22,19 @@
         case 'Desempeno':
             $des=new Desempenos();
             $des->nota = $_POST['nota'];
-            echo $des->cargar();             
+            $des = $des->cargar();   
+            $grado = $_POST['grado']; 
+            ?>
+            <div class="marcoDesempeno <?php echo $des; ?>" <?php if($grado <= 0){echo "style='font-size:0.8em;'"; } ?>
+                class="form form-control" >
+                <?php echo $des; ?>
+            </div>
+            <div <?php if($grado >0){echo "style='display:none;'"; } ?>>
+                <?php if($des != ""){ ?>
+                <img src="vistas/img/desempenos/<?php echo $des.".png";?>" alt="<?php echo $des.".png";?>" style="width: 30px;">
+                <?php }?>
+            </div>
+            <?php         
             break;
 
         case 'lista':
@@ -342,7 +355,7 @@
             $dia=$_POST['dia'];
             $area=$_POST['codArea'];
             $periodo=$_POST['periodo'];
-            $planilla=new planillaDeFaltas();
+            $planilla= new planillaDeFaltas();
             $planilla->quitarFalta($estudiante,$dia,$mes,$anho,$periodo,$area);            
             break;
         case 'verPlanillaIndividual':

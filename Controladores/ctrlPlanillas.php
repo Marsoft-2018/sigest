@@ -33,23 +33,7 @@
     foreach ($respuestaPeriodo['estado'] as $per=>$estado) {
         $estado;
     }
-    function nivelPlanilla($curso){
-        $objCurso = new Curso();
-        $objCurso->curso = $curso;
-        $grado = null;
-        foreach($objCurso->consultarGrado() as $campo){
-            $grado = $campo['CODGRADO'];
-        }
-        echo "El curso es: $curso<br>";
-        echo "El grado es: $grado<br>";
-        if($grado > 0){
-            echo "Hola el nivel es basica";
-           include("../vistas/calificar/planillaListado.php");
-        }else{
-            echo "Hola el nivel es preescolar";
-            include("../vistas/calificar/planillaListadoPreescolar.php");
-        }
-    }
+
   switch ($tipoUsuario) {
     case 'Administrador':
         //echo "El curso POST es: ".$_POST['curso']."<br>";
@@ -59,15 +43,9 @@
         $grado = null;
         foreach($objCurso->consultarGrado() as $campo){
             $grado = $campo['CODGRADO'];
-        }
-        
-        if($grado > 0){
-            //echo "Hola el nivel es basica";
-           include("../vistas/calificar/planillaListado.php");
-        }else{
-            //echo "Hola el nivel es preescolar";
-            include("../vistas/calificar/planillaListadoPreescolar.php");
-        }
+        }        
+        include("../vistas/calificar/planillaListado.php");
+
         break;
     case 'Profesor':
         if($estado){

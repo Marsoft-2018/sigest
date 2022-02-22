@@ -117,17 +117,19 @@
                             $objNotaCriterio->curso = $_POST['curso'];
                             $objNotaCriterio->tabla = "Area";
                         foreach ($objNotaCriterio->listarNotasPorCriterio() as $campo) {   ?>
-                        <tr>
-                            <th>
+                        <tr style="padding:0px; margin:0px;">
+                            <th style="padding:0px; margin:0px;width:40%;">
                                 NOTA <?php echo $nt; ?>
                             </th>
-                            <td>
+                            <td style="padding:0px; margin:0px;width:30%;">
                                 <div>
                                     <input type="number" name="" id="<?php echo $campo['id'] ?>" step="any" class="form form-control" value="<?php echo $campo['nota']; ?>" >    
                                 </div>
                             </td>
-                            <td>
+                            <td style="padding:0px; margin:0px;">
                                 <button class="btn btn-success" title="Guardar nota" onclick="modificarNotaEspecifica('<?php echo $campo['id'] ?>')"> <i class="fa fa-check"></i></button>
+                            </td>
+                            <td style="padding:0px; margin:0px;">
                                 <button class="btn btn-danger" title="Eliminar nota" onclick="eliminarNotaEspecifica('<?php echo $campo['id'] ?>')"> <i class="fa fa-trash"></i></button>
                             </td>
                         </tr> 
@@ -146,18 +148,20 @@
                     $des = $objDesempeno->cargar();
                 ?>
                 <h4>NOTA DEFINITIVA</h4>
-                <div class="notaDef" id="notaDefinitiva"><?php echo $nota; ?></div>
-                <h5>DESEMPEÑO</h5>
-                <span id="divDesempeño" class="marcoDesempeno <?php echo $des; ?>"><?php echo $des; ?></span>
-            </div>
-        </div>
-        <div class="seccionLogros" style="width: 100%;" >             
-            <h4>Logros</h4>
-            <div id="logro" readonly="true" >
-                <?php $objLogros->cargar(); ?>
+                <div class="notaDef" id="notaDefinitiva">
+                    <?php echo $nota; ?>
+                    <h5>DESEMPEÑO</h5>
+                    <span id="divDesempeño" class="marcoDesempeno <?php echo $des; ?>" style="font-size: 0.5em"><?php echo $des; ?></span>
+                </div>
             </div>
         </div>
     </div>
 </div>
+    <div class="seccionLogros" style="width: 100%;" >             
+        <h4>Logros</h4>
+        <div id="logro" readonly="true" >
+            <?php $objLogros->cargar(); ?>
+        </div>
+    </div>
 <hr>
 <button class="btn btn-warning"  data-dismiss="modal" style="width: 30%; padding:10px;right:30px;"> Cerrar</button>

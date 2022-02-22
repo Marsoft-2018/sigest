@@ -1,5 +1,4 @@
 <?php 
-    echo "El grado para la planilla criterios es: ".$grado;
     $objCriterios = new Criterio();
     $numCriterios = $objCriterios->conteoCriterios();
     $objArea = new Area();
@@ -58,7 +57,7 @@
                     <?php 
                     foreach ($objCriterios->Listar() as $value) { ?>
                     <td style='padding: 0px; width: 50px;'>                       
-                        <div style='position:relative;'>
+                        <div id = "txtNota$est[5]">
                             <?php 
                                 $notaCriterio = "";
                                 $objNotaCriterio = new Calificacion();
@@ -72,9 +71,9 @@
 
                                 $notaCriterio = $objNotaCriterio->cargarPorCriterio();
                                 if($notaCriterio == ""){
-                                   $accionCampo = "agregarNotaCriterio(".$estudiante['idMatricula'].",this.value,".$value['codCriterio'].",'".$tabla."'".",'".$grado."')";
+                                   $accionCampo = "agregarNotaCriterio(".$estudiante['idMatricula'].",this.value,".$value['codCriterio'].",'".$tabla."')";
                                 }else{
-                                   $accionCampo = "modificarNotaCriterio(".$estudiante['idMatricula'].",this.value,".$value['codCriterio'].",'".$tabla."'".",'".$grado."')";
+                                   $accionCampo = "modificarNotaCriterio(".$estudiante['idMatricula'].",this.value,".$value['codCriterio'].",'".$tabla."')";
                                 }
                             ?>
                             <input type ='text' 
@@ -85,8 +84,7 @@
                                 onchange ="<?php echo $accionCampo ?>" 
                                 
                                 name ="notas[]"
-                            >   
-                            <img id="cargando<?php echo $value['codCriterio']."_".$estudiante['idMatricula'] ?>" src="tools/load.gif" alt="" style="background-color:#fff;display:none;width:100%;height:100%;float:left;z-index:1200;position:absolute;top:0px;">                
+                            >                   
                         </div>
                     </td>
                     <?php } ?>
@@ -127,17 +125,10 @@
                             $objDesempeno->nota = $nota;
                             $des = $objDesempeno->cargar();
                         ?>
-                        <div id="des<?php echo $estudiante['idMatricula'] ?>" style="display: flex; justify-content:flex-start; font-size: 1em;">
-                            <div class="marcoDesempeno <?php echo $des; ?>" <?php if($grado <= 0){echo "style='font-size:0.8em;'"; } ?>
-                                class="form form-control" >
-                                <?php echo $des; ?>
-                            </div>
-                            <div <?php if($grado >0){echo "style='display:none;'"; } ?>>
-                                <?php if($des != ""){ ?>
-                                <img src="vistas/img/desempenos/<?php echo $des.".png";?>" alt="<?php echo $des.".png";?>" style="width: 30px;">
-                                <?php }?>
-                            </div>
-                        </div>
+                        <div class="marcoDesempeno <?php echo $des; ?>"
+                            id="des<?php echo $estudiante['idMatricula'] ?>" class="form form-control" >
+                            <?php echo $des; ?>
+                        </div> 
                     </td>
                     <td  style='padding: 0px; margin: 0px;'>
                         <div style='height: 100%; margin: 0px; padding: 0px; width: 100%;'>
