@@ -1,9 +1,9 @@
 <?php 
-    require("../../Modelo/tipoPlanilla.php");
-    require("../../Modelo/areas.php");
-    require("../../Modelo/criterios.php");
+    require("../Modelo/tipoPlanilla.php");
+    require("../Modelo/areas.php");
+    require("../Modelo/criterios.php");
     $objTipoPlanilla = new tipoPlanilla();
-    $objTipoPlanilla->anho = $anho;
+    $objTipoPlanilla->anho = $_POST['anho'];
     $tipo = "";
     $cantNotas = "";
     $tipoPromedio = "";

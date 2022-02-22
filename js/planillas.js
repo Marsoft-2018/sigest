@@ -15,6 +15,7 @@ function cargarLista(modulo){
             }else{
                 $.ajax({
                     url:"Controladores/ctrlPlanillas.php",
+                    type:"POST",
                     beforeSend:function(){
                         $('#bloquear').slideDown('fast');
                     },

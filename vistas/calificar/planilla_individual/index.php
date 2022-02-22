@@ -127,7 +127,7 @@
                                 </div>
                             </td>
                             <td>
-                                <button class="btn btn-success" title="Guardar nota" onclick="guardarNotaEspecifica('<?php echo $campo['id'] ?>')"> <i class="fa fa-check"></i></button>
+                                <button class="btn btn-success" title="Guardar nota" onclick="modificarNotaEspecifica('<?php echo $campo['id'] ?>')"> <i class="fa fa-check"></i></button>
                                 <button class="btn btn-danger" title="Eliminar nota" onclick="eliminarNotaEspecifica('<?php echo $campo['id'] ?>')"> <i class="fa fa-trash"></i></button>
                             </td>
                         </tr> 

@@ -33,11 +33,41 @@
     foreach ($respuestaPeriodo['estado'] as $per=>$estado) {
         $estado;
     }
-
+    function nivelPlanilla($curso){
+        $objCurso = new Curso();
+        $objCurso->curso = $curso;
+        $grado = null;
+        foreach($objCurso->consultarGrado() as $campo){
+            $grado = $campo['CODGRADO'];
+        }
+        echo "El curso es: $curso<br>";
+        echo "El grado es: $grado<br>";
+        if($grado > 0){
+            echo "Hola el nivel es basica";
+           include("../vistas/calificar/planillaListado.php");
+        }else{
+            echo "Hola el nivel es preescolar";
+            include("../vistas/calificar/planillaListadoPreescolar.php");
+        }
+    }
   switch ($tipoUsuario) {
     case 'Administrador':
-        echo "El curso POST es: ".$_POST['curso']."<br>";
-        nivelPlanilla($_POST['curso']);
+        //echo "El curso POST es: ".$_POST['curso']."<br>";
+        //nivelPlanilla($_POST['curso']);
+        $objCurso = new Curso();
+        $objCurso->curso = $_POST['curso'];
+        $grado = null;
+        foreach($objCurso->consultarGrado() as $campo){
+            $grado = $campo['CODGRADO'];
+        }
+        
+        if($grado > 0){
+            //echo "Hola el nivel es basica";
+           include("../vistas/calificar/planillaListado.php");
+        }else{
+            //echo "Hola el nivel es preescolar";
+            include("../vistas/calificar/planillaListadoPreescolar.php");
+        }
         break;
     case 'Profesor':
         if($estado){
@@ -51,21 +81,5 @@
         break;
   }
 
-    function nivelPlanilla($curso){
-        $objCurso = new Curso();
-        $objCurso->curso = $curso;
-        $grado = null;
-        foreach($objCurso->consultarGrado() as $campo){
-            $grado = $campo['CODGRADO'];
-        }
-        echo "El curso es: $curso<br>";
-        echo "El grado es: $grado<br>";
-        if($grado > 0){
-            echo "Hola el nivel es basica";
-           return include("planillaListado.php");
-        }else{
-            echo "Hola el nivel es preescolar";
-           return include("planillaListadoPreescolar.php");
-        }
-    }
+
 ?>

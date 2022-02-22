@@ -107,14 +107,14 @@
 			}
 		}
 
-		public function addIntensidad($tabla){
+		public function addIntensidad(){
 			$this->sql = "INSERT INTO areas_intensidad(idArea, idGrado, intensidad) VALUES(?,?,?)";
 			try {
 				$stm = $this->Conexion->prepare($this->sql);
 				$stm->bindParam(1, $this->id);
 				$stm->bindParam(2, $this->idGrado);
 				$stm->bindParam(3, $this->intensidad);
-				$stm->execute();
+				if($stm->execute()){ echo "Registro agregado con éxito<br>"; }
 			} catch (Exception $e) {
 				echo "Ocurrio un error al insertar la intensidad horaria. <br>".$e;
 			}

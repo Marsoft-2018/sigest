@@ -660,3 +660,12 @@ function cargarNotasGuardadasEstudiante(idMatricula){
         }
     });
 }
+
+const modificarNotaEspecifica = (id)=>{
+    $.ajax({
+        url: "tools/load.gif",
+        success: function(data){
+            $("#btn"+id).html(data);
+        }
+    });
+}

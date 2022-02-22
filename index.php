@@ -18,7 +18,7 @@
 	<title>Pagina de Inicio SiGest</title>
 	
 </head>
-<body  style="">
+<body >
 	<main>
 		<header>
 			<div class="img animated delay-0.5s slow fadeInLeft"></div>
