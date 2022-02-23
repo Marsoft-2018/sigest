@@ -115,23 +115,29 @@
 
         
             foreach ($sqltodoslosalumnos as $campo) {
-               $idMatricula = $campo['idMatricula'];
+               $idMatricula = $campo['idMatricula']; 
+                if($grado <= 0 ){
+                    include("preescolar/encabezado.php");
+                    foreach ($sqlAreas as $key => $area) {
+                        include("preescolar/bloqueAreas.php");
+                    }                        
+                }else{
             ?>            
             <div >
-                <?php include("encabezadoM2.php") ?>
-                <?php 
+                <?php
+                    include("encabezadoM2.php");
                     foreach ($sqlAreas as $key => $area) {
                         include("../vistas/boletines/bloqueAreas-M2.php");
-                    ?>  
-           
+                    ?>             
                         <div style="width: 100%; height: 20px;"></div>
                         <?php 
                     }
                 ?>  
 
-            <?php 
-                include("pieM2.php");
-             ?>
+                <?php 
+                    include("pieM2.php"); 
+                    }
+                ?>
                         
             <table class="MsoTableGrid" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse; border:none; margin-top: 40px;">
                 <tr>                            

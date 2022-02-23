@@ -17,17 +17,7 @@ function ValidarPeriodo(){
             console.log('Error_:'+res);
         }
     });
-
-
-   /* $("#mensajes").load("Controladores/ctrlCalificaciones.php",{accion:accion,periodo:periodo,anho:anho},function(){
-        
-    });
-    $("#mensajesObs").load("Controladores/ctrlCalificaciones.php",{accion:accion,periodo:periodo},function(){
-        
-    });*/
-}
-
-function cargarDesemp(idMatricula,nota,grado){
+    Transfer
     var accion  ='Desempeno';
     var area    = $("#areas").val();
     var curso   = $("#curso").val();

@@ -126,7 +126,7 @@
                     $anhoPeriodo = substr($plazo['fechaCierre'],0,4);
                     
                     if($anhoPeriodo != $this->anho){
-                            $men = "<div class='alert alert-danger' style = 'margin:20px; height:30px; padding:1px; text-align:center;'>El periodo $this->periodo se encuentra por fuera del tiempo estipulado para calificaciones.</div>";
+                            $men = "<div class='alert alert-danger' style = 'margin:10px; padding:1px; text-align:center;'>El periodo $this->periodo se encuentra por fuera del tiempo estipulado para calificaciones.</div>";
                             $datos['mensaje'] = [$men];
                             $datos['estado'] = [false];
                     }else{
@@ -136,11 +136,11 @@
                             $intervalo = date_diff($f1, $f2);
                             if($intervalo->format('%R')=='+'){
                                 if($intervalo->format('%a')>=10){
-                                    $men = $intervalo->format("<div class='alert alert-success' style = 'margin:20px; height:30px; padding:1px; text-align:center;'>Faltan %a días para cerrar el periodo $this->periodo</div>");
+                                    $men = $intervalo->format("<div class='alert alert-success' style = 'margin:10px; padding:1px; text-align:center;'>Faltan %a días para cerrar el periodo $this->periodo</div>");
                                     $datos['mensaje'] = [$men];
                                     $datos['estado'] = [true];
                                 }elseif($intervalo->format('%a')<10){
-                                    $men = $intervalo->format("<div class='alert alert-warning' style = 'margin:20px; height:30px; padding:1px; text-align:center;'>Faltan %a días para cerrar el periodo $this->periodo</div>");
+                                    $men = $intervalo->format("<div class='alert alert-warning' style = 'margin:10px; padding:1px; text-align:center;'>Faltan %a días para cerrar el periodo $this->periodo</div>");
                                     $datos['mensaje'] = [$men];
                                     $datos['estado'] = [true];
                                 }

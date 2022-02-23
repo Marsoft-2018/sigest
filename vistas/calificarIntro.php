@@ -154,7 +154,7 @@
                             </p>
                           </div>
                       </div>
-                       <div id='mensajes' style='padding:0px; margin:0px;'></div> 
+                       <div id='mensajes' style='padding:1px; margin:0px;'></div> 
                     </div>
                   </div>
                 </div>
