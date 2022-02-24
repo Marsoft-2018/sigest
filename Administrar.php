@@ -52,7 +52,6 @@
     <link rel='stylesheet' href='estilosCSS/estilosGenerales.css' type='text/css'/>
     <link rel='stylesheet' href='css/ventanas.css' type='text/css'/>
     <link rel='stylesheet' href='css/planilla.css' type='text/css'/>
-    
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">

@@ -4,6 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" type="text/css">
         <link href="../css/bootstraps3.1.css" rel="stylesheet">
+        <link rel='stylesheet' href='../css/boletinesPreescolar.css' type='text/css'/>    
         <style>
             .ocultar{
                     width:100%;

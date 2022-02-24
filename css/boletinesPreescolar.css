@@ -1,0 +1,34 @@
+.bloque-dimension{
+    border: 1px solid #000;
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    margin:0px;
+    border-top: 0.5px;
+    border-bottom: 0.5px;
+}
+.dimension-datos{
+    border: 1px solid #000;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    width: 100%;
+}
+
+.dimension-juicio{
+    align-self: flex-start;
+    flex-grow: 4;
+    padding: 5px;
+}
+.dimension-desempeño{
+    flex-grow: 0.5;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    border-left: 1px solid #000;
+}
+.dimension-desempeño img{
+    width: 25%;
+}

@@ -1,31 +1,3 @@
-<style>
-    .bloque-dimension{
-        border: 1px solid #000;
-        display: flex;
-        justify-content: flex-start;
-        flex-flow: column nowrap;
-        align-items: center;
-        margin:0px;
-    }
-    .dimension-datos{
-        border: 1px solid #000;
-        display: flex;
-        justify-content: space-around;
-        flex-flow: row nowrap;
-        align-items: stretch;
-        width: 100%;
-    }
-
-    .dimension-juicio{
-        align-self: flex-start;
-        flex-grow: 4;
-        padding: 5px;
-    }
-    .dimension-desempeño{
-        align-self: center;
-        flex-grow: 0.5;
-    }
-</style>
 <?php 
 $objCalificaciones = new Calificacion();        
 $objCalificaciones->curso = $curso;
@@ -44,8 +16,8 @@ foreach ($objCalificacion->cargar() as $calif) {
 ?>
 <div class="bloque-dimension">
     <div class="dimension-datos dimension-nombre">
-        <h4 style="text-transform: uppercase; text-align: left; font-weight: bold;width: 85%;flex-grow:4;"><?php echo $area['Nombre'] ?></h4>
-        <p>inasistencias: <strong><?php echo $faltas; ?> </strong></p>
+        <h4 style="text-transform: uppercase; text-align: left; font-weight: bold; width: 85%; flex-grow:4; padding: 3px; margin: 0px;"><?php echo $area['Nombre'] ?></h4>
+        <h5 style="padding-right:5px;">Inasistencias: <strong><?php echo $faltas; ?> </strong></h5>
     </div>
     <div class="dimension-datos">
         <div class="dimension-juicio">
@@ -56,13 +28,7 @@ foreach ($objCalificacion->cargar() as $calif) {
                 $objLogros->codCurso = $curso;
                 $objLogros->codArea = $area['id'];
                 $objLogros->calificacion = $calificacion;
-                       
-
                 $objLogros->cargar();
-                if($desmFinal == "BAJO"){
-                    $areasPerdidas += 1;
-                    $areaAplazada = $area['Nombre'];
-                }
             ?>
         </div>
         <div class="dimension-desempeño">
