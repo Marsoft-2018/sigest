@@ -17,7 +17,9 @@ function ValidarPeriodo(){
             console.log('Error_:'+res);
         }
     });
-    Transfer
+}
+
+function cargarDesemp(idMatricula,nota,grado){   
     var accion  ='Desempeno';
     var area    = $("#areas").val();
     var curso   = $("#curso").val();

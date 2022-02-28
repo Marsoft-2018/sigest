@@ -1,5 +1,4 @@
 <?php 
-    echo "El grado para la planilla criterios es: ".$grado;
     $objCriterios = new Criterio();
     $numCriterios = $objCriterios->conteoCriterios();
     $objArea = new Area();

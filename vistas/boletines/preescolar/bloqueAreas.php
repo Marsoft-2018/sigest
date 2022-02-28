@@ -1,18 +1,24 @@
 <?php 
-$objCalificaciones = new Calificacion();        
-$objCalificaciones->curso = $curso;
-$objCalificaciones->Anho = $anho;
-$objCalificacion->idMatricula = $idMatricula;
-$objCalificacion->codArea =  $area['id'];
-$objCalificacion->grado = $area['idGrado'];
-$objCalificacion->tipoPromedio = $area['formaDePromediar'];
-$objCalificacion->periodo =$periodoBol;
-$calificacion = 0;
-$faltas = 0;
-foreach ($objCalificacion->cargar() as $calif) {
-    $calificacion = $calif['NOTA']; 
-    $faltas = $calif['Faltas'];      
-} 
+    $objCalificaciones = new Calificacion();        
+    $objCalificaciones->curso = $curso;
+    $objCalificaciones->Anho = $anho;
+    $objCalificacion->idMatricula = $idMatricula;
+    $objCalificacion->codArea =  $area['id'];
+    $objCalificacion->grado = $area['idGrado'];
+    $objCalificacion->tipoPromedio = $area['formaDePromediar'];
+    $objCalificacion->periodo =$periodoBol;
+    
+    $calificacion = 0;
+    $faltas = 0;
+
+    foreach ($objCalificacion->cargar() as $calif) {
+        $calificacion = $calif['NOTA']; 
+        $faltas = $calif['Faltas'];      
+    } 
+    
+    $objDesempeno = new Desempenos();
+    $objDesempeno->nota = $calificacion;
+    $desempeno = $objDesempeno->cargar(); 
 ?>
 <div class="bloque-dimension">
     <div class="dimension-datos dimension-nombre">
@@ -28,14 +34,29 @@ foreach ($objCalificacion->cargar() as $calif) {
                 $objLogros->codCurso = $curso;
                 $objLogros->codArea = $area['id'];
                 $objLogros->calificacion = $calificacion;
-                $objLogros->cargar();
+                $objLogros->estado = 1;
+                $logros = $objLogros->cargarLista();
+                foreach ($logros as $logro) {
+                    switch ($desempeno) {
+                        case 'BAJO':
+                            echo '<li>Tengo dificultad para '.$logro['INDICADOR'].'.</li>';
+                            break;
+                        case 'BASICO':
+                            echo '<li>Soy capaz de '.$logro['INDICADOR'].'.</li>';
+                            break;
+                        case 'ALTO':
+                            echo '<li>Tengo muy buenas habilidades para '.$logro['INDICADOR'].'.</li>';
+                            break;
+                        case 'SUPERIOR':
+                            echo '<li>Demuestro habilidades superiores para '.$logro['INDICADOR'].'.</li>';
+                            break;
+                    }
+                }
             ?>
         </div>
         <div class="dimension-desempeño">
         <?php 
-            $objDesempeno = new Desempenos();
-            $objDesempeno->nota = $calificacion;
-            $desempeno = $objDesempeno->cargar(); 
+            
             if($desempeno != ""){
                 //echo $desempeno;
                 echo "<img src='../vistas/img/desempenos/".$desempeno.".png' />"; 
