@@ -61,8 +61,8 @@
                                 </div>
                             </td>
                             <td  style='padding: 0px; margin: 0px;'>
-                                <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                <button class="btn btn-info"><i class="fa fa-save"></i></button>
+                                <button class="btn btn-danger" onclick="eliminarObservaciones('<?php echo $estudiante['idMatricula']; ?>')"><i class="fa fa-trash"></i></button>
+                                <button class="btn btn-info" onclick="guardarObservaciones('<?php echo $estudiante['idMatricula']; ?>')"><i class="fa fa-save"></i></button>
                             </td>
                         </tr>
                     <?php 
