@@ -18,7 +18,7 @@
 	    	$this->tipoUsuario = $_SESSION['rol'];
 	    	switch ($this->tipoUsuario) {
 	    		case 'Administrador':
-					$this->sql = "SELECT DISTINCT(cr.`codCurso`),cr.codSede,cr.CODGRADO,  cr.grupo, cr.idJornada, CONCAT (sd.`NOMSEDE`,' - ',cr.`CODGRADO`,'° ',cr.`grupo`) AS nombreCurso FROM cursos cr INNER JOIN sedes sd ON sd.`CODSEDE` = cr.codSede ";
+					$this->sql = "SELECT DISTINCT(cr.`codCurso`),cr.codSede,cr.CODGRADO,  cr.grupo, cr.idJornada, CONCAT (sd.`NOMSEDE`,' - ',cr.`CODGRADO`,'° ',cr.`grupo`) AS nombreCurso,  CONCAT (sd.`NOMSEDE`,' - ',gr.NOMGRADO) AS nombreGrado FROM cursos cr INNER JOIN sedes sd ON sd.`CODSEDE` = cr.codSede  INNER JOIN grados gr ON gr.CODGRADO = cr.CODGRADO";
 		    		if (isset($this->codSede)) {
 		    			$this->sql .= " WHERE cr.codSede ='".$this->codSede."' ORDER BY cr.`codSede`, cr.codgrado, cr.grupo ASC";
 		    		}else{
@@ -26,7 +26,8 @@
 		    		}
     			break;
 	    		case 'Profesor':
-	    			$this->sql = "SELECT DISTINCT(cr.`codCurso`),cr.codSede, cr.CODGRADO,  cr.grupo, cr.idJornada,CONCAT (cr.`CODGRADO`,'° ',cr.`grupo`) AS nombreCurso FROM cursos cr INNER JOIN cargaacademica_new car ON car.codcurso = cr.codcurso WHERE car.codProfesor ='".$this->idUsuario."' AND car.`anho` ='".$this->anho."' ORDER BY cr.codgrado, cr.grupo ASC";
+	    			$this->sql = "SELECT DISTINCT(cr.`codCurso`),cr.codSede, cr.CODGRADO,  cr.grupo, cr.idJornada,CONCAT (cr.`CODGRADO`,'° ',cr.`grupo`) AS nombreCurso, gr.NOMGRADO AS 'nombreGrado' FROM cursos cr INNER JOIN cargaacademica_new car ON car.codcurso = cr.codcurso
+					INNER JOIN grados gr ON gr.CODGRADO = cr.CODGRADO WHERE car.codProfesor ='".$this->idUsuario."' AND car.`anho` ='".$this->anho."' ORDER BY cr.codgrado, cr.grupo ASC";
 	    			break;	
 	    		default:
 	    			break;

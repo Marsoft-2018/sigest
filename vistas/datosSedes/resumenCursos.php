@@ -3,7 +3,7 @@
     require("../../Modelo/grado.php");  
     require("../../Modelo/matricula.php");  
 
-    $objGrado = new grados();
+    $objGrado = new Grado();
     $objGrado->sede = $_POST['sede'];
     $listaCursos = $objGrado->cargarCursos();
 ?>

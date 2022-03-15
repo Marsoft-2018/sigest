@@ -67,7 +67,13 @@
                                     foreach ($datos as $value) {
                                         ?>
                                         <option value="<?php echo $value['codCurso']; ?>">
-                                            <?php echo $value['nombreCurso']; ?>
+                                            <?php 
+                                              if($value['CODGRADO'] > 0){
+                                                echo $value['nombreCurso'];
+                                              }else{
+                                                echo $value['nombreGrado'];
+                                              }
+                                            ?>
                                         </option>
                                         <?php
                                     }
