@@ -117,7 +117,7 @@
                                 </button>
                         </div>
                         <div class="col-lg-6 col-sm-6">
-                            <button type='button' class='btn btn-info' id='btnPlanilla' title='Ver Planilla deobservaciones' style="padding: 10px; margin-top:20px; width: 100%" onclick="cargarListaObservaciones()">
+                            <button type='button' class='btn btn-info' id='btnPlanilla' title='Ver Planilla deobservaciones' style="display: none; padding: 10px; margin-top:20px; width: 100%" onclick="cargarListaObservaciones()">
                                     <i class="fa fa-list-alt"> Observaciones</i>
                             </button>
                         </div> 
@@ -163,7 +163,7 @@
                   <div id="reloj"><span id="min"></span><span id="seg"></span></div>   
               </div> 
               <div class="row" style="margin-top:5px;">
-                <div id='tablaPlanilla' style="margin: 0px;"> </div>                     
+                <div id='tablaPlanilla' style="margin: 0 auto;" class="container"> </div>                                          
               </div>
             </form> 
           </div>                        
@@ -192,7 +192,7 @@
 	  console.log("Presionó una tecla");
 	};
 
-	var myInterval = window.setInterval(CheckIdleTime, 1000);
+	var myInterval = window.setInterval(CheckIdleTime, 600000);
 
 	function CheckIdleTime() {
 	   var oPanel = $("#tiempo");

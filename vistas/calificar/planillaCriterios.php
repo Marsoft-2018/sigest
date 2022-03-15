@@ -13,7 +13,6 @@
     // echo "Tabla: ".$tabla." Area: ".$_POST['codArea']." | curso: ".$objArea->curso."| año: ".$objArea->anho." | periodo: ".$periodo;
 ?>
 
-<form action="" onsubmit="return guardarNotasVarias()" id="formPlanilla">
     <table class="table tblPlanilla" style="border: 1px solid #fefa">
         <thead>
             <tr style="color:#fff; background-color: #095daf">
@@ -160,7 +159,7 @@
                         </div>
                     </td> -->
                     <td style="padding: 0px;">
-                        <button class="btn btn-success" style="width: 100%; margin: 1px;" data-toggle="modal" data-target="#staticBackdrop" onclick="cargarNotasGuardadasEstudiante('<?php echo $estudiante['idMatricula'] ?>')" >
+                        <button  type="button" class="btn btn-success" style="width: 100%; margin: 1px;" data-toggle="modal" data-target="#staticBackdrop" onclick="cargarNotasGuardadasEstudiante('<?php echo $estudiante['idMatricula'] ?>')" >
                             <i class="fa fa-gear"></i> Detalles
                         </button>
                     </td>
@@ -175,5 +174,5 @@
         <tfoot>
         </tfoot>
     </table>    
-</form>
+
 <div id="result"></div>

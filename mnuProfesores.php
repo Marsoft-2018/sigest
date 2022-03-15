@@ -65,8 +65,10 @@
     <link rel='stylesheet' href='css/ventanas.css' type='text/css'/>
     <link rel='stylesheet' href='estilosCSS/estilosGenerales.css' type='text/css'/>    
     <link rel="stylesheet" href="css/menuprofesores.css"> 
+    <link rel='stylesheet' href='css/planilla.css' type='text/css'/>
   </head>
   <body class="">
+<div class="wrapper">
     <header class="row cabecera">
       <div class="col-lg-3">
         <div class="logo" style="height: 100px; width: 100%">
@@ -95,7 +97,7 @@
                       <a href="#" onclick='menu(this.id)' id='vistas/calificarIntro.php'>
                         <i class="fa fa-fw fa-edit"></i> Calificar
                       </a>
-                  </li>
+                  </li><!--
                   <li>
                       <a href="https://meet.jit.si/Grupo7-3--11324400033801-108" target="selft">
                         <i class="fa fa-fw fa-edit"></i> Clase Virtual
@@ -105,7 +107,7 @@
                       <a href="https://classroomscreen.com/app/signup" target="selft" >
                         <i class="fa fa-fw fa-edit"></i> Pizarron
                       </a>
-                  </li>
+                  </li>-->
                   <li> <a href="Controladores/ctrlLogout.php" ><i class="fa fa-fw fa-power-off"></i> Salir</a></li>
                 </ul>
               </div>
@@ -237,7 +239,21 @@
             </div>
         </div> 
       </footer>
-
+          
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog fade in" role="document" style="width: 70%;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="modal-title" id="tituloModal" style="font-size: 2em; font-weight: bold; text-transform: uppercase"></span>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="cargasFormulario">    ...   
+          </div>
+        </div>
+      </div>
+    </div>
       
       <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->
@@ -286,5 +302,6 @@
     <script type="text/javascript" src="js/niveles.js"></script>
     <script type="text/javascript" src="js/desempenos.js"></script>
     <script type="text/javascript" src="js/calificaciones.js"></script>
+    <script type="text/javascript" src="js/planillas.js"></script>
   </body>
 </html>

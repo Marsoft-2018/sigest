@@ -10,12 +10,12 @@
 		public $anho;
 		public $intensidad;
 		public $idGrado;
-        public $curso;
-        public $tipoUsuario;
-        public $idUsuario;
-        public $idAsignatura;
-        public $nombreAsignatura;
-        public $porcentajeAsignatura;
+      public $curso;
+      public $tipoUsuario;
+      public $idUsuario;
+      public $idAsignatura;
+      public $nombreAsignatura;
+      public $porcentajeAsignatura;
 		private $sql;
 
 		public function cargarPensum(){

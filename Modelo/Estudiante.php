@@ -92,7 +92,7 @@ mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudi
         }
 
         public function listarCurso(){
-            $this->sql = "SELECT est.Documento,est.PrimerNombre,est.SegundoNombre,est.PrimerApellido,est.SegundoApellido,est.sexo,cur.CODGRADO,cur.grupo,j.abreviatura AS 'jornada' ,mt.estado, mt.idMatricula, mt.anho,s.CODINST, est.tipoDocumento, est.num_interno FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada WHERE mt.Curso= ? AND mt.anho = ? ORDER BY  cur.CODGRADO, cur.grupo, est.PrimerApellido, est.SegundoApellido, est.PrimerNombre, est.SegundoNombre ASC"; 
+            $this->sql = "SELECT est.Documento,est.PrimerNombre,est.SegundoNombre,est.PrimerApellido,est.SegundoApellido,est.sexo,cur.CODGRADO,cur.grupo,j.abreviatura AS 'jornada' ,mt.estado, mt.idMatricula, mt.anho,s.CODINST, est.tipoDocumento, est.num_interno FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada WHERE mt.Curso= ? AND mt.anho = ? AND (mt.estado = 'Matriculado' OR mt.estado = 'Promovido') ORDER BY  cur.CODGRADO, cur.grupo, est.PrimerApellido, est.SegundoApellido, est.PrimerNombre, est.SegundoNombre ASC"; 
             if(isset($this->Rinicio) && isset($this->registros)){
                 $this->sql .= " LIMIT ".$this->Rinicio.", ".$this->registros." ";
             }
@@ -208,14 +208,21 @@ mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudi
         }
         
         public function buscarUsuario($idUsuario){
-            $sqlBusca=mysql_query("SELECT p.PrimerApellido,p.SegundoApellido,p.PrimerNombre,p.SegundoNombre FROM estudiantes p WHERE IDUsuario='$idUsuario'");
-            $resultado=mysql_num_rows($sqlBusca);
-            if($resultado>0){
-                echo '<div class="alert alert-danger alert-dismissable">
+            $this->sql = "SELECT p.PrimerApellido,p.SegundoApellido,p.PrimerNombre,p.SegundoNombre FROM estudiantes p WHERE IDUsuario= ?";
+            try {
+                $stm = $this->Conexion->prepare($this->sql);
+                $stm->bindparam(1,$idUsuario);
+                $stm->execute();
+                $datos = $stm->fetchAll(PDO::FETCH_ASSOC);
+                foreach($datos as $value){
+                    echo '<div class="alert alert-danger alert-dismissable">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             El usuario que trata de ingresar ya existe en la base de datos, por favor corrija el dato.
                         </div>';
-            }
+                }
+            } catch (Exception $e) {
+                echo "Ocurrió un error al cargar los datos ".$e;    
+            }  
         }//OK
         
         public function modificar(){
@@ -383,6 +390,38 @@ mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudi
             } catch (Exception $e) {
                 echo "Ocurrió un error al cargar los datos ".$e;    
             }                                  
+        }
+        
+        public function listaRetiradosCurso(){
+            $this->sql = "SELECT est.Documento,est.PrimerNombre,est.SegundoNombre,est.PrimerApellido,est.SegundoApellido,est.sexo,cur.CODGRADO,cur.grupo,j.abreviatura AS 'jornada' ,mt.estado, mt.idMatricula, mt.anho,s.CODINST, est.tipoDocumento, est.num_interno FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada WHERE mt.Curso= ? AND mt.anho = ? AND (mt.estado = 'Retirado' OR mt.estado = 'Eliminado') ORDER BY  cur.CODGRADO, cur.grupo, est.PrimerApellido, est.SegundoApellido, est.PrimerNombre, est.SegundoNombre ASC"; 
+            if(isset($this->Rinicio) && isset($this->registros)){
+                $this->sql .= " LIMIT ".$this->Rinicio.", ".$this->registros." ";
+            }
+            try {
+                $stm = $this->Conexion->prepare($this->sql);
+                $stm->bindparam(1,$this->curso);
+                $stm->bindparam(2,$this->anho);
+                $stm->execute();
+                $data = $stm->fetchAll(PDO::FETCH_ASSOC);
+                return $data;
+            } catch (Exception $e) {
+                echo "Error al consultar los datos de los estudiantes";
+            }
+        }
+
+        public function listaRetiradosSede(){          
+            $this->sql = "SELECT mt.`Curso`,mt.`idMatricula`,est.`tipoDocumento`,est.`Documento`,est.`PrimerApellido`,est.`SegundoApellido`,est.`PrimerNombre`,est.`SegundoNombre`,cr.`CODGRADO`,cr.`grupo`, est.num_interno FROM matriculas mt INNER JOIN estudiantes est ON est.`Documento`  =  mt.`Documento` INNER JOIN cursos cr ON cr.`codCurso` =  mt.`Curso` WHERE mt.`codsede`  =  ? AND mt.`estado`  =  'Matriculado' AND mt.`anho`  = ? AND (mt.estado = 'Retirado' OR mt.estado = 'Eliminado') ORDER BY cr.`CODGRADO`, cr.`grupo`, est.`PrimerApellido`,est.`SegundoApellido`,est.`PrimerNombre`,est.`SegundoNombre` ASC"; 
+            
+            try {
+                $stm = $this->Conexion->prepare($this->sql);
+                $stm->bindparam(1,$this->sede);
+                $stm->bindparam(2,$this->anho);
+                $stm->execute();
+                $data = $stm->fetchAll(PDO::FETCH_ASSOC);
+                return $data;
+            } catch (Exception $e) {
+                echo "Error al consultar los datos de los estudiantes";
+            }            
         }
         
     }

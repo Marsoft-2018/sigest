@@ -668,6 +668,7 @@ function cargarNotasGuardadasEstudiante(idMatricula){
             console.log("Error: "+err);
         }
     });
+    return false;
 }
 
 const modificarNotaEspecifica = (id)=>{

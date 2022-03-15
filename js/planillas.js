@@ -1,6 +1,6 @@
 
 function cargarLista(modulo){
-    //alertify.success("El modulo es: "+modulo);
+    //console.log("El modulo es: "+modulo);
     var curso = $('#curso').val();
     var anho = $("#anho").val();
     switch(modulo) {
@@ -21,6 +21,7 @@ function cargarLista(modulo){
                     },
                     data:{accion:accion, curso:curso, codArea:area, periodo:periodo, anho:anho},
                     success: function(response){
+                        //console.log("Datos enviados, se recibe: "+response)
                         $("#tablaPlanilla").html(response);
                     },
                     error: function(err){
@@ -37,7 +38,7 @@ function cargarLista(modulo){
                 // });                  
             }
             //alertify.success("La sede es: "+curso);
- 
+            
             break;
         case 2:
             var sede = document.getElementById('sede').value;
@@ -59,3 +60,27 @@ function cargarLista(modulo){
     
     return false;
 }//ok
+
+
+function activarObservaciones(curso){
+    var accion = "activarObservaciones";
+    var anho = $("#anho").val();
+    $.ajax({
+        url:"Controladores/ctrlPlanillas.php",
+        type:"POST",
+        beforeSend:function(){
+            $('#bloquear').slideDown('fast');
+        },
+        data:{accion:accion, curso:curso, anho:anho},
+        success: function(response){
+            console.log("Datos enviados, se recibe: "+response)
+            //$("#tablaPlanilla").html(response);
+        },
+        error: function(err){
+            console.log(err);
+        },
+        complete:function(){
+            $('#bloquear').slideUp('fast');
+        }
+    });
+}

@@ -14,9 +14,16 @@
     $codArea = $_POST['codArea'];
     $periodo = $_POST['periodo'];
     $nota = "";
+    $estado = 0;
     $visible = "display:flex;";
     $oculto = "display:none;";
     $accionCampo = "";
+    $accion ="";
+    
+    if(isset($_REQUEST['accion'])){
+        $accion = $_REQUEST['accion'];
+    }
+    
     $objEstudiante = new Estudiante();
     $objEstudiante->curso = $_POST['curso'];
     $objEstudiante->anho = $anho;
@@ -28,15 +35,16 @@
         $des="";
         $nota;    
     //echo "estado del periodo: ".$estadoPeriodo."<br>";
-    //var_dump();
+    //var_dump($_REQUEST);
+    //echo "El tipo de usuario es: ".$tipoUsuario;
     $respuestaPeriodo = $verificacion->ValidarPeriodo();
     foreach ($respuestaPeriodo['estado'] as $per=>$estado) {
         $estado;
     }
-
-  switch ($tipoUsuario) {
+    //echo "  --- El estado del periodo es: ".$estado;
+    switch ($tipoUsuario) {
     case 'Administrador':
-        //echo "El curso POST es: ".$_POST['curso']."<br>";
+        echo "El curso POST es: ".$_POST['curso']."<br>";
         //nivelPlanilla($_POST['curso']);
         $objCurso = new Curso();
         $objCurso->curso = $_POST['curso'];
@@ -48,8 +56,15 @@
 
         break;
     case 'Profesor':
-        if($estado){
-            nivelPlanilla($_POST['curso']);
+        if($estado == 1){
+            //nivelPlanilla($_POST['curso']);
+             $objCurso = new Curso();
+            $objCurso->curso = $_POST['curso'];
+            $grado = null;
+            foreach($objCurso->consultarGrado() as $campo){
+                $grado = $campo['CODGRADO'];
+            }  
+            include("../vistas/calificar/planillaListado.php");
         }else{ ?>
             <div class='alert' style = "font-size: 1.5em; margin:20px; padding: 50px; text-align:center; background-color: #FFD80080">
                 Señor docente El periodo elegido se encuentra por fuera del tiempo estipulado para calificar. Por ese motivo no podrá ver la planilla para hacer cambios en las calificaciones,  para observar los datos ingresados diríjase al reporte consolidado.
@@ -59,5 +74,9 @@
         break;
   }
 
-
+    switch($accion){
+        case "activarObservaciones":
+            echo "Toggle para el botón de observaciones";
+            break;
+    }
 ?>

@@ -46,7 +46,7 @@
         </div>
         <div class="col-sm-12 col-md-7 col-lg-7 form-group">
             <label for="limiteSup">Limite Superior</label>
-            <input type="number" class="form-control" name="limiteSup" id="limiteSup" value="<?php echo $limiteInf ?>" required>
+            <input type="number" class="form-control" name="limiteSup" id="limiteSup" value="<?php echo $limiteSup ?>" required>
             <small id="codigohelp" class="form-text text-muted">Enumero los Desempenos en orden de prioridad</small>
         </div>
     <div class="row">
