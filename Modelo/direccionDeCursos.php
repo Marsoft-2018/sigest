@@ -50,6 +50,26 @@
             }
 
         }
+
+        public function verificar(){
+            $this->sql = "SELECT ID FROM direccioncursos WHERE codCurso = ? AND anho = ? AND codProfesor = ?";
+            try {
+                $stm = $this->Conexion->prepare($this->sql);
+                $stm->bindparam(1,$this->codCurso);
+                $stm->bindparam(2,$this->anho);
+                $stm->bindparam(3,$this->codProfesor);
+                $stm->execute();
+                $datos = $stm->fetchAll(PDO::FETCH_ASSOC);
+                $respuesta = array();
+                $respuesta['estado'] = [false];
+                foreach($datos as $value) {                    
+                    $respuesta['estado'] = [true];
+                }
+                return $respuesta;
+            } catch (Exception $e) {
+                echo "Error al cargar el director de grupo. ".$e;
+            }
+        }
     }  
 
 ?>

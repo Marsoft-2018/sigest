@@ -370,94 +370,6 @@ function guardarDefinitiva(idMatricula,nota,tabla){
     });
 }
 
-
-//--------------------------------------------------------------------//
-function cargarListaObservaciones(){  
-    var accion = 'lista';
-    var area = $('#areas').val();
-    var periodo = $('#periodo').val();
-    var curso = $('#curso').val();
-    var anho = $('#anho').val();
-    if(area == ""){
-        alertify.error("Por favor Seleccione el área para poder continuar");
-    }else if(periodo == ""){
-        alertify.error("Por favor Seleccione el periodo para poder continuar");
-    }else{
-        $.ajax({
-            type:"POST",
-            url:"vistas/calificar/observaciones.php",
-            data:{accion:accion, curso:curso, codArea:area, periodo:periodo, anho:anho},
-            beforeSend:function(){
-                bloquear();
-            },
-            success:function(respuesta){
-                desBloquear();
-                $("#tablaPlanilla").html(respuesta);
-                alertify.success("Lista Cargada con éxito");
-                $("#tblObservaciones").dataTable();
-            },
-            error:function(respuesta){
-                desBloquear();
-                console.log('test: '+respuesta);
-            }
-        });               
-    }
-    //return false;
-}
-
-function agregarObservacion(estudiante,observacion){
-    var accion="agregarObservacion";
-    var curso=document.getElementById('curso').value;
-    var periodo=document.getElementById('periodo').value;
-    var anho=document.getElementById('anho').value;
-    var inst=document.getElementById('institucion').value;
-    $("#obs"+estudiante).load("Calificar/vistas/planilla.php",
-        {
-         accion:accion,
-         inst:inst,
-         observacion:observacion,
-         estudiante:estudiante,
-         periodo:periodo,
-         anho:anho,
-         curso:curso
-        },function(){
-        alertify.success("Observacion Agregada con éxito");
-    });
-}
-
-function modificarObservacion(estudiante,observacion){
-    var accion="modificarObservacion";
-    var curso=document.getElementById('curso').value;
-    var periodo=document.getElementById('periodo').value;
-    var anho=document.getElementById('anho').value;
-    var inst=document.getElementById('institucion').value;
-    $("#obs"+estudiante).load("Calificar/vistas/planilla.php",
-        {
-         accion:accion,
-         inst:inst,
-         observacion:observacion,
-         estudiante:estudiante,
-         periodo:periodo,
-         anho:anho,
-         curso:curso
-        },function(){
-        alertify.success("Observación Modificada con éxito");
-    });
-}    
-
-function eliminarObservacion(estudiante,idObservacion){
-    //alertify.alert("Los datos son: "+estudiante+" IdObservacion: "+idObservacion);
-    var accion="eliminarObservacion";
-    $("#obs"+estudiante).load("Calificar/vistas/planilla.php",
-        {
-         accion:accion,
-         idObservacion:idObservacion,
-         estudiante:estudiante
-        },function(){
-        alertify.success("Observación Eliminada con éxito");
-    });
-}     
-  
 function agregarNotaAsignatura(estudiante,nota){
     var accion="agregarNotaAsignatura";
     var area=document.getElementById('areas').value;
@@ -529,28 +441,6 @@ function modificarFaltaAsignatura(estudiante,falta){
     });
 }
 
-function modificarObservacionAsignatura(estudiante,observacion){
-    var accion="modificarObservacionAsignatura";
-    var area=document.getElementById('areas').value;
-    var curso=document.getElementById('curso').value;
-    var periodo=document.getElementById('periodo').value;
-    var anho=document.getElementById('anho').value;
-    var inst=document.getElementById('institucion').value;
-    $("#obs"+estudiante).load("Calificar/vistas/planilla.php",
-        {
-         accion:accion,
-         inst:inst,
-         observacion:observacion,
-         estudiante:estudiante,
-         area:area,
-         periodo:periodo,
-         anho:anho,
-         curso:curso
-        },function(){
-        /*alertify.success("El estudiante es: "+codigo+" Nota es: "+nota+" El Curso es: "+curso);
-        alertify.success("El Area es: "+area+" El periodo es: "+periodo+" El Año es: "+anho);*/
-    });
-}
   
 function cargarLogro(idMatricula,nota){
     var accion  = "cargarLogro";

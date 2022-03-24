@@ -55,7 +55,7 @@
                             <label for="">CURSO</label>
                             <select id='curso' name='cursoBol' class='form-control' 
                                 style='margin:0px; padding: 0px;' required 
-                                onchange ="limpiarAreaDeTrabajo(); cargarTodasLasAreas(); activarObservaciones(this.value)">
+                                onchange ="limpiarAreaDeTrabajo(); cargarTodasLasAreas(); activarObservacionesBoletin(this.value)">
                                 <option value=''>Seleccione...</option>
                                 <?php
                                     $objCurso = new Curso();  
@@ -123,7 +123,7 @@
                                 </button>
                         </div>
                         <div class="col-lg-6 col-sm-6">
-                            <button type='button' class='btn btn-info' id='btnPlanilla' title='Ver Planilla deobservaciones' style="display: none; padding: 10px; margin-top:20px; width: 100%" onclick="cargarListaObservaciones()">
+                            <button type='button' class='btn btn-info' id='btnObservacion' title='Ver Planilla de observaciones' style="display: none; padding: 10px; margin-top:20px; width: 100%" onclick="cargarObservacionesBoletin()">
                                     <i class="fa fa-list-alt"> Observaciones</i>
                             </button>
                         </div> 

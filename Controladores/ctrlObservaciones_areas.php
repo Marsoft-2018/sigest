@@ -1,7 +1,7 @@
 <?php 
 session_start();
 	require("../modelo/Conect.php");
-    require("../modelo/observaciones.php");
+    require("../modelo/observacionArea.php");
     //$_POST = json_decode(file_get_contents("php://input"), true);
     $accion = "";
     if(isset($_POST['accion'])) {
@@ -11,6 +11,36 @@ session_start();
     //echo "Accion: ".$accion;
     
     switch ($accion) {
+          //Pendiente de poner en funcionamiento 
+          case 'agregar':
+            $estudiante=$_POST['estudiante']; 
+            $curso=$_POST['curso'];
+            $periodo=$_POST['periodo'];
+            $anho=$_POST['anho'];
+            $observacion=$_POST['observacion'];
+            $inst=$_POST['inst'];
+            
+            $planilla=new observacionArea();
+            $planilla->agregar();            
+            break;
+        case 'modificar':
+            $estudiante=$_POST['estudiante']; 
+            $curso=$_POST['curso'];
+            $periodo=$_POST['periodo'];
+            $anho=$_POST['anho'];
+            $observacion=$_POST['observacion'];
+            $inst=$_POST['inst'];
+            
+            $planilla=new Observaciones();
+            $planilla->modificar($estudiante,$curso,$periodo,$anho,$observacion,$inst);            
+            break;
+        case 'eliminar':
+            $estudiante=$_POST['estudiante'];
+            $idObservacion=$_POST['idObservacion'];        
+            $planilla=new Observaciones();
+            $planilla->eliminar($estudiante,$idObservacion);            
+            break;
+
     	case 'cargarObservacionArea':    		
 	        $objObservacion = new observacionArea();
 	        $objObservacion->curso = $_POST['curso'];
@@ -32,7 +62,7 @@ session_start();
             $objObservacion->observacion = $_POST['observacion'];
             $data = $objObservacion->agregar();
     		break;
-        case 'modificarObservaionArea':
+        case 'modificarObservacionArea':
             $objObservacion = new observacionArea();
             $objObservacion->id = $_POST['id'];
             $objObservacion->asistencia = $_POST['asistencia'];
@@ -40,7 +70,7 @@ session_start();
             $objObservacion->observacion = $_POST['observacion'];
             $data = $objObservacion->modificar();
             break;
-        case 'eliminarObservaionArea':
+        case 'eliminarObservacionArea':
             $objObservacion = new observacionArea();
             $objObservacion->id = $_POST['id'];
             $data = $objObservacion->eliminar();
