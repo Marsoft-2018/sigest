@@ -16,22 +16,24 @@
                 $objD = new  Desempenos();                   
                 $objCalificacion->nota = $calif['NOTA'];
                 $objCalificacion->porPeriodo = $per['valorPeriodo'];
-
-                $acumPer = $objCalificacion->acumulado();
+                $objNotaAcumulada = new Calificacion();
+                $acumPer = $objNotaAcumulada->formato_notas( round($objCalificacion->acumulado(),1));
                 $acumFinal += $objCalificacion->acumulado();
-                $objD->nota = $acumFinal;
+                $objD->nota = round($acumFinal,1);
                 $desmFinal = $objD->cargar();
                 $inasFinal += $calif['Faltas'];
             } 
-            echo '<td style="text-align:center; border:1px solid; font-size: 15px;">'.round($acumPer,1).'</td>';
+            echo '<td style="text-align:center; border:1px solid; font-size: 15px;">'.$acumPer.'</td>';
         } 
         $areaNum += 1;
-        $promedioFinal += $acumFinal;
+        $promedioFinal +=  round($acumFinal,1);
     ?>  
     <td style="text-align:center; border:1px solid; font-size: 15px;"><?php echo $inasFinal ?></td>
     <td style="text-align:center; border:1px solid; font-size: 15px;">
         <?php  
-            echo round($acumFinal,1); 
+            $objNotaArea = new Calificacion();
+            $acumuladoArea = $objNotaArea->formato_notas( round($acumFinal,1));
+        echo $acumuladoArea; 
         ?>
     </td>
     <td style="border:1px solid; font-size: 15px; padding-left: 10px;">

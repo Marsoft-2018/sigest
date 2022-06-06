@@ -44,7 +44,7 @@
     //echo "  --- El estado del periodo es: ".$estado;
     switch ($tipoUsuario) {
     case 'Administrador':
-        echo "El curso POST es: ".$_POST['curso']."<br>";
+        //echo "El curso POST es: ".$_POST['curso']."<br>";
         //nivelPlanilla($_POST['curso']);
         $objCurso = new Curso();
         $objCurso->curso = $_POST['curso'];

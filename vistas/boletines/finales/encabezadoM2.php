@@ -54,7 +54,7 @@
  			</td>
 			<td>
 				Código: 
-				<strong><?php echo $campo['idMatricula'] ?></strong>
+				<strong><?php echo $campo['num_interno'] ?></strong>
 			</td>
 			<td>
 				Grado:	<strong><?php echo $nombreGrado ?></strong>

@@ -50,6 +50,7 @@
             }
 
         }
+        
 
         public function verificar(){
             $this->sql = "SELECT ID FROM direccioncursos WHERE codCurso = ? AND anho = ? AND codProfesor = ?";

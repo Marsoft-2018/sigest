@@ -21,6 +21,10 @@
                     break;
                 }
             }
+            $objObservacion = new observacionBoletin();
+            $objObservacion->idMatricula = $idMatricula;
+            $objObservacion->periodo = $_POST['periodo'];			
+            $objObservacion->anho =$_POST['anho'];
           ?>
       </p>
     </td>
@@ -29,11 +33,23 @@
     </td>
    </tr>
    <tr>
-      <td width="100%" colspan="7" valign="top" style="width:100.0%;border:solid windowtext 0.5pt; border-top:none; padding:0cm 5.4pt 0cm 5.4pt">
-        <hr style="border-color: #222; margin-bottom: 30px; ">
-        <hr style="border-color: #222; margin-bottom: 30px; ">
-        <hr style="border-color: #222; margin-bottom: 30px; ">
-        <hr style="border-color: #222; margin-bottom: 30px; ">
+      <td width="100%" colspan="7" valign="top" style="width:100.0%;border:solid windowtext 0.5pt; border-top:none; padding:0cm 5.4pt 0cm 5.4pt; font-size: 1.2em;font-style:italic;">
+          <?php 
+            $textObservacion = "";
+            foreach($objObservacion->cargar() as $observacion){ 
+                $textObservacion = $observacion['observacion'];
+            }
+            
+            if($textObservacion != ""){
+                echo $observacion['observacion'];
+            }else{ ?>
+                <hr style="border-color: #888; margin-bottom: 30px; margin-top: 2px;">
+                <hr style="border-color: #888; margin-bottom: 5px; ">
+                <hr style="border-color: #888; margin-bottom: 30px; margin-top: 30px;">
+                <hr style="border-color: #888; margin-bottom: 30px; margin-top: 2px;">
+         <?php               
+            }
+          ?>
       </td>
    </tr>
 </table>

@@ -16,6 +16,7 @@
     require("../Modelo/logros.php");
     require("../Modelo/direccionDeCursos.php");
     require("../Modelo/puesto.php");
+    require("../Modelo/observacionBoletin.php");
 
 
     // $sede       = $_POST['sedeBol']; 213244000880

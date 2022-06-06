@@ -70,6 +70,9 @@
 
     foreach ($objCurso->consultarGrado() as $curso) {
         $grado = $curso['CODGRADO'];
+        if($curso['CODGRADO']<= 0){
+            $grado = $curso['NOMGRADO'];
+        }
         $grupo = $curso['grupo'];
     }
 

@@ -1,5 +1,6 @@
 <?php
     class Calificacion extends ConectarPDO{
+        public $id;
         public $Anho;
         public $periodo;
         public $idMatricula;
@@ -505,6 +506,18 @@
                 $notaF = $entero.".".$decimal;
             }
             return $notaF;
+        }
+        
+
+        public function eliminarNotaEspecifica(){
+            $this->sql = "DELETE FROM notas_varias WHERE id = '".$this->id."'";
+            try {
+                $stm = $this->Conexion->prepare($this->sql);
+                $stm->execute();
+                echo "La calificacion se eliminó con éxito";
+            } catch (Exception $e) {
+                echo "Error al consultar las notas. ".$e;
+            }  
         }
 
     }//OK

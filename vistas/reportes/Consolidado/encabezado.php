@@ -17,7 +17,12 @@
         <?php }else{ ?>
             <td>&nbsp;</td>
         <?php } ?>
-        <td>GRADO: <?php echo $grado; ?></td>
+        <td>
+            GRADO: 
+            <?php 
+                echo $grado; 
+            ?>
+            </td>
         <td>GRUPO: <?php echo $grupo; ?></td>
         <td colspan='2'>&nbsp;</td>
         <td>

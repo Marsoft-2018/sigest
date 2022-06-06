@@ -303,6 +303,6 @@
     <script type="text/javascript" src="js/desempenos.js"></script>
     <script type="text/javascript" src="js/calificaciones.js"></script>
     <script type="text/javascript" src="js/planillas.js"></script>
-    <script src="js/observaciones.js"></script>
+    <script type="text/javascript" src="js/observaciones.js"></script>
   </body>
 </html>

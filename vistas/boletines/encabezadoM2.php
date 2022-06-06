@@ -142,13 +142,14 @@
 					@$promedioEst = round(($promedio / $totalAreas),2);
                     echo  $promedioEst;
 				?>
-				<strong style="margin-left: 100px;">Puesto:</strong>
+				<!--<strong style="margin-left: 100px;">Puesto:</strong>-->
 				<?php 
-                    $objPuesto = new Puesto();
                     $objEstudiante = new Estudiante();
                     $objEstudiante->sede = $sede;
                     $objEstudiante->curso = $curso;
                     $objEstudiante->anho = $anho;
+                    /*
+                    $objPuesto = new Puesto();
                     $objPuesto->idMatri = $campo['idMatricula'];   
                     $objPuesto->cur = $curso;
                     $objPuesto->anno = $anho;
@@ -156,7 +157,7 @@
                     $objPuesto->listaEstudiantes = $objEstudiante->Listar();
                     $objPuesto->totalAreas = $totalAreas;
                     $objPuesto->promedioEstudiante = $promedioEst;
-                    echo $objPuesto->puestoEstudiante();
+                    echo $objPuesto->puestoEstudiante();*/
 
 					$areaNum = 0;
 					$areasPerdidas = 0;

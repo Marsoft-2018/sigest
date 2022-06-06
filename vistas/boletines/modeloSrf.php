@@ -121,7 +121,8 @@
                     include("preescolar/encabezado.php");
                     foreach ($sqlAreas as $key => $area) {
                         include("preescolar/bloqueAreas.php");
-                    }                        
+                    }  
+                    include("pieM2.php"); 
                 }else{
             ?>            
             <div >

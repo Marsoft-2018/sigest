@@ -11,8 +11,8 @@
         
         //Conexion local
         private $usuario= "root";
-        //private $password = ""; //password xampp
-        private $password = "password"; //password para linux
+        private $password = ""; //password xampp
+        //private $password = "password"; //password para linux
 
         private $link;
         protected $Conexion;

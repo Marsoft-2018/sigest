@@ -197,7 +197,35 @@
             $objCalificacion->tabla = $_POST['tabla'];
             $objCalificacion->modificarNotaCriterio();
         break;
-         
+           //Pendiente de poner en funcionamiento 
+        case 'agregarObservacion':
+            $estudiante=$_POST['estudiante']; 
+            $curso=$_POST['curso'];
+            $periodo=$_POST['periodo'];
+            $anho=$_POST['anho'];
+            $observacion=$_POST['observacion'];
+            $inst=$_POST['inst'];
+            
+            $planilla=new Observaciones();
+            $planilla->agregar($estudiante,$curso,$periodo,$anho,$observacion,$inst);            
+            break;
+        case 'modificarObservacion':
+            $estudiante=$_POST['estudiante']; 
+            $curso=$_POST['curso'];
+            $periodo=$_POST['periodo'];
+            $anho=$_POST['anho'];
+            $observacion=$_POST['observacion'];
+            $inst=$_POST['inst'];
+            
+            $planilla=new Observaciones();
+            $planilla->modificar($estudiante,$curso,$periodo,$anho,$observacion,$inst);            
+            break;
+        case 'eliminarObservacion':
+            $estudiante=$_POST['estudiante'];
+            $idObservacion=$_POST['idObservacion'];        
+            $planilla=new Observaciones();
+            $planilla->eliminar($estudiante,$idObservacion);            
+            break;
         case 'agregarNotaAsignatura':
             $estudiante=$_POST['estudiante']; 
             $curso=$_POST['curso'];
@@ -332,6 +360,17 @@
             break;
         case 'verPlanillaIndividual':
             include_once("../vistas/calificar/planilla_individual/index.php");
+            break;
+        
+        case 'eliminarNotaEspecifica':
+            $planilla = new Calificacion();
+            $planilla->Anho = $_POST['anho'];
+            $planilla->periodo = $_POST['periodo'];
+            $planilla->idMatricula = $_POST['idMatricula'];
+            $planilla->codArea = $_POST['area'];
+            $planilla->curso = $_POST['curso'];
+            $planilla->id = $_POST['id'];     
+            echo $planilla->eliminarNotaEspecifica();           
             break;
         default:
             

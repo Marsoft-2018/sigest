@@ -2,12 +2,17 @@
     <td colspan="5" style="border-left: 0px solid; border-bottom: 0px;"> </td>     
     <td colspan="2" style="text-align:center; border:1px solid; font-size: 12px;padding: 2px; letter-spacing: 2px; font-style: italic; font-weight: bold;">
       PROMEDIO
+      <?php 
+        $objNota = new Calificacion();
+        $promedioDefinitivo = $objNota->formato_notas( round(($promedioFinal/$areaNum),1));
+      ?>
     </td>
-    <td style="text-align:center; border:1px solid; font-size: 15px;"><?php echo round(($promedioFinal/$areaNum),1); ?></td>
+    <td style="text-align:center; border:1px solid; font-size: 15px;"><?php echo $promedioDefinitivo; ?></td>
     <td style="border:1px solid; font-size: 15px; padding-left: 10px;">
       <?php 
+        
         $objD = new  Desempenos();
-        $objD->nota = $acumFinal;
+        $objD->nota =  $promedioDefinitivo;
         $desPromedio = $objD->cargar();
         echo $desPromedio;
       ?>        
@@ -56,10 +61,10 @@
                     $notaRecuperacion = $objRecuperacion->formato_notas($re['NOTA']);
                     
                     echo "<br>Realizó actividad complementaria de nivelación del área de <span class='area-r'>".$re['Nombre']."</span> y obtuvo calificación de <strong>".$notaRecuperacion." </strong> (acta No. ".$re['numActa']." de ".$re['mesActa']." ".$re['diaActa']." de ".$anho.")";
-                }elseif($estadoAnho == "Reprobado"){
+                }elseif($estadoAnho == "Reprobado" || $estadoAnho == "Aprobado"){
                     echo "<br>".$re['observacion'];
                 }/**/
-                echo "<br>".$re['observacion'];
+                //echo "<br>".$re['observacion'];
             }
             
           ?>

@@ -19,16 +19,17 @@
 
 .dimension-juicio{
     align-self: flex-start;
-    flex-grow: 4;
+    width:83%;
     padding: 5px;
 }
 .dimension-desempeño{
-    flex-grow: 0.5;
+    
     display: flex;
     justify-content: center;
     align-items:center;
     border-left: 1px solid #000;
+    width:15%;
 }
 .dimension-desempeño img{
-    width: 25%;
+    width: 40%;
 }
