@@ -28,6 +28,7 @@ if(isset($_POST['accion'])){
             $objEstudiante->SegundoApellido = $_POST['segundoApellido'];
             $objEstudiante->fechaNacimiento  = $_POST['fechaNacimiento'];
             $objEstudiante->sexo  = $_POST['sexo'];
+            $objEstudiante->correo  = $_POST['correo'];
 
 
             $objMatricula->codsede = $_POST['sede'];
@@ -83,7 +84,7 @@ if(isset($_POST['accion'])){
             $objEstudiante->SegundoApellido = $_POST['segundoApellido'];
             $objEstudiante->fechaNacimiento  = $_POST['fechaNacimiento'];
             $objEstudiante->sexo  = $_POST['sexo'];
-
+            $objEstudiante->correo  = $_POST['correo'];
 
             /*
                 $objMatricula = new Matricula();

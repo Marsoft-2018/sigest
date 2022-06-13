@@ -21,7 +21,11 @@
             include("planillaVarias.php");
             break;
         case 'Criterios':
-            include("planillaCriterios.php");
+            if($grado > 0){
+                include("planillaCriterios.php");
+            }else{
+                include("planillaCriteriosPreescolar.php");
+            }
             break;
         default:
             echo "seleccione la forma de calificación en el menú institución/ periodos/estilo de calificación";

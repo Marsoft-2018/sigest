@@ -79,9 +79,7 @@
           </div>
         </form>  
         <div class="row" style="margin-top: 50px;">
-          <div class="col-md-12" id='listadoEstudiantesSede'>
-            
-          </div>                     
+          <div class="col-md-12" id='listadoEstudiantesSede'> </div>                     
         </div>         
         <div class="row">                                  
           <div class="col-md-12" style='text-align: center;'>
@@ -99,8 +97,8 @@
   </div>
 </div>
 
-        <div class='panel-foot'><span id="resultadoAct"></span></div>   
-  <div id="PRUEBAS" ></div>
+<div class='panel-foot'><span id="resultadoAct"></span></div>   
+<div id="PRUEBAS" ></div>
 
 
 <script src="complementos/DataTables/datatables.js"></script>
@@ -200,11 +198,11 @@
           // calculamos los meses
           var meses=0;
           if(ahora_mes>mes)
-              meses=ahora_mes-mes;
+            meses=ahora_mes-mes;
           if(ahora_mes<mes)
-              meses=12-(mes-ahora_mes);
+            meses=12-(mes-ahora_mes);
           if(ahora_mes==mes && dia>ahora_dia)
-              meses=11;
+            meses=11;
    
           // calculamos los dias
           var dias=0;
@@ -212,10 +210,10 @@
               dias=ahora_dia-dia;
           if(ahora_dia<dia)
           {
-              ultimoDiaMes=new Date(ahora_ano, ahora_mes, 0);
-              dias=ultimoDiaMes.getDate()-(dia-ahora_dia);
+            ultimoDiaMes=new Date(ahora_ano, ahora_mes, 0);
+            dias=ultimoDiaMes.getDate()-(dia-ahora_dia);
           }
-   
+
           document.getElementById("edad").value=edad+" años";
       }else{
           document.getElementById("edad").value="La fecha es incorrecta";

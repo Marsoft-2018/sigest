@@ -84,8 +84,7 @@
                             <label>AREA/ASIGNATURA</label>
                             <select name="" id="areas" class="form form-control" onchange="limpiarAreaDeTrabajo();">
                                 <option value="">Seleccione..</option>
-                                <optgroup label="Áreas">
-                                  
+                                <optgroup label="Áreas">                                  
                                 </optgroup>
                             </select>
                         </div>
@@ -118,13 +117,13 @@
                       </div>
                       <div class="row">
                         <div class="col-lg-6 col-sm-6">
-                              <button type='button' class='btn btn-success' id='btnPlanilla' title='Ver Planilla de calificaciones' style="padding: 10px; margin-top:20px; width: 100%" onclick="cargarLista(1)">
-                                    <i class="fa fa-list-alt"> Ver Planilla</i>
-                                </button>
+                          <button type='button' class='btn btn-success' id='btnPlanilla' title='Ver Planilla de calificaciones' style="padding: 10px; margin-top:20px; width: 100%" onclick="cargarLista(1)">
+                            <i class="fa fa-list-alt"> Ver Planilla</i>
+                          </button>
                         </div>
                         <div class="col-lg-6 col-sm-6">
                             <button type='button' class='btn btn-info' id='btnObservacion' title='Ver Planilla de observaciones' style="display: none; padding: 10px; margin-top:20px; width: 100%" onclick="cargarObservacionesBoletin()">
-                                    <i class="fa fa-list-alt"> Observaciones</i>
+                              <i class="fa fa-list-alt"> Observaciones</i>
                             </button>
                         </div> 
                       </div> 

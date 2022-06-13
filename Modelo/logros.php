@@ -176,6 +176,29 @@
             }
         }//OK
 
+        public function listarLogrosCriterios(){
+            $this->tabla= "Area";
+            
+            $sqlLogro = "";
+            if($this->tabla == 'Area'){
+                $sqlLogro = "SELECT L.`CODIND`,ax.`abreviatura`,criterios.`nomCriterio`,L.`periodo`,L.INDICADOR,L.estado FROM logros L
+                INNER JOIN areasxsedes_2 ax ON L.`codArea`=ax.`id` INNER JOIN criterios  ON L.`codCriterio`=criterios.`codCriterio` WHERE L.`periodo`= ? AND ax.`id`= ? AND L.codCurso= ? AND L.`codCriterio` = ? And L.estado = 1"; 
+            }elseif($this->tabla == 'Asignatura'){
+                $sqlLogro = "SELECT L.`id`,ax.`abreviatura`,criterios.`nomCriterio`,L.`periodo`,L.INDICADOR,L.estado FROM logrosasignatura L INNER JOIN areas_asignaturas ax ON L.`idAsignatura` = ax.`id` INNER JOIN criterios  ON L.`idCriterio`=criterios.`codCriterio` WHERE L.`periodo`= ? AND ax.`id`= ? AND L.idCurso = ? AND L.`codCriterio` =? And L.estado = 1";
+            }
+            try {
+                $stmL = $this->Conexion->prepare($sqlLogro);
+                $stmL->bindparam(1,$this->periodo);
+                $stmL->bindparam(2,$this->codArea);
+                $stmL->bindparam(3,$this->codCurso);   
+                $stmL->bindparam(4,$this->codCriterio);              
+                $stmL->execute();
+                $datosLogro = $stmL->fetchAll(PDO::FETCH_ASSOC);
+                return  $datosLogro;
+            } catch (Exception $e) {
+                echo "Error al consultar los logros. ".$e;
+            } 
+        }//OK
         public function modificar(){
             $this->tabla = "Areas";
             if($this->tabla=='Areas'){

@@ -24,6 +24,7 @@
         public $Rinicio;
         public $registros;
         public $foto;
+        public $correo;
         public $DocumentoAnterior;
         public $fechaRetiro;
         public $MotivoDeRetiro;
@@ -31,7 +32,7 @@
 
         public function Listar(){
             $this->sql = "SELECT est.Documento, est.PrimerNombre, est.SegundoNombre, est.PrimerApellido, est.SegundoApellido, est.sexo, cur.CODGRADO, cur.grupo, j.abreviatura AS 'jornada', 
-mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudiente, est.num_interno, g.`NOMGRADO`,g.`nomCampo` FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada INNER JOIN grados g ON g.`CODGRADO` = cur.`CODGRADO` WHERE mt.CODSEDE = ? AND mt.Curso= ? AND mt.anho = ? AND (mt.estado = 'Matriculado' OR mt.estado = 'Promovido') ORDER BY  cur.CODGRADO, cur.grupo, est.PrimerApellido, est.SegundoApellido, est.PrimerNombre, est.SegundoNombre ASC"; 
+mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudiente, est.num_interno, g.`NOMGRADO`,g.`nomCampo`,est.correo FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada INNER JOIN grados g ON g.`CODGRADO` = cur.`CODGRADO` WHERE mt.CODSEDE = ? AND mt.Curso= ? AND mt.anho = ? AND (mt.estado = 'Matriculado' OR mt.estado = 'Promovido') ORDER BY  cur.CODGRADO, cur.grupo, est.PrimerApellido, est.SegundoApellido, est.PrimerNombre, est.SegundoNombre ASC"; 
             if(isset($this->Rinicio) && isset($this->registros)){
                 $this->sql .= " LIMIT ".$this->Rinicio.", ".$this->registros." ";
             }
@@ -50,7 +51,7 @@ mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudi
 
         public function ConsultaEstudiantesEspecificos($estudiantes,$Rinicio,$registros){
 
-            $sqlString = "SELECT est.Documento, est.PrimerNombre, est.SegundoNombre, est.PrimerApellido, est.SegundoApellido, est.sexo, cur.CODGRADO, cur.grupo, j.abreviatura AS 'jornada', mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudiente, est.num_interno, est.Password FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada WHERE mt.`codsede`= ? AND mt.`Curso` = ? AND mt.anho = ? ";
+            $sqlString = "SELECT est.Documento, est.PrimerNombre, est.SegundoNombre, est.PrimerApellido, est.SegundoApellido, est.sexo, cur.CODGRADO, cur.grupo, j.abreviatura AS 'jornada', mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudiente, est.num_interno, est.Password,est.correo FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada WHERE mt.`codsede`= ? AND mt.`Curso` = ? AND mt.anho = ? ";
             for($i = 0;$i < sizeof($estudiantes); $i++ ){
                 if($i == 0){
                     $sqlString .= " AND mt.`idMatricula` = '$estudiantes[$i]'";
@@ -76,7 +77,7 @@ mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudi
         }
 
         public function cargarEstudiante($estudiante,$Rinicio,$registros){
-            $this->sql = "SELECT est.Documento, est.PrimerNombre, est.SegundoNombre, est.PrimerApellido, est.SegundoApellido, est.sexo, cur.CODGRADO, cur.grupo,j.abreviatura AS 'jornada' ,mt.estado, mt.idMatricula, mt.anho,s.CODINST, est.tipoDocumento, mt.NombreAcudiente, est.num_interno, est.Password FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada WHERE mt.`codsede`= ? AND mt.`Curso`= ? AND mt.anho = ? AND mt.`idMatricula` = ?";
+            $this->sql = "SELECT est.Documento, est.PrimerNombre, est.SegundoNombre, est.PrimerApellido, est.SegundoApellido, est.sexo, cur.CODGRADO, cur.grupo,j.abreviatura AS 'jornada' ,mt.estado, mt.idMatricula, mt.anho,s.CODINST, est.tipoDocumento, mt.NombreAcudiente, est.num_interno, est.Password,est.correo FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada WHERE mt.`codsede`= ? AND mt.`Curso`= ? AND mt.anho = ? AND mt.`idMatricula` = ?";
             try {
                 $stm = $this->Conexion->prepare($this->sql);
                 $stm->bindparam(1,$this->sede);
@@ -92,7 +93,7 @@ mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudi
         }
 
         public function listarCurso(){
-            $this->sql = "SELECT est.Documento,est.PrimerNombre,est.SegundoNombre,est.PrimerApellido,est.SegundoApellido,est.sexo,cur.CODGRADO,cur.grupo,j.abreviatura AS 'jornada' ,mt.estado, mt.idMatricula, mt.anho,s.CODINST, est.tipoDocumento, est.num_interno FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada WHERE mt.Curso= ? AND mt.anho = ? AND (mt.estado = 'Matriculado' OR mt.estado = 'Promovido') ORDER BY  cur.CODGRADO, cur.grupo, est.PrimerApellido, est.SegundoApellido, est.PrimerNombre, est.SegundoNombre ASC"; 
+            $this->sql = "SELECT est.Documento,est.PrimerNombre,est.SegundoNombre,est.PrimerApellido,est.SegundoApellido,est.sexo,cur.CODGRADO,cur.grupo,j.abreviatura AS 'jornada' ,mt.estado, mt.idMatricula, mt.anho,s.CODINST, est.tipoDocumento, est.num_interno,est.correo FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada WHERE mt.Curso= ? AND mt.anho = ? AND (mt.estado = 'Matriculado' OR mt.estado = 'Promovido') ORDER BY  cur.CODGRADO, cur.grupo, est.PrimerApellido, est.SegundoApellido, est.PrimerNombre, est.SegundoNombre ASC"; 
             if(isset($this->Rinicio) && isset($this->registros)){
                 $this->sql .= " LIMIT ".$this->Rinicio.", ".$this->registros." ";
             }
@@ -109,7 +110,7 @@ mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudi
         }
 
         public function listadoSede(){          
-            $this->sql = "SELECT mt.`Curso`,mt.`idMatricula`,est.`tipoDocumento`,est.`Documento`,est.`PrimerApellido`,est.`SegundoApellido`,est.`PrimerNombre`,est.`SegundoNombre`,cr.`CODGRADO`,cr.`grupo`, est.num_interno FROM matriculas mt INNER JOIN estudiantes est ON est.`Documento`  =  mt.`Documento` INNER JOIN cursos cr ON cr.`codCurso` =  mt.`Curso` WHERE mt.`codsede`  =  ? AND mt.`estado`  =  'Matriculado' AND mt.`anho`  = ? ORDER BY cr.`CODGRADO`, cr.`grupo`, est.`PrimerApellido`,est.`SegundoApellido`,est.`PrimerNombre`,est.`SegundoNombre` ASC"; 
+            $this->sql = "SELECT mt.`Curso`,mt.`idMatricula`,est.`tipoDocumento`,est.`Documento`,est.`PrimerApellido`,est.`SegundoApellido`,est.`PrimerNombre`,est.`SegundoNombre`,cr.`CODGRADO`,cr.`grupo`, est.num_interno,est.correo FROM matriculas mt INNER JOIN estudiantes est ON est.`Documento`  =  mt.`Documento` INNER JOIN cursos cr ON cr.`codCurso` =  mt.`Curso` WHERE mt.`codsede`  =  ? AND mt.`estado`  =  'Matriculado' AND mt.`anho`  = ? ORDER BY cr.`CODGRADO`, cr.`grupo`, est.`PrimerApellido`,est.`SegundoApellido`,est.`PrimerNombre`,est.`SegundoNombre` ASC"; 
             
             try {
                 $stm = $this->Conexion->prepare($this->sql);
@@ -169,7 +170,7 @@ mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudi
             if ($this->fechaNacimiento == ''){ $this->fechaNacimiento = '00-00-0000'; }
             if ($this->fechaIngreso ==''){ $this->fechaIngreso ='00-00-0000'; }
 
-            $this->sql = "INSERT INTO estudiantes(IDUsuario, Password, Rol,  PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, tipoDocumento, Documento, sexo, fechaNacimiento, foto, num_interno) VALUES(? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? , ?, ?)";
+            $this->sql = "INSERT INTO estudiantes(IDUsuario, Password, Rol,  PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, tipoDocumento, Documento, sexo, fechaNacimiento, foto, num_interno,correo) VALUES(?, ? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? , ?, ?)";
 
            try {
                 $stm = $this->Conexion->prepare($this->sql);
@@ -186,6 +187,7 @@ mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudi
                 $stm->bindparam(11,$this->fechaNacimiento);
                 $stm->bindparam(12,$this->foto);
                 $stm->bindparam(13,$this->num_interno);
+                $stm->bindparam(14,$this->correo);
                 
                 $stm->execute();   
                 echo "Los datos del estudiante fueron guardados con éxito";                         
@@ -228,7 +230,7 @@ mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudi
         public function modificar(){
            if ($this->fechaNacimiento == ''){ $this->fechaNacimiento = '00-00-0000'; }
 
-            $this->sql = "UPDATE estudiantes SET IDUsuario = ?, Password = ?, Rol = ?,  PrimerNombre = ?, SegundoNombre = ?, PrimerApellido = ?, SegundoApellido = ?, tipoDocumento = ?, Documento = ?, sexo = ?, fechaNacimiento = ?, foto = ?, num_interno = ? WHERE Documento = '".$this->DocumentoAnterior."' ";
+            $this->sql = "UPDATE estudiantes SET IDUsuario = ?, Password = ?, Rol = ?,  PrimerNombre = ?, SegundoNombre = ?, PrimerApellido = ?, SegundoApellido = ?, tipoDocumento = ?, Documento = ?, sexo = ?, fechaNacimiento = ?, foto = ?, num_interno = ?, correo = ? WHERE Documento = '".$this->DocumentoAnterior."' ";
 
            try {
                 $stm = $this->Conexion->prepare($this->sql);
@@ -245,6 +247,7 @@ mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudi
                 $stm->bindparam(11,$this->fechaNacimiento);
                 $stm->bindparam(12,$this->foto);
                 $stm->bindparam(13,$this->num_interno);
+                $stm->bindparam(14,$this->correo);
                 $stm->execute();   
                 echo "Los datos del estudiante fueron actualizados con éxito";                       
             } catch (Exception $e) {
@@ -379,7 +382,7 @@ mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudi
         }
 
         public function cargarPorIdMatricula(){
-            $this->sql = "SELECT est.Documento, est.PrimerNombre, est.SegundoNombre, est.PrimerApellido, est.SegundoApellido, est.sexo, mt.estado, mt.idMatricula, mt.anho, est.tipoDocumento, mt.NombreAcudiente, est.num_interno ,est.foto
+            $this->sql = "SELECT est.Documento, est.PrimerNombre, est.SegundoNombre, est.PrimerApellido, est.SegundoApellido, est.sexo, mt.estado, mt.idMatricula, mt.anho, est.tipoDocumento, mt.NombreAcudiente, est.num_interno ,est.foto,est.correo
             FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento WHERE mt.idMatricula = ?";
             try {
                 $stm = $this->Conexion->prepare($this->sql);

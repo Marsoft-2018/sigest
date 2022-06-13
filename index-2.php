@@ -4,10 +4,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"> 
+    <meta name="viewport" content="width=device-width, user-scalable=yes">
 	<!-- Estilos CSS -->
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
-    <link href="css/bootstraps3.1.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
     <!-- <link href="estilosCSS/jquery-ui1.css" rel="stylesheet" type="text/css"> -->
     
@@ -17,9 +17,6 @@
 
 	<title>Pagina de Inicio SiGest</title>
 	<script src="https://hcaptcha.com/1/api.js" async defer></script>
-	<style>
-
-	</style>
 </head>
 <body >
 	<main>
@@ -27,7 +24,44 @@
 			<div class="img animated delay-0.5s slow fadeInLeft"></div>
 		</header>
 		<div  class="row principal">
-			<section class="imagen"></section>
+		    <div id="carouselExampleCaptions" class="carousel slide imagen" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="tools/imagen.jpg" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="tools/sigest.png" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="tools/Imagen1.png" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </button>
+            </div>
 			<div class="marcoLogin" style="">
 				<section class="loginA">
 					<h1>LOGIN</h1>
@@ -45,9 +79,9 @@
                         </h5>
                         <div class='row' style="padding:15px;">
                            <div class="col-md-12"><span ></span></div>
-                           <div class="alert alert-danger" id='error' style="display: none;"></div>
-                           <div class="alert alert-warning" id='advertencia' style="display: none;"></div>
-                           <div class="alert alert-warning" id='mensajes' style="display: none;"></div>
+                           <div class="alert alert-danger" role="alert" id='error' style="display: none;"></div>
+                           <div class="alert alert-warning" role="alert" id='advertencia' style="display: none;"></div>
+                           <div class="alert alert-warning" role="alert" id='mensajes' style="display: none;"></div>
       
                         </div>
                     </div>
@@ -98,10 +132,11 @@
 	        </div>-->
 	    </footer>
 	</main>
-    <script src="complementos/Jquery/jquery-3.4.1.js"></script>
-
-    <!-- Bootstrap , datatables y alertify -->
-    <script src="js/bootstrap.min.js"></script>
+    <!--<script src="complementos/Jquery/jquery-3.4.1.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <!-- Bootstrap , datatables y alertify 
+    <script src="js/bootstrap.min.js"></script>-->
     <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

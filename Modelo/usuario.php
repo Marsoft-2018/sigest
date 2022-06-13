@@ -1,6 +1,5 @@
 <?php
 	//require_once ("Conect.php");
-	include ("encript.php");
 	class Usuario extends ConectarPDO{
 		public $idUsuario;
 		private $usuario;

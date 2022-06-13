@@ -17,6 +17,7 @@
     $SegundoApellido = "";
     $fechaNacimiento  = "";
     $sexo  = "";
+    $correo  = "";
     $foto = "silueta.jpg";
     $accionFormulario = "";
     $num_interno = 0;
@@ -40,6 +41,7 @@
             $fechaNacimiento  = $estudiante['fechaNacimiento'];
             $sexo  = $estudiante['sexo']; 
             $foto = $estudiante['foto'];
+            $correo = $estudiante['correo'];
             $num_interno = $estudiante['num_interno'];
         }
     }else{
@@ -163,6 +165,13 @@
                                             <div class="col-md-2">
                                                 <label for="">Edad:</label>
                                                 <input type="text" id="edad" value="<?php echo $edad; ?>"  class="form-control" readonly="true">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-4">
+                                                <label for="">Correo:</label>
+                                                <input type="email" id="correo" value="<?php echo $correo; ?>"  class="form-control">
                                             </div>
                                         </div>
                                     </div>

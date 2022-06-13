@@ -29,29 +29,52 @@
         <div class="dimension-juicio">
             <strong>Juicio Valorativo: </strong><br> 
             <?php 
-                $objLogros = new Logro();
-                $objLogros->periodo = $periodoBol;
-                $objLogros->codCurso = $curso;
-                $objLogros->codArea = $area['id'];
-                $objLogros->calificacion = $calificacion;
-                $objLogros->estado = 1;
-                $logros = $objLogros->cargarLista();
-                foreach ($logros as $logro) {
-                    switch ($desempeno) {
-                        case 'BAJO':
-                            echo '<li>Tengo dificultad para '.$logro['INDICADOR'].'.</li>';
-                            break;
-                        case 'BASICO':
-                            echo '<li>Soy capaz de '.$logro['INDICADOR'].'.</li>';
-                            break;
-                        case 'ALTO':
-                            echo '<li>Tengo muy buenas habilidades para '.$logro['INDICADOR'].'.</li>';
-                            break;
-                        case 'SUPERIOR':
-                            echo '<li>Demuestro habilidades superiores para '.$logro['INDICADOR'].'.</li>';
-                            break;
-                    }
+                $objCriterios = new Criterio();
+                
+                foreach($objCriterios->Listar() as $criterio){
+                    //echo $criterio['codCriterio']." ".$criterio['nomCriterio']."<br>";
+                    
+                    $objLogros = new Logro();
+                    $objLogros->periodo = $periodoBol;
+                    $objLogros->codCurso = $curso;
+                    $objLogros->codArea = $area['id'];
+                    
+                    $objCalificacionCriterio = new Calificacion();
+                    $objCalificacionCriterio->periodo = $periodoBol;
+                    $objCalificacionCriterio->idMatricula = $idMatricula;
+                    $objCalificacionCriterio->codArea = $area['id'];
+                    $objCalificacionCriterio->Anho = $anho;
+                    $objCalificacionCriterio->curso = $curso;
+                    $objCalificacionCriterio->idCriterio = $criterio['codCriterio'];
+                    $objCalificacionCriterio->tabla = "Area";
+
+                        
+                    $objDesempenoCriterio = new Desempenos();
+                    $objDesempenoCriterio->nota = $objCalificacionCriterio->cargarPorCriterio();
+                    $desempenoCriterio = $objDesempenoCriterio->cargar(); 
+
+                    //echo "Criterio: ".$criterio['nomCriterio']."Desempeño: ".$desempenoCriterio."<br>";
+                    $objLogros->calificacion = $objCalificacionCriterio->cargarPorCriterio();
+                    $objLogros->codCriterio = $criterio['codCriterio'];
+                    $objLogros->estado = 1;
+                    foreach($objLogros->listarLogrosCriterios() as $logro) {
+                        switch ($desempenoCriterio) {
+                            case 'BAJO':
+                                echo "<li><img src='../vistas/img/desempenos/".$desempenoCriterio.".png' width='20px'/> Tengo dificultad para ".$logro['INDICADOR'].".</li>";
+                                break;
+                            case 'BASICO':
+                                echo "<li><img src='../vistas/img/desempenos/".$desempenoCriterio.".png' width='20px'/>Soy capaz de ".$logro['INDICADOR'].'.</li>';
+                                break;
+                            case 'ALTO':
+                                echo "<li><img src='../vistas/img/desempenos/".$desempenoCriterio.".png' width='20px'/>Tengo muy buenas habilidades para ".$logro['INDICADOR'].'.</li>';
+                                break;
+                            case 'SUPERIOR':
+                                echo "<li><img src='../vistas/img/desempenos/".$desempenoCriterio.".png' width='20px'/> Demuestro habilidades superiores para ".$logro['INDICADOR'].'.</li>';
+                                break;
+                        }
+                    }                
                 }
+
             ?>
         </div>
         <div class="dimension-desempeño">

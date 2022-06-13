@@ -24,6 +24,10 @@ function logear() {
                     window.location="inicio.php";
                 }
                 
+            }else if(data["estado"] == 4){
+                $("#error").html(data["mensaje"]).addClass("animated zoomIn").show('fast',function(){
+                    setTimeout(function(){ $("#error").hide() }, 3000);
+                });
             }else{
                 $("#error").html("El Nombre de usuario o la contraseña no es correcto").addClass("animated zoomIn").show('fast',function(){
                     setTimeout(function(){ $("#error").hide() }, 3000);

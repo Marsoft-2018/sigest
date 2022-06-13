@@ -532,7 +532,7 @@ function agregarEstudiante(){
     formData.append('celAcudiente',$("#celAcudiente").val());
     formData.append('correoAcudiente',$("#correoAcudiente").val());
     formData.append('anho',$("#anhoMatricula").val());
-
+    formData.append('correo',$("#correo").val());
     
     $.ajax({
             type: 'POST',
@@ -581,7 +581,7 @@ function modificarEstudiante(){
     formData.append('celAcudiente',$("#celAcudiente").val());
     formData.append('correoAcudiente',$("#correoAcudiente").val());
     formData.append('anho',$("#anho").val());
-
+    formData.append('correo',$("#correo").val());
     
     $.ajax({
             type: 'POST',

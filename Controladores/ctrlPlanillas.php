@@ -58,7 +58,7 @@
     case 'Profesor':
         if($estado == 1){
             //nivelPlanilla($_POST['curso']);
-             $objCurso = new Curso();
+            $objCurso = new Curso();
             $objCurso->curso = $_POST['curso'];
             $grado = null;
             foreach($objCurso->consultarGrado() as $campo){
