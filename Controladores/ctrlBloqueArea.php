@@ -19,9 +19,9 @@
 	$acumP4 = ""; 
 	$inaP4 = "";
 
-	$acumFinal = "";
+	$acumFinal = 0;
 	$desmFinal = "";
-	$inasFinal = "";
+	$inasFinal = 0;
 
 	$objCalificacion->idMatricula = $idMatricula;
 	$objCalificacion->codArea =  $area['id'];
@@ -33,7 +33,6 @@
 			$objCalificacion->periodo = 1;
 			$objPeriodo->periodo = 1;
 			$vP = 0;
-			
 			foreach ($objCalificacion->cargar() as $calif) {
 				$calP1 = $calif['NOTA'];
 				$inaP1 = $calif['Faltas'];

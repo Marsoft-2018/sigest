@@ -92,9 +92,9 @@
                 </select>                            
               </div>
             </div>
-            <div class="col-lg-3 col-sm-3" id="periodo_view" style="display: none;">
+            <div class="col-lg-3 col-sm-3" id="periodo_view">
                <label for="">PERIODO</label> 
-                <select id='periodo' name='periodo' class='form-control' style='margin:0px; padding: 0px;' required>
+                <select id='periodo' name='periodo' class='form-control' style='margin:0px; padding: 0px;' required disabled>
                     <option value=''>Seleccione...</option>
                       <?php
                         $objP = new Periodo();
@@ -129,10 +129,10 @@
     }
 
     if (ver) {
-      $("#periodo_view").fadeIn("fast");
+      $("#periodo").prop('disabled', false);
       $("#encabezados").fadeOut("fast");
     }else{
-      $("#periodo_view").fadeOut("fast");
+      $("#periodo").prop('disabled', true);
       $("#encabezados").fadeIn("fast");
     }
   }

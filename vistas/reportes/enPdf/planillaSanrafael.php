@@ -11,18 +11,16 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Planilla por periodo</title>
-        <link rel="stylesheet" href="plantilla/css/estilo.css">
-        <link rel="stylesheet" href="../../../font-awesome/css/font-awesome.min.css" type="text/css">
-        <link href="../../../css/bootstraps3.1.css" rel="stylesheet">
-        <link href="../../../css/listas.css" rel="stylesheet">
-	
+    <link rel="stylesheet" href="plantilla/css/estilo.css">
+    <link rel="stylesheet" href="../../../font-awesome/css/font-awesome.min.css" type="text/css">
+    <link href="../../../css/bootstraps3.1.css" rel="stylesheet">
+    <link href="../../../css/listas.css" rel="stylesheet">	
 </head>
 <body>
  <?php 
 	$objAreas = new Area();
 	$objAreas->curso = $_POST['curso'];
 	$objAreas->anho = $_POST['anho'];
-
 
 	foreach ($objAreas->cargarTodasLasAreas() as $campo) {
 	    $profesor = "";
@@ -90,19 +88,20 @@
 		<tbody>
 		    <?php 
 		$No = 1;
-		foreach ($objEstudiantes->Listar() as $value) { ?>
+		foreach ($objEstudiantes->Listar() as $value) { 
+            $notaPeriodo = 0;
+            $suma = 0;
+            $definitiva = 0;
+            ?>
 			<tr>
     		    <td style="width: 10px; padding: 2px;"><?php echo $No ?></td>
     		    <td style="width: 130px; padding: 2px;"><?php echo $value['PrimerApellido'] ?></td>
     		    <td style="width: 130px; padding: 2px;"><?php echo $value['SegundoApellido'] ?></td>
     		    <td style="width: 200px; padding: 2px;"><?php echo $value['PrimerNombre'].' '.$value['SegundoNombre'] ?></td>
-    		    <!---  CODIGO DE LA PLANILLA DE CRITERIOS -->
-    		    
-                    <?php 
-                        $notaPeriodo = 0;
-                        $suma = 0;
-                    foreach ($objCriterios->Listar() as $crit) { ?>
-                        <td style='padding: 0px; text-align: center;'> 
+    		    <!---  CODIGO DE LA PLANILLA DE CRITERIOS -->    		    
+                    <?php                       
+                        foreach ($objCriterios->Listar() as $crit) { ?>
+                            <td style='padding: 0px; text-align: center;'> 
                             <?php 
                                 $notaCriterio = 0;
                                 $objNotaCriterio = new Calificacion();
@@ -115,21 +114,28 @@
                                 $objNotaCriterio->idCriterio = $crit['codCriterio'];
 
                                 $notaCriterio = $objNotaCriterio->cargarPorCriterio();
-                                
                                 if($crit['nomCriterio'] == "PRUEBA PERIODO"){
                                     $notaPeriodo = $notaCriterio;
                                 }else{
-                                    @$suma = $suma + $notaCriterio;
+                                    if(is_numeric($notaCriterio)){
+                                        @$suma += $notaCriterio;
+                                    }
                                 }
-                                echo $notaCriterio; 
+                                
+                                if(is_numeric($notaCriterio)){
+                                    echo $objNotaCriterio->formato_notas($notaCriterio); 
+                                }
+                                
                             ?>
-                    </td>
-                    <?php 
+                            </td>
+                         <?php 
                         }
                         $ochentaProciento = (($suma / ($numCriterios-1) ) * 0.8);
-                        @$notaPeriodo = ($notaPeriodo * 0.2);
-                        $definitiva = $ochentaProciento + $notaPeriodo;
-                    ?>
+                        if(is_numeric($notaPeriodo)){
+                            @$notaPeriodo = ($notaPeriodo * 0.2);
+                            $definitiva = $ochentaProciento + $notaPeriodo;
+                        }
+                        ?>
                     <td style="padding: 0px; margin: 0px; text-align: center;">
                         <?php 
                             $objLogros = new Logro();

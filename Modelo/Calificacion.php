@@ -7,7 +7,7 @@
         public $codArea;
         public $idAsignatura;
         public $curso;
-        public $nota;
+        public float $nota;
         public $desempeno;
         public $faltas;
         public $porPeriodo;

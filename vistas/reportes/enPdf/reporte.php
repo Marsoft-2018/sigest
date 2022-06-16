@@ -95,7 +95,10 @@
      $escudo = $value['logo'];
   }
 
-if ($accion != 7) {
+if ($accion == 9) {
+  require("../../../Modelo/cargaAcademica.php");
+  include ("planillaSanrafael.php");
+}elseif ($accion != 7) {
   include ("planillaListado.php");
 }else{
   require("../../../Modelo/cargaAcademica.php");

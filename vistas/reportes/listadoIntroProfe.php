@@ -63,12 +63,26 @@
                         </div>
                         <div class="col-lg-3 col-md-3">
                           <label for="">TIPO DE LISTADO</label>                           
-                          <select name="tipoReporte" id="tipoReporte" class="form-control" required>
+                          <select name="tipoReporte" id="tipoReporte" class="form-control" required onchange="verPeriodo(this.value)">
                             <option value=''>Seleccione...</option>  
                             <option value='5'>Asistencia</option> 
                             <option value='6'>Planilla Impresa</option>  
+                            <option value='9'>Planilla con calificaciones</option>  
                           </select>                            
-                        </div> 
+                        </div>
+                        <div class="col-lg-2 col-sm-2" id="periodo_view">
+                            <label for="">PERIODO</label> 
+                            <select id='periodo' name='periodo' class='form-control' style='margin:0px; padding: 0px;' required disabled>
+                                <option value=''>Seleccione...</option>
+                                <?php
+                                    $objP = new Periodo();
+                                    $listPeriodo = $objP->cargar();
+                                    foreach ($listPeriodo as $key => $periodo) {
+                                        echo "<option value='".$periodo['periodo']."'>".$periodo['periodo']."</option>";
+                                    }
+                                ?>
+                            </select>
+                        </div>  
                         <div class="col-lg-3 col-sm-3">
                           <button type="submit" class="btn btn-info btnPrincipal" style="margin-top:25px;" title="Ver reporte pdf" ><i class="fa fa-eye"></i> reporte PDF</button>
                         </div>
@@ -79,5 +93,20 @@
         </div>
     </div>
 </div>	
+<script>
+  function  verPeriodo(opcion){
+    var ver = false;
+    if(opcion == 9){
+      ver = true;
+    }else{
+      ver = false;
+    }
 
+    if (ver) {
+      $("#periodo").prop('disabled', false);
+    }else{
+      $("#periodo").prop('disabled', true);
+    }
+  }
+</script>
   
