@@ -138,7 +138,7 @@
             $this->sql = "SELECT limiteSup FROM desempenos WHERE CODINST = 1 AND CONCEPT = 'SUPERIOR'";
             try {
                 $stm = $this->Conexion->prepare($this->sql);
-                $stm->bindparam(1,$_SESSION['institucion']);
+                //$stm->bindparam(1,$_SESSION['institucion']);
                 $stm->execute();
                 $datos = $stm->fetchAll(PDO::FETCH_ASSOC);
                foreach ($datos as $concep) {

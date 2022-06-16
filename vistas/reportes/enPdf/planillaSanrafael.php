@@ -175,7 +175,8 @@
                     <td  style='padding: 0px; width: 50px; text-align: center;'>
                         <!-- Nota definitiva -->
                         <?php 
-                            echo round($definitiva,1);
+                            //echo round($definitiva,1);
+                            echo $objNotaCriterio->formato_notas(round($definitiva,1)); 
                         ?>
                     </td>
     		    

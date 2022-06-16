@@ -22,7 +22,7 @@
                 $promedios = array('est1'=>1.2,'est2'=>4.2,'est3'=>3.2,'est4'=>5.2,'est5'=>2.2);
                 $numero = count($promedios);
                 echo "Total registros ".$numero."<br>";
-                arsort($promedios);
+                arsort($promedios);//Ordenar los promedios de forma descendente
                 $cont=1;
 
                 //ejemplo
@@ -47,17 +47,18 @@
                 $promedios[$estudiante['idMatricula']] = $objCal->promedioEstudiante() / $this->totalAreas;
                 $this->totalEstudiantes++;
             }
+           
             arsort($promedios,SORT_NUMERIC);
-            $cont=1;
-            while (list($clave, $valor) = each($promedios) and $sw=1) {
-                if($clave==$this->idMatri){
-                    echo $cont; 
-                    $sw=0;
+            $cont=1; 
+            foreach ($promedios as $key => $value) {
+                if($key == $this->idMatri){
+                    echo $cont;
                 }                
                 $cont++;
-            }            
+            }     
         }//OK Fin Puestos
 
+        /*
         public function finalGrupo($centro,$sede,$anho,$periodoBol,$curso,$idMatricula){           
             //1- recorro la tabla estudiantes para ir almacenando el promedio de cada uno en el array
             // error_reporting(0);
@@ -250,6 +251,6 @@
                 }                
                 $cont++;
             }            
-        }
+        }*/
     }
 ?>

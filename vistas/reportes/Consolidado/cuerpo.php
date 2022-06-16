@@ -40,7 +40,9 @@
                             $objDesempeno = new Desempenos();
                             $objDesempeno->nota = $nota;
                             $des = $objDesempeno->cargar(); 
-                            
+                            if(is_numeric($nota)){
+                                $nota = $objNota->formato_notas($nota);
+                            }
                             switch ($des) {
                                 case 'BAJO':
                                     echo "<td class='bordes' style='color:#f00;'>".$nota."</td>";
@@ -62,7 +64,7 @@
                                 $objNota->Anho = $_POST['anho'];
                                 $objNota->curso = $_POST['curso'];
                                 $objNota->grado = $grado;
-                            $objNota->tipoPromedio = $area['formaDePromediar'];
+                                $objNota->tipoPromedio = $area['formaDePromediar'];
 
                                 foreach ($objNota->cargar() as $notaArea) {
                                     $nota = round($notaArea['NOTA'],1);
@@ -71,14 +73,18 @@
                                 $objDesempeno = new Desempenos();
                                 $objDesempeno->nota = $nota;
                                 $des = $objDesempeno->cargar();
+                                if(is_numeric($nota)){
+                                    $nota = $objNota->formato_notas($nota);
+                                }
+
                                 switch ($des) {
-                                    case 'BAJO':
-                                        echo "<td class='bordes' style='color:#f00;'>".$nota."</td>";
-                                        break;
-                                    
-                                    default:
-                                        echo "<td class='bordes'>".$nota."</td>";
-                                        break;
+                                case 'BAJO':
+                                    echo "<td class='bordes' style='color:#f00;'>".$nota."</td>";
+                                    break;
+                                
+                                default:
+                                    echo "<td class='bordes'>".$nota."</td>";
+                                    break;
                                 }  
                             }        
                             break;
@@ -168,6 +174,7 @@
                                 }                                 
                             } 
 
+                            $acumulado = $objCalif->formato_notas($acumulado);
                             echo "<td class='bordes' $color> ".round($acumulado,2)." </td>";   
                         break;
                         case 'Nota Requerida':                            
@@ -217,7 +224,8 @@
                                     $background = "background-color:#efda65;";
                                 }
                                 echo "<td class='bordes' style='$background'>";
-                                echo $notaRequerida;
+                                //echo $notaRequerida;
+                                echo $objCalif->formato_notas($notaRequerida);
                                 echo "</td>"; 
                             }else{
                                 echo "<td class='bordes'> - </td>";
@@ -265,7 +273,6 @@
 
                             $color = "";
 
-                            
                             $objDesempeno = new Desempenos();
                             $objDesempeno->nota = $nota;
                             $des = $objDesempeno->cargar();
@@ -291,7 +298,8 @@
                         $objCalificacion->curso = $_POST['curso'] ;
                         $promedio = $objCalificacion->promedioEstudiante($tipoDatos);
                         $promedioEst = round(($promedio / $totalAreas),2);
-                        echo  $promedioEst;
+                        echo $objCalificacion->formato_notas($promedioEst);
+                        //echo  $promedioEst;
                         $promedioCurso += $promedioEst;
                     ?>
                     <?php $promedios[] = ($promedio / $totalAreas) ?>

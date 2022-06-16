@@ -1,5 +1,5 @@
  <?php
-    //session_start();
+    session_start();
     require("../../../Modelo/Conect.php");
     require("../../../Modelo/Institucion.php");
     require("../../../Modelo/sede.php");
@@ -23,7 +23,7 @@
     <link rel='stylesheet' href='../../../estilosCSS/estiloCSS3.css' type='text/css' />
     <style>
         .ove{
-            over-flow:hide;
+            overflow:hide;
         }
     </style>
 </head>
