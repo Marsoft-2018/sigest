@@ -23,12 +23,16 @@
             $objAr->idArea = $this->codArea;
             $objAr->idGrado = $this->grado;
             $numAsignaturas = $objAr->conteoAsignaturas();
-
-            if ($numAsignaturas == 0) {
+            if ($numAsignaturas == 0 ) {                
                 //para cargar la nota directa del área
-                $this->sql = "SELECT * FROM notas WHERE PERIODO = '".$this->periodo."' AND idMatricula = '".$this->idMatricula."' AND codArea = '".$this->codArea."' AND anho = '".$this->Anho."' AND curso = '".$this->curso."'";
+                $this->sql = "SELECT * FROM notas WHERE PERIODO = ? AND idMatricula = ? AND codArea = ? AND anho = ? AND curso = ?";
                 try {
                     $stm = $this->Conexion->prepare($this->sql);
+                    $stm->bindparam(1,$this->periodo);
+                    $stm->bindparam(2,$this->idMatricula);
+                    $stm->bindparam(3,$this->codArea);
+                    $stm->bindparam(4,$this->Anho);
+                    $stm->bindparam(5,$this->curso);
                     $stm->execute();
                     $datos = $stm->fetchAll(PDO::FETCH_ASSOC);
                     return $datos;
@@ -508,7 +512,6 @@
             return $notaF;
         }
         
-
         public function eliminarNotaEspecifica(){
             $this->sql = "DELETE FROM notas_varias WHERE id = '".$this->id."'";
             try {

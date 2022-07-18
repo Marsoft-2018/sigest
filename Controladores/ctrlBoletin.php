@@ -5,6 +5,7 @@
     require("../Modelo/anhoLectivo.php");
     require("../Modelo/sede.php");
     require("../Modelo/nivel.php");
+    require("../Modelo/grado.php");
     require("../Modelo/curso.php");
     require("../Modelo/periodos.php");
     require("../Modelo/Estudiante.php");
@@ -165,6 +166,10 @@
             }elseif($modelo == "M2"){            
                 include("../vistas/boletines/modeloSrf.php");
             }
+            break;
+        case 'Certificado':
+            include("../vistas/reportes/certificaciones/certificado.php");
+            
             break;
     }
 

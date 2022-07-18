@@ -25,10 +25,12 @@
 
 <?php
 
+$tipoB      = $_POST['tipoB'];
+    echo "<title>$tipoB $anho</title>";
 /*---------------------------------- CONSULTAS -------------------------------------*/
-//require("../CONECT.php");
+/*require("../CONECT.php");
 require("../../modelo/Conect.php");
-require("../class/planillaYnotasClass.php"); 
+//require("../class/planillaYnotasClass.php"); 
 require("../class/notaFinal.php");
 require("../class/Boletin.php");
 $sede       = $_POST['sedeBol'];
@@ -37,7 +39,6 @@ $anho       = $_POST['anho'];
 $periodoBol = $_POST['periodoBol'];
 $centro     = $_POST['centro'];
 $topeMinDeAreasEnBoletin = $_POST['topeMinDeAreasEnBoletin'];
-$tipoB      = $_POST['tipoB'];
 
 if(isset($_POST['Pg'])){
     $pagina=$_POST['Pg'];
@@ -49,13 +50,12 @@ if(isset($_POST['Pg'])){
 $Rinicio;
 
 
-if(is_numeric($pagina)){
-    $Rinicio=(($pagina-1)*$registros);
-}else{
-    $Rinicio=0;
-}
+    if(is_numeric($pagina)){
+        $Rinicio=(($pagina-1)*$registros);
+    }else{
+        $Rinicio=0;
+    }
 
-    echo "<title>$tipoB $anho</title>";
     echo "</head>";
 
     
@@ -75,6 +75,36 @@ if(is_numeric($pagina)){
     echo "</form>";
     echo '<button class="btn btn-primary" onclick="javascript:window.print()" style="float:left;margin-left:20px;margin-right:20px;"><i class="fa fa-print"></i>Imprimir</button>';
 echo "</div>";
+*/
+//SAcado de boletin final
+
+        foreach ($objInst->cargar() as $value) {
+           $nombreInstitucion = $value['nombre'];
+           $ciudad = $value['ciudad'];
+           $aprobacion = $value['membrete'];
+           $escudo = $value['logo'];
+        }
+
+    echo "</head>";
+    echo "<body>";
+    echo "<div class='ocultar'>";
+    echo "La pagina Cargada es: $pagina.";
+    echo "<form action='ctrlBoletin.php' method='post' style='float:left;'>";
+        echo "<input type='hidden' name='sede' value='$sede' >";
+        echo "<input type='hidden' name='curso' value='$curso' >";
+        echo "<input type='hidden' name='anho' value='$anho' >";
+        echo "<input type='hidden' name='periodo' value='$periodoBol' >";
+        echo "<input type='hidden' name='tipoB' value='$tipoBoletin' >";
+        echo "<input type='hidden' name='centro' value='$centro' >";
+        echo "Pagina:<input type='number' name='Pg' value='$pagina' >";
+        echo "Cantidad de Boletines:<input type='number' name='Cant' value='$registros' >";
+        echo "<input type='submit' class='btn btn-primary' value='Ver Boletines' style='margin-left:20px;'>";
+        echo "</form>";
+        echo '<button class="btn btn-primary" onclick="javascript:window.print()" style="float:left;margin-left:20px;margin-right:20px;">
+                <i class="fa fa-print"></i>Imprimir
+                </button>';
+        echo "</div>"; 
+        //hasta aqui
     if($tipoB == 'Certificado'){
         
         $objEncabezado = new Boletin();
@@ -114,17 +144,17 @@ echo "</div>";
                         $mes=$meses[date('m')-1];
                         $annoAct=date('Y');
 
-                        $objEstado = new estadoFinalAnho();
-                        $estadoDelAnho=$objEstado->cargar($centro,$sede,$campo,$anho,$fila[30]);
-                        
-                        
-                        if($estadoDelAnho=='APROBADO'){
-                            $estadoDelAnho='APROBÓ';
-                        }elseif($estadoDelAnho=='REPROBADO'){
-                            $estadoDelAnho='REPROBÓ';
-                        }elseif($estadoDelAnho=='APLAZADO'){
-                            $estadoDelAnho='APLAZÓ';
-                        }                        
+            $objEstado = new estadoFinalAnho();
+            $estadoDelAnho=$objEstado->cargar($centro,$sede,$campo,$anho,$fila[30]);
+            
+            
+            if($estadoDelAnho=='APROBADO'){
+                $estadoDelAnho='APROBÓ';
+            }elseif($estadoDelAnho=='REPROBADO'){
+                $estadoDelAnho='REPROBÓ';
+            }elseif($estadoDelAnho=='APLAZADO'){
+                $estadoDelAnho='APLAZÓ';
+            }                        
         ?>
 
         <!----------- ENCABEZADO DEL BOLETIN --------------------------- // -->

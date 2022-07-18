@@ -44,7 +44,7 @@
 					$objCalificacion->porPeriodo = $vP;
 				}
 				$acumP1 = $objCalificacion->acumulado();
-				$acumFinal += $objCalificacion->acumulado();
+				$acumFinal += (float)$objCalificacion->acumulado();
 				$objD->nota = $acumFinal;
 				$desmFinal = $objD->cargar();
 				$inasFinal = $inaP1;

@@ -71,7 +71,7 @@
                  <?php 
                     //-- BLOQUE PARA COLOCAR EL PUESTO DEL ESTUDIANTE SEGUN EL PROMEDIO EN EL GRUPO
                     $puesto = new Puesto();
-                    $puesto->finalGrupo($centro,$sede,$anho,$periodoBol,$curso,$idMatricula);
+                    //$puesto->finalGrupo($centro,$sede,$anho,$periodoBol,$curso,$idMatricula);
 
                  ?>
                              
@@ -83,9 +83,9 @@
          <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:center;line-height:normal'>
              <span lang=ES-AR>
                  <strong>En el Grado: </strong>
-                            //-- BLOQUE PARA COLOCAR EL PUESTO DEL ESTUDIANTE SEGUN EL PROMEDIO EN EL GRADO
-                            $puestoG = new Puestos();
-                            $puestoG->finalGrado($centro,$sede,$anho,$periodoBol,$curso,$idMatricula);
+                    //-- BLOQUE PARA COLOCAR EL PUESTO DEL ESTUDIANTE SEGUN EL PROMEDIO EN EL GRADO
+                    $puestoG = new Puestos();
+                    $puestoG->finalGrado($centro,$sede,$anho,$periodoBol,$curso,$idMatricula);
              </span>
          </p>
      </td>

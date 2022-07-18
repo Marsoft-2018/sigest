@@ -1,43 +1,48 @@
-function logear() {
-    $.ajax({
-        type:"POST",
-        data:$('#frmLogin').serialize(),
-        url:"Controladores/ctrlValidacion.php",
-        success:function(data){
-            data = JSON.parse(data);
-            
-            console.log('Mensaje: '+data["mensaje"]);
-            // respuesta = respuesta.trim();
-            // console.log(respuesta);
-            if(data["estado"] == 1) {
-                window.location="inicio.php";
-            }else if(data["estado"] == 2){
-                $("#mensajes").html(data["mensaje"]).addClass("animated zoomIn").show('fast',function(){
-                    setTimeout(function(){ $("#mensajes").hide() }, 10000);
-                });
-            }else if(data["estado"] == 3){
-                if(data["mensaje"] != ""){
+
+    function logear(){
+        $.ajax({
+            type:"POST",
+            data:$('#frmLogin').serialize(),
+            url:"Controladores/ctrlValidacion.php",
+            success:function(data){
+                data = JSON.parse(data);   
+                console.log('Mensaje: '+data["mensaje"]);
+                // respuesta = respuesta.trim();
+                // console.log(respuesta);
+                if(data["estado"] == 1) {
+                    window.location="inicio.php";
+                }else if(data["estado"] == 2){
                     $("#mensajes").html(data["mensaje"]).addClass("animated zoomIn").show('fast',function(){
-                        setTimeout(function(){ $("#mensajes").hide(); window.location="inicio.php";}, 6000);
+                        setTimeout(function(){ $("#mensajes").hide() }, 10000);
+                    });
+                }else if(data["estado"] == 3){
+                    if(data["mensaje"] != ""){
+                        $("#mensajes").html(data["mensaje"]).addClass("animated zoomIn").show('fast',function(){
+                            setTimeout(function(){ $("#mensajes").hide(); window.location="inicio.php";}, 6000);
+                        });
+                    }else{
+                        window.location="inicio.php";
+                    }
+                    
+                }else if(data["estado"] == 4){
+                    $("#error").html(data["mensaje"]).addClass("animated zoomIn").show('fast',function(){
+                        setTimeout(function(){ $("#error").hide() }, 3000);
                     });
                 }else{
-                    window.location="inicio.php";
+                    $("#error").html("El Nombre de usuario o la contraseña no es correcto").addClass("animated zoomIn").show('fast',function(){
+                        setTimeout(function(){ $("#error").hide() }, 3000);
+                    });
                 }
-                
-            }else if(data["estado"] == 4){
-                $("#error").html(data["mensaje"]).addClass("animated zoomIn").show('fast',function(){
-                    setTimeout(function(){ $("#error").hide() }, 3000);
-                });
-            }else{
-                $("#error").html("El Nombre de usuario o la contraseña no es correcto").addClass("animated zoomIn").show('fast',function(){
-                    setTimeout(function(){ $("#error").hide() }, 3000);
-                });
             }
-        }
-    });
-    return false;
+        });
+        return false;
+    }
+/**/
+/*
+function logear() {
+    fetch("Controladores/ctrlValidacion.php").then(data => {console.log(data)} );
 }
-
+*/
 function salir(){
 	top.location.href = "http://";
 }

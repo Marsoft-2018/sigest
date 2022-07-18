@@ -19,13 +19,7 @@ function tipoBol(){
     var tipo = $("#tipoB").val();
     //alert("El tipo de boletin sera: "+tipo);
     var formulario = document.getElementById('tipoBoletin');
-    if(tipo == "Certificado" || tipo == "Constancia" ){
-      formulario.action="vistas/reportes/certificaciones.php";
-      return true;
-    }else if(tipo=="Final"){
-      formulario.action="Controladores/ctrlBoletin.php";
-      return true;
-    }else if(tipo=="Periodos"){
+    if(tipo != "" ){      
       formulario.action="Controladores/ctrlBoletin.php";
       return true;
     }else{

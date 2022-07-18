@@ -26,7 +26,7 @@
         </style>
 
     <?php
-        foreach ($objInst->cargar() as $key => $value) {
+        foreach ($objInst->cargar() as $value) {
            $nombreInstitucion = $value['nombre'];
            $ciudad = $value['ciudad'];
            $aprobacion = $value['membrete'];

@@ -37,7 +37,7 @@ header .img{
 }
 
 .principal .imagen{
-	background-image: url("../tools/sigest.png");
+	
 	background-repeat: no-repeat;
 	background-size: 100%;
 	width: 75%;
@@ -109,11 +109,13 @@ header .img{
 
 .main-footer{
 	color: #fff;
-	background-color: #22b2a0;
-	font-size: 0.8em;
+	background-color: #123237;
+	font-size: 1em;
 	padding: 20px;
 	width: 100%;
-	height: 250px;
+	height: 250px; 
+	margin: 0px;
+	text-align: center;
 }
 
 
@@ -150,6 +152,46 @@ header .img{
 	text-align: center;
 	letter-spacing: 5px;
 	margin-bottom: 50px;
+	width: 100%;
+}
+
+.carousel-alto{
+	height: 500px;
+}
+
+.carousel-caption-ubicacion{
+	display: flex; 
+	position: absolute; 
+	left: 0%;
+	bottom: 25%;
+}
+.carousel-caption-ubicacion2{
+	display: flex; 
+	position: absolute; 
+	left: 15%;
+	bottom: 30%;
+}
+.carousel-caption-ubicacion3{
+	display: flex; 
+	position: absolute; 
+	bottom: 20%;
+}
+.carousel-caption-ubicacion4{
+	display: flex; 
+	position: absolute; 
+	bottom: 20%;
+}
+
+.filtro1{
+	background-color: rgba(0, 0, 0, 0.431);
+}
+
+.filtro2{
+	background-color: rgba(12, 11,39, 0.488);
+}
+
+.filtro3{
+	background-color: rgba(12, 21, 10, 0.488);
 	width: 100%;
 }
 

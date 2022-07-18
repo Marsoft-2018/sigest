@@ -24,50 +24,57 @@
 			<div class="img animated delay-0.5s slow fadeInLeft"></div>
 		</header>
 		<div  class="row principal">
-		    <div id="carouselExampleCaptions" class="carousel slide imagen" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-              </ol>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="tools/imagen.jpg" class="d-block w-100" alt="...">
-                  <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="tools/sigest.png" class="d-block w-100" alt="...">
-                  <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="tools/Imagen1.png" class="d-block w-100" alt="...">
-                  <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                  </div>
-                </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </button>
+		  <div id="carouselExampleCaptions" class="carousel slide imagen" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner  carousel-alto">
+          <div class="carousel-item active">
+            <img src="tools/banner/banner-1.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block carousel-caption-ubicacion filtro3">
+              <h5>BIENVENIDO</h5>
+				      <p>
+                Con el Sistema de gestión académica SiGest la institución educativa puede implementar procesos de <br>registro, control, gestión y administración de la información académica  <br><a href="tools/propuesta.pdf" target="selft">Conoce más</a>
+              </p>
             </div>
+          </div>
+          <div class="carousel-item">
+            <img src="tools/banner/banner-2.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block carousel-caption-ubicacion2 filtro2">
+              <h5>CARÁCTER PEDAGÓGICO</h5>
+              <p>
+                siGest se desarrolla teniendo en cuenta como marco principal el respeto y el reconocimiento a la labor del profesional de la docencia y la práctica pedagógica
+              </p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="tools/banner/banner-3.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block carousel-caption-ubicacion2 filtro1">
+              <h5>Aumenta la Confiabilidad</h5>
+              <p>
+                Automatizando los procesos, se reduce la cantidad de errores y se aumenta la confiabilidad. 
+                De esta forma, la Institución podra garantizar la calidad de la información que maneja y que presenta.
+              </p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </button>
+      </div>
 			<div class="marcoLogin" style="">
 				<section class="loginA">
 					<h1>LOGIN</h1>
 					<form name='formulario' method='post' action='' onsubmit='return logear()' target="_self" class="animated delay-1s faster zoomIn" id="frmLogin">
 						<label for="usuario">Nombre de Usuario</label>	
-                        <input name='usuario' type="text" value="" required id='usuario' class='form-control' placeholder="Nombre de Usuario">
+              <input name='usuario' type="text" value="" required id='usuario' class='form-control' placeholder="Nombre de Usuario">
 						<label for="contrasena">Contraseña</label>	
                         <input name='contrasena' type="password" value='' required id='contrasena' class='form-control' placeholder="Contraseña">
                         <div class="h-captcha" data-sitekey="9b1266f8-f53b-4831-a597-a44d8d6fcc57"></div>
