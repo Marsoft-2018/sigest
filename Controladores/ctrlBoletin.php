@@ -171,5 +171,9 @@
             include("../vistas/reportes/certificaciones/certificado.php");
             
             break;
+        case 'Constancia':
+            include("../vistas/reportes/certificaciones/Constancia.php");
+            
+            break;
     }
 

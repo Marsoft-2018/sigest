@@ -2,8 +2,8 @@
 	include("ctrlBloqueArea.php");
 ?>
 <tr>
-    <td style="border:1px solid; font-size: 15px; padding: 2px; padding-left: 5px;">     
-        <?php echo strtoupper ($area['Nombre']) ?> 
+    <td class="mayusculas" style="border:1px solid; font-size: 15px; padding: 2px; padding-left: 5px;">     
+        <?php echo $area['Nombre'] ?> 
     </td>
     <td style="text-align:center; border:1px solid; font-size: 15px;">
         <?php echo $area['intensidad'] ?>                

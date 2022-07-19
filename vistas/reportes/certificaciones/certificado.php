@@ -98,6 +98,7 @@
             $notaMaxima = $objCalificacion->notaMaxima();
             
            $idMatricula = $estudiante['idMatricula'];
+           //echo $idMatricula;
            $objEstado = new Calificacion();
            $estadoDelAnho = strtoupper($objEstado->estadoAnho($areasPerdidas,$areasPerder));
            if($estadoDelAnho=='APROBADO'){
@@ -158,11 +159,11 @@
                             $acumulado = 0;
                             ?>
                             <tr>
-                                <td style="border:1px solid; font-size: 15px; padding: 2px; padding-left: 5px; text-align: left;">
-                                <?php echo $area['id'] ?>    
+                                <td class="nombre-area" style="border:1px solid; font-size: 15px; padding: 2px; padding-left: 5px; text-align: left;">
+                                <?php /*echo $area['id'] */?>    
                                 <?php echo $area['Nombre'] ?>
                                 </td>
-                                <td><?php echo $area['intensidad']." ".$area['formaDePromediar'] ?></td>
+                                <td><?php echo $area['intensidad'] ?></td>
                                 <td>
                                     <?php 
                                         $periodos = new Periodo();
@@ -176,10 +177,12 @@
                                             $objNotaPeriodo->Anho = $anho ;
                                             $objNotaPeriodo->curso = $curso ;
                                             /*echo "<pre>";
-                                            var_dump($objNotaPeriodo);
-                                            echo "</pre>";*/
+                                            var_dump($objNotaPeriodo->cargar());
+                                            echo "</pre>";
+                                            echo is_array($objNotaPeriodo->cargar());
+                                            //echo "Esto: ".$objNotaPeriodo->cargar();
+                                            $acumulado += $objNotaPeriodo->cargar() * ($periodo['valorPeriodo']/100);*/
                                             foreach ($objNotaPeriodo->cargar() as $notaP) {
-                                                //echo $notaP['NOTA']." - ";
                                                 $acumulado += $notaP['NOTA'] * ($periodo['valorPeriodo']/100);
                                             }
                                         }

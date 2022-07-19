@@ -67,7 +67,7 @@
                 <option value='8'>Lista con Firma</option>  
                 <option value='2'>Pagaduría</option> 
                 <option value='6'>Planilla Impresa</option>  
-                <option value='7'>Planilla con Calificaciones</option>  
+                <!--<option value='7'>Planilla con Calificaciones</option>-->
                 <option value='3'>Rectoría</option>
                 <option value='4'>Secretaría</option>
               </select>                            

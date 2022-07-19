@@ -31,7 +31,7 @@
         private $sql;
 
         public function Listar(){
-            $this->sql = "SELECT est.Documento, est.PrimerNombre, est.SegundoNombre, est.PrimerApellido, est.SegundoApellido, est.sexo, cur.CODGRADO, cur.grupo, j.abreviatura AS 'jornada', 
+            $this->sql = "SELECT est.Documento, est.PrimerNombre, est.SegundoNombre, est.PrimerApellido, est.SegundoApellido, est.sexo, cur.CODGRADO, cur.grupo, j.abreviatura AS 'jornada', j.Nombre AS 'jornadaNombre', 
 mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudiente, est.num_interno, g.`NOMGRADO`,g.`nomCampo`,est.correo FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada INNER JOIN grados g ON g.`CODGRADO` = cur.`CODGRADO` WHERE mt.CODSEDE = ? AND mt.Curso= ? AND mt.anho = ? AND (mt.estado = 'Matriculado' OR mt.estado = 'Promovido') ORDER BY  cur.CODGRADO, cur.grupo, est.PrimerApellido, est.SegundoApellido, est.PrimerNombre, est.SegundoNombre ASC"; 
             if(isset($this->Rinicio) && isset($this->registros)){
                 $this->sql .= " LIMIT ".$this->Rinicio.", ".$this->registros." ";
@@ -51,7 +51,7 @@ mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudi
 
         public function ConsultaEstudiantesEspecificos($estudiantes,$Rinicio,$registros){
 
-            $sqlString = "SELECT est.Documento, est.PrimerNombre, est.SegundoNombre, est.PrimerApellido, est.SegundoApellido, est.sexo, cur.CODGRADO, cur.grupo, j.abreviatura AS 'jornada', mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudiente, est.num_interno, est.Password,est.correo FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada WHERE mt.`codsede`= ? AND mt.`Curso` = ? AND mt.anho = ? ";
+            $sqlString = "SELECT est.Documento, est.PrimerNombre, est.SegundoNombre, est.PrimerApellido, est.SegundoApellido, est.sexo, cur.CODGRADO, cur.grupo, j.abreviatura AS 'jornada', mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudiente, est.num_interno, est.Password,est.correo, j.Nombre AS 'jornadaNombre' FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada WHERE mt.`codsede`= ? AND mt.`Curso` = ? AND mt.anho = ? ";
             for($i = 0;$i < sizeof($estudiantes); $i++ ){
                 if($i == 0){
                     $sqlString .= " AND mt.`idMatricula` = '$estudiantes[$i]'";

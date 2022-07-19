@@ -22,7 +22,10 @@
                     visibility:hidden;
                 }
             }
-             
+            
+            .mayusculas{
+                text-transform: uppercase;
+            }
         </style>
 
     <?php

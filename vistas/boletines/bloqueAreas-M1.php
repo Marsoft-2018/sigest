@@ -1,8 +1,8 @@
 <tr style=''>
 	<td style='width:90.1pt;border-top:solid windowtext 1.0pt;border-left:solid windowtext 1.5pt; border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.5pt;'>
-	<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height: normal'>
+	<p class="mayusculas" style='margin-bottom:0cm;margin-bottom:.0001pt;line-height: normal'>
 		<span lang=ES style='font-size:10.0pt'>
-			<?php echo strtoupper ($area['Nombre']) ?></strong>
+			<?php echo ($area['Nombre']) ?></strong>
 		</span>
 	</p>
 	</td>

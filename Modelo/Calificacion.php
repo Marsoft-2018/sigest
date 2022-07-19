@@ -7,7 +7,7 @@
         public $codArea;
         public $idAsignatura;
         public $curso;
-        public float $nota;
+        public $nota;
         public $desempeno;
         public $faltas;
         public $porPeriodo;
@@ -106,8 +106,68 @@
             }
         }
 
-        public function notaAreaXintensidadHoraria(){
+        public function notaAreaXintensidadHoraria(){              
+            $arreglo["Datos"][] = 0;
+            $suma = 0;
+            $faltas = 0;              
+
+            $this->sql = "SELECT axs.id AS idArea,ai.intensidad,ai.`idGrado`,asg.`id` AS idAsignatuta FROM areasxsedes_2 axs
+            INNER JOIN areas_anho axa ON axa.`idArea` = axs.`id`
+            INNER JOIN areas_intensidad ai ON ai.`idArea` = axs.`id`
+            INNER JOIN cursos cr ON cr.`CODGRADO` = ai.`idGrado`
+            INNER JOIN areas_asignaturas asg ON asg.`idArea` = axs.`id` 
+            WHERE axs.id = ? AND axa.anho = ? AND cr.`codCurso`= ?";
+            try {
+                $stm = $this->Conexion->prepare($this->sql);
+                $stm->bindParam(1,$this->codArea);
+                $stm->bindParam(2, $this->Anho);
+                $stm->bindParam(3, $this->curso);
+                $stm->execute();
+                $datos = $stm->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($datos as $area) {
+                    //echo "Ih area: ".$area['intensidad'];
+                    $sql2 = "SELECT * FROM asignaturas_intensidad WHERE idAsignatura = ? AND idGrado = ?";
+                    try {
+                        $stm2 = $this->Conexion->prepare($sql2);
+                        $stm2->bindParam(1,$area['idAsignatuta']);
+                        $stm2->bindParam(2,$area['idGrado']);
+                        $stm2->execute();
+                        $datos_2 = $stm2->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($datos_2 as $asignaturaIntensidad) {
+                            $sql3 = "SELECT nota, faltas FROM notasasignaturas WHERE idAsignatura = ? AND periodo = ? AND idMatricula = ? AND anho = ?";
+                            $stm3 = $this->Conexion->prepare($sql3);
+                            $stm3->bindParam(1,$asignaturaIntensidad['idAsignatura']);
+                            $stm3->bindParam(2, $this->periodo);
+                            $stm3->bindParam(3, $this->idMatricula);
+                            $stm3->bindParam(4, $this->Anho);
+                            $stm3->execute();
+                            $datos_3 = $stm3->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($datos_3 as $asignaturaNota) {
+                                if($asignaturaIntensidad['idAsignatura'] != 0){
+                                    $suma +=  $asignaturaNota['nota'] * (($asignaturaIntensidad['intensidad']*100)/$area['intensidad'])/100;                                
+                                    $faltas += $asignaturaNota['faltas'];
+                                } 
+                                //echo "Suma: ".$suma;
+                            }
+                        }
+                    } catch (PDOException $e) {
+                        echo "Error: ".$e;
+                    }
+                }
+                
+                $arreglo["Datos"]['NOTA'] = (round($suma,1));
+                $arreglo["Datos"]['Faltas'] = $faltas;
+                return $arreglo;
+            } catch (Exception $e) {
+                echo "Error al consultar las notas. ".$e;
+            }
+        }
+
+        /*
+            public function notaAreaXintensidadHoraria(){
             $this->sql = "SELECT SUM(na.nota * (((aih.intensidad *100)/ih.intensidad)/100)) AS NOTA,SUM(na.faltas) AS Faltas FROM areas_asignaturas aa INNER JOIN notasasignaturas na ON aa.`id` = na.`idAsignatura` INNER JOIN areasxsedes_2 axs ON axs.`id` = aa.`idArea` INNER JOIN asignaturas_intensidad aih ON aih.`idAsignatura` = aa.`id` INNER JOIN areas_intensidad ih ON axs.`id` = ih.`idArea` WHERE idMatricula = ? AND anho = ? AND periodo = ? AND idCurso = ? AND axs.`id` = ?";                    
+            $this->sql = "SELECT axs.id AS idArea,ai.intensidad,ai.`idGrado`,asg.`id` FROM areasxsedes_2 axs  INNER JOIN areas_anho axa ON axa.`idArea` = axs.`id` INNER JOIN cursos cr ON cr.`CODGRADO` = ai.`idGrado` INNER JOIN areas_asignaturas asg ON asg.`idArea` = axs.`id` 
+            WHERE axs.id = 365 AND axa.anho = 2021 AND cr.`codCurso`=59";
             try {
                 $stm = $this->Conexion->prepare($this->sql);
                 $stm->bindParam(1, $this->idMatricula);
@@ -123,6 +183,7 @@
             }
         }
 
+        */
         public function notaMinima(){
             $this->sql = "SELECT limiteInf FROM desempenos WHERE CODINST = 1 AND CONCEPT = 'BASICO'";
             try {

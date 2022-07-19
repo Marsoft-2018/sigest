@@ -53,6 +53,10 @@
                 text-align: right;
                 font-weight: bold;
             }
+
+            .mayusculas{
+                text-transform: uppercase;
+            }
         </style>
     </head>
     <body>
