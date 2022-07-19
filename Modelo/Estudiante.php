@@ -31,8 +31,7 @@
         private $sql;
 
         public function Listar(){
-            $this->sql = "SELECT est.Documento, est.PrimerNombre, est.SegundoNombre, est.PrimerApellido, est.SegundoApellido, est.sexo, cur.CODGRADO, cur.grupo, j.abreviatura AS 'jornada', j.Nombre AS 'jornadaNombre', 
-mt.estado, mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudiente, est.num_interno, g.`NOMGRADO`,g.`nomCampo`,est.correo FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada INNER JOIN grados g ON g.`CODGRADO` = cur.`CODGRADO` WHERE mt.CODSEDE = ? AND mt.Curso= ? AND mt.anho = ? AND (mt.estado = 'Matriculado' OR mt.estado = 'Promovido') ORDER BY  cur.CODGRADO, cur.grupo, est.PrimerApellido, est.SegundoApellido, est.PrimerNombre, est.SegundoNombre ASC"; 
+            $this->sql = "SELECT est.Documento, est.PrimerNombre, est.SegundoNombre, est.PrimerApellido, est.SegundoApellido, est.sexo, cur.CODGRADO, cur.grupo, j.abreviatura AS 'jornada', j.Nombre AS 'jornadaNombre', mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudiente, est.num_interno, g.`NOMGRADO`,g.`nomCampo`,est.correo FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada INNER JOIN grados g ON g.`CODGRADO` = cur.`CODGRADO` WHERE mt.CODSEDE = ? AND mt.Curso= ? AND mt.anho = ? AND (mt.estado = 'Matriculado' OR mt.estado = 'Promovido') ORDER BY  cur.CODGRADO, cur.grupo, est.PrimerApellido, est.SegundoApellido, est.PrimerNombre, est.SegundoNombre ASC"; 
             if(isset($this->Rinicio) && isset($this->registros)){
                 $this->sql .= " LIMIT ".$this->Rinicio.", ".$this->registros." ";
             }

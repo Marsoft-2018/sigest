@@ -192,6 +192,9 @@
                 </li>
                 <li>
                     <a href="#" onclick='menu(this.id)' id='vistas/logroIntro.php'><i class="glyphicon glyphicon-list-alt"></i> Logros</a>
+                </li>                
+                <li>
+                    <a href="#" onclick='menu(this.id)' id='vistas/usuarios/listaDeUsuarios.php' ><i class='fa fa-users'></i> Lista de Usuarios</a>
                 </li>
                 <li>
                     <a href="#" onclick='menu(this.id)' id='vistas/perfil.php' ><i class='fa fa-user'></i> Perfil</a>

@@ -1,7 +1,7 @@
 <?php 
 	if(isset($_POST['accion'])){
-		require("../../models/Conect.php");
-		require("../../models/usuario.php");
+		require("../../Modelo/Conect.php");
+		require("../../Modelo/usuario.php");
 	}
 ?>
 

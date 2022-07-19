@@ -2,8 +2,8 @@
 
 </style>
 <?php 
-	require("../../models/Conect.php");
-	require("../../models/usuario.php");
+	require("../../Modelo/Conect.php");
+	require("../../Modelo/usuario.php");
 ?>
 <h3 style="text-align: center;">MODULO PARA ADMINISTRACION DE USUARIOS</h3>
  <div class="row">
