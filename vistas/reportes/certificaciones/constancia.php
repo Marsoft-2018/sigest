@@ -85,13 +85,13 @@
             
             $objGrado = new Grado();
             $objGrado->CODGRADO = $estudiante['CODGRADO'];
-            foreach ($objGrado->cargar() as $grado) {
-                $objNivel = new Grado();
-                $objNivel->CODNIVEL = $grado['CODNIVEL'];
-                foreach ($objNivel->cargar() as $nivel) {
-                    $nivel = $nivel['NOMBRE_NIVEL'];
+            foreach ($objGrado->cargar() as $regGrado) {
+                $objNivel = new Nivel();
+                $objNivel->CODNIVEL = $regGrado['CODNIVEL'];
+                foreach ($objNivel->cargar() as $regNivel) {
+                    $nivel = $regNivel['NOMBRE_NIVEL'];
                 }
-                $grado = $grado['NOMGRADO'];
+                $grado = $regGrado['NOMGRADO'];
             }
 
             $notaMinima = $objCalificacion->notaBaja();

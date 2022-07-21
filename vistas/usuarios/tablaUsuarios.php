@@ -6,7 +6,7 @@
 ?>
 
 
-<table id="tablaUsuarios" class="table table-striped table-bordered tblDetalle" style="width:100%" >
+<table id="tablaUsuarios" class="display table table-striped table-hover dataTable no-footer" style="width: 95%" >
 	<thead>
 		<tr>
 			<th>Nombre</th>
@@ -19,35 +19,36 @@
 	</thead>
 	<tbody>
 		<?php
-			$obj = new Usuario();
-				$item =1;
-			  $infoDetalle = $obj->listar();
-	          foreach($infoDetalle as $campo ){
+			$objUsuario = new Usuario();
+			$item =1;
+
+	        foreach($objUsuario->listar() as $usuario ){
 	          ?>
 	          <tr>
-				<td style="font-size: 1em;"><?php echo $campo["nombre"]; ?></td>
-				<td style="font-size: 1em;"><?php echo $campo["usuario"]; ?></td>
-				<td style="font-size: 1em;"><?php echo $campo["rol"]; ?></td>
-				<td style="font-size: 1em;"><?php echo $campo["fecha_reg"]; ?></td>
+				<td style="font-size: 1em;"><?php echo $usuario["nombre"]; ?></td>
+				<td style="font-size: 1em;"><?php echo $usuario["usuario"]; ?></td>
+				<td style="font-size: 1em;"><?php echo $usuario["rol"]; ?></td>
+				<td style="font-size: 1em;"><?php echo $usuario["fecha_reg"]; ?></td>
 				<td>					
 					<label class="switch">					  
 					<?php
-						if($campo["estado"] != 2){
-							echo '<input type="checkbox" id="'.$campo["id_usuario"].'" onclick = "activar(1,this.id)" checked>';
+						if($usuario["estado"] != 2){
+							echo '<input type="checkbox" id="'.$usuario["id_usuario"].'" onclick = "activar(1,this.id)" checked>';
 						}else{					    
-							echo '<input type="checkbox" id="'.$campo["id_usuario"].'" onclick = "activar(1,this.id)">';
+							echo '<input type="checkbox" id="'.$usuario["id_usuario"].'" onclick = "activar(1,this.id)">';
 						}
 					?>
 					  <span class="slider round"></span>
 					</label>
 				</td>
 				<td>
-					<button class="btn btn-warning  btn-xs"   data-toggle="modal" data-target="#ventanaFloat" onclick="editarUsuario(this.id)" id="<?php echo $campo["id_usuario"]; ?>">
+					<!--
+					<button class="btn btn-warning  btn-xs"   data-toggle="modal" data-target="#ventanaFloat" onclick="editarUsuario(this.id)" id="<?php echo $usuario["id_usuario"]; ?>">
 						<i class="fa fa-pencil"></i>
 					</button>
-					<button class="btn btn-danger  btn-xs" id="<?php echo $campo["id_usuario"]; ?>" onclick="eliminarUsuario(this.id,1)">
+					<button class="btn btn-danger  btn-xs" id="<?php echo $usuario["id_usuario"]; ?>" onclick="eliminarUsuario(this.id,1)">
 						<i class="fa fa-trash"></i>
-					</button>
+					</button>-->
 				</td>
 
 			  </tr>

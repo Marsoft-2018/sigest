@@ -10,10 +10,6 @@
 	<div class="col-md-12 col-sm-12 ">
 		<div class="x_panel">
 			<div class="x_title">
-				<div class="clearfix"></div>
-				<button class="btn btn-info" data-toggle="modal" data-target="#ventanaFloat"  onclick="formularioUsuario()" tittle="Nuevo Usuario">
-	                <i class="fa fa-plus"> Nuevo Usuario</i>
-	            </button>
 			</div>
 			<!-- tabla ----------- -->
 			<div class="x_content">
@@ -25,10 +21,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="clearfix"></div>
-			<button class="btn btn-info"   data-toggle="modal" data-target="#ventanaFloat" onclick="formularioUsuario()" tittle="Nuevo Usuario">
-                <i class="fa fa-plus"> Nuevo Usuario</i>
-            </button>
 		</div>
 	</div>
  </div>
@@ -49,3 +41,4 @@
     </div>
   </div>
 </div>
+<script src="complementos/DataTables/datatables.js"></script>

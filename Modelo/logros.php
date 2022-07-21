@@ -15,11 +15,10 @@
         private $sql;
 
         public function agregar(){ 
-            $this->tabla= "Area";
+            //$this->tabla= "Area";
             /*echo "Las Valores en las Variables son: Año: $anho, Periodo: $periodo, Area: $area, Curso: $curso, Indicador: $indicador, Código del críterio: $codCriterio, Tabla: $this->tabla ";*/
             if($this->tabla == 'Area'){
-                $this->sql = "INSERT INTO logros(codArea, INDICADOR, codCriterio, periodo, codCurso) VALUES(?,?,?,?,?)"; 
-                
+                $this->sql = "INSERT INTO logros(codArea, INDICADOR, codCriterio, periodo, codCurso) VALUES(?,?,?,?,?)";                 
             }elseif($this->tabla == 'Asignatura'){
                 $this->sql = "INSERT INTO logrosasignatura(codAsignatura, INDICADOR, codCriterio, periodo, codCurso) VALUES(?,?,?,?,?)"; 
             }             
@@ -32,13 +31,14 @@
                 $stm->bindparam(5,$this->codCurso);                
                 $stm->execute();
                 echo "Se agregó el indicador con éxito";
-            } catch (Exception $e) {
+            } catch (PDOException $e) {
+                echo "Error: ".$e;
                 http_response_code(500);
             }           
         }//OK
 
         public function cargarIndicador(){
-            $this->tabla= "Area";
+            //$this->tabla= "Area";
             if($this->tabla == 'Area'){
                 $this->sql = "SELECT CODIND, INDICADOR, codCriterio FROM logros WHERE CODIND = ? "; 
             }elseif($this->tabla == 'Asignatura'){
@@ -95,12 +95,16 @@
         }//OK
 
         public function cargarLista(){
-            $this->tabla= "Area";
+            //$this->tabla= "Area";
             if($this->tabla == 'Area'){
                 $this->sql = "SELECT L.`CODIND`,ax.`abreviatura`,criterios.`nomCriterio`,L.`periodo`,L.INDICADOR,L.estado FROM logros L
                 INNER JOIN areasxsedes_2 ax ON L.`codArea`=ax.`id` INNER JOIN criterios  ON L.`codCriterio`=criterios.`codCriterio` WHERE L.`periodo`= ? AND ax.`id`= ? AND L.codCurso= ?"; 
             }elseif($this->tabla == 'Asignatura'){
-                $this->sql = "SELECT L.`id`,ax.`abreviatura`,criterios.`nomCriterio`,L.`periodo`,L.INDICADOR,L.estado FROM logrosasignatura L INNER JOIN areas_asignaturas ax ON L.`idAsignatura` = ax.`id` INNER JOIN criterios  ON L.`idCriterio`=criterios.`codCriterio` WHERE L.`periodo`= ? AND ax.`id`= ? AND L.idCurso = ?";
+                $this->sql = "SELECT L.`CODIND`,ax.`abreviatura`,criterios.`nomCriterio`,L.`periodo`,L.INDICADOR,L.estado 
+                FROM logrosasignatura L 
+                INNER JOIN areas_asignaturas ax ON L.`codAsignatura` = ax.`id` 
+                INNER JOIN criterios  ON L.`codCriterio`=criterios.`codCriterio` 
+                WHERE L.`periodo`= ? AND ax.`id`= ? AND L.codCurso = ?";
             }
             if(!empty($this->estado)){
                 $this->sql .= " AND estado = '".$this->estado."' ";
@@ -177,7 +181,7 @@
         }//OK
 
         public function listarLogrosCriterios(){
-            $this->tabla= "Area";
+            //$this->tabla= "Area";
             
             $sqlLogro = "";
             if($this->tabla == 'Area'){
@@ -199,12 +203,13 @@
                 echo "Error al consultar los logros. ".$e;
             } 
         }//OK
+
         public function modificar(){
-            $this->tabla = "Areas";
-            if($this->tabla=='Areas'){
+            //$this->tabla = "Areas";
+            if($this->tabla == 'Area'){
                 $this->sql = "UPDATE logros SET INDICADOR = ?, codCriterio = ? WHERE CODIND='".$this->CODIND."'"; 
-            }elseif($this->tabla=='Asignaturas'){
-                $this->sql = "UPDATE logrosasignatura SET INDICADOR = ?, codCriterio = ? WHERE id='$this->CODIND'";
+            }elseif($this->tabla == 'Asignatura'){
+                $this->sql = "UPDATE logrosasignatura SET INDICADOR = ?, codCriterio = ? WHERE CODIND='".$this->CODIND."'";
             }  
             try {
                 $stm = $this->Conexion->prepare($this->sql);
@@ -218,11 +223,11 @@
         }//OK
 
         public function cambiarEstado(){
-            $this->tabla = "Areas";
+            //$this->tabla = "Areas";
             
-            if($this->tabla=='Areas'){
+            if($this->tabla=='Area'){
                 $this->sql = "UPDATE logros SET estado = '".$this->estado."' WHERE CODIND = ?";
-            }elseif($this->tabla=='Asignaturas'){
+            }elseif($this->tabla=='Asignatura'){
                 $this->sql = "UPDATE logrosasignatura SET estado = '".$this->estado."' WHERE id = ?";
             }
 
@@ -237,11 +242,11 @@
         }
 
         public function eliminar(){
-            $this->tabla = "Areas";            
-            if($this->tabla=='Areas'){
+            //$this->tabla = "Areas";            
+            if($this->tabla == 'Area'){
                 $this->sql = "DELETE FROM logros WHERE CODIND = ?";
             }elseif($this->tabla == 'Asignatura'){
-                $this->sql = "DELETE FROM logrosasignatura WHERE id = ?";
+                $this->sql = "DELETE FROM logrosasignatura WHERE CODIND = ?";
             }
             try {
                 $stm = $this->Conexion->prepare($this->sql);

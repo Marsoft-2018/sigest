@@ -37,12 +37,7 @@
         });
         return false;
     }
-/**/
-/*
-function logear() {
-    fetch("Controladores/ctrlValidacion.php").then(data => {console.log(data)} );
-}
-*/
+
 function salir(){
 	top.location.href = "http://";
 }

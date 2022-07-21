@@ -163,27 +163,6 @@
             }
         }
 
-        /*
-            public function notaAreaXintensidadHoraria(){
-            $this->sql = "SELECT SUM(na.nota * (((aih.intensidad *100)/ih.intensidad)/100)) AS NOTA,SUM(na.faltas) AS Faltas FROM areas_asignaturas aa INNER JOIN notasasignaturas na ON aa.`id` = na.`idAsignatura` INNER JOIN areasxsedes_2 axs ON axs.`id` = aa.`idArea` INNER JOIN asignaturas_intensidad aih ON aih.`idAsignatura` = aa.`id` INNER JOIN areas_intensidad ih ON axs.`id` = ih.`idArea` WHERE idMatricula = ? AND anho = ? AND periodo = ? AND idCurso = ? AND axs.`id` = ?";                    
-            $this->sql = "SELECT axs.id AS idArea,ai.intensidad,ai.`idGrado`,asg.`id` FROM areasxsedes_2 axs  INNER JOIN areas_anho axa ON axa.`idArea` = axs.`id` INNER JOIN cursos cr ON cr.`CODGRADO` = ai.`idGrado` INNER JOIN areas_asignaturas asg ON asg.`idArea` = axs.`id` 
-            WHERE axs.id = 365 AND axa.anho = 2021 AND cr.`codCurso`=59";
-            try {
-                $stm = $this->Conexion->prepare($this->sql);
-                $stm->bindParam(1, $this->idMatricula);
-                $stm->bindParam(2, $this->Anho);
-                $stm->bindParam(3, $this->periodo);
-                $stm->bindParam(4, $this->curso);
-                $stm->bindParam(5, $this->codArea);
-                $stm->execute();
-                $datos = $stm->fetchAll(PDO::FETCH_ASSOC);
-                return $datos;
-            } catch (Exception $e) {
-                echo "Error al consultar las notas. ".$e;
-            }
-        }
-
-        */
         public function notaMinima(){
             $this->sql = "SELECT limiteInf FROM desempenos WHERE CODINST = 1 AND CONCEPT = 'BASICO'";
             try {
@@ -335,9 +314,13 @@
         }
 
         public function promedioEstudiante(){
-            $this->sql = "SELECT SUM(NOTA) as promedio FROM notas WHERE PERIODO = '".$this->periodo."' AND idMatricula = '".$this->idMatricula."' AND anho = '".$this->Anho."' AND curso = '".$this->curso."'";
+            $this->sql = "SELECT SUM(NOTA) as promedio FROM notas WHERE PERIODO = ? AND idMatricula = ? AND anho = ? AND curso = ?";
                 try {
                     $stm = $this->Conexion->prepare($this->sql);
+                    $stm->bindparam(1,$this->periodo);
+                    $stm->bindparam(2,$this->idMatricula);
+                    $stm->bindparam(3,$this->Anho);
+                    $stm->bindparam(4,$this->curso);
                     $stm->execute();
                     $datos = $stm->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($datos as $pro) {

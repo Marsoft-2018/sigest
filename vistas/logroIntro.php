@@ -65,7 +65,7 @@
                         </div>  
                         <div class="col-md-4">
                             <label>AREA/ASIGNATURA</label>
-                            <select name="" id="areas" class="form form-control" onchange="limpiarAreaLogros();">
+                            <select name="areas" id="areas" class="form form-control" onchange="limpiarAreaLogros();">
                                 <option value="">Seleccione..</option>
                             </select>
                         </div>
@@ -136,8 +136,8 @@
                           <div class="col-md-6" title='Ayuda sobre las Sedes'>
                             <p>
                               <ul>
-                                  <li>Presione el botón Ver planilla para ver la planilla de calificaciones</li>
-                                  <li>Presione el botón Ver observaciones para ver la planilla de observaciones</li>
+                                  <li>Presione el botón Ver logros para listar los correspondientes logros</li>
+                                  <!-- <li>Presione el botón Ver observaciones para ver la planilla de observaciones</li> -->
                               </ul>                              
                             </p>
                           </div>

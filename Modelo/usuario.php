@@ -15,21 +15,7 @@
 
 		public function login() {
 			$con = 0;
-			$this->sql = "SELECT u.institucion,  u.id_usuario,  u.usuario,  u.password,  u.rol,  u.nombre,  u.correo,  u.direccion,  u.telefono,  u.cargo,  u.foto,  u.estado,  u.`fecha_reg` 
-			FROM t_users u 
-			UNION 
-			SELECT cen.id,p.Documento,p.IDUsuario, p.Password, p.Rol, CONCAT(p.PrimerNombre,' ', p.SegundoNombre,' ', p.PrimerApellido,' ', p.SegundoApellido) AS nombre, p.email, CONCAT(p.Dir,' - ', p.Barrio) AS direccion, p.celular, nv.NivelEstudio,p.foto,p.estado,p.fecha_reg 
-			FROM profesores p 
-			INNER JOIN nivelestudioprofe nv ON nv.id = p.idNivelEstudios 
-			INNER JOIN sedes sd ON sd.CODSEDE = p.codsede 
-			INNER JOIN centroeducativo cen ON cen.id = sd.CODINST 
-			WHERE  p.estado = 'Activo'
-			UNION 
-			SELECT sd.`CODINST` AS 'institucion',es.Documento,es.IDUsuario, es.Password, es.Rol, CONCAT(es.PrimerNombre,' ', es.SegundoNombre,' ', es.PrimerApellido,' ', es.SegundoApellido) AS nombre, es.tipoDocumento, es.sexo, es.fechaNacimiento, es.estado,es.foto,es.estado,es.fechaIngreso 
-			FROM matriculas mt 
-			INNER JOIN estudiantes es ON es.Documento = mt.Documento 
-			INNER JOIN sedes sd ON sd.`CODSEDE` = mt.codsede 
-			WHERE es.estado = 'Activo'";
+			$this->sql = "SELECT u.institucion,  u.id_usuario,  u.usuario,  u.password,  u.rol,  u.nombre,  u.correo,  u.direccion,  u.telefono,  u.cargo,  u.foto,  u.estado,  u.`fecha_reg` FROM t_users u WHERE u.usuario = ? AND u.PASSWORD = ? AND estado = 1 UNION SELECT cen.id,p.Documento,p.IDUsuario, p.Password, p.Rol, CONCAT(p.PrimerNombre,' ', p.SegundoNombre,' ', p.PrimerApellido,' ', p.SegundoApellido) AS nombre, p.email, CONCAT(p.Dir,' - ', p.Barrio) AS direccion, p.celular, nv.NivelEstudio,p.foto,p.estado,p.fecha_reg FROM profesores p INNER JOIN nivelestudioprofe nv ON nv.id = p.idNivelEstudios INNER JOIN sedes sd ON sd.CODSEDE = p.codsede INNER JOIN centroeducativo cen ON cen.id = sd.CODINST WHERE p.IDusuario = ? AND p.Password = ? AND p.estado = 'Activo' UNION SELECT sd.`CODINST` AS 'institucion',es.Documento,es.IDUsuario, es.Password, es.Rol, CONCAT(es.PrimerNombre,' ', es.SegundoNombre,' ', es.PrimerApellido,' ', es.SegundoApellido) AS nombre, es.tipoDocumento, es.sexo, es.fechaNacimiento, es.estado,es.foto,es.estado,es.fechaIngreso FROM matriculas mt INNER JOIN estudiantes es ON es.Documento = mt.Documento INNER JOIN sedes sd ON sd.`CODSEDE` = mt.codsede WHERE es.IDUsuario = ? AND es.Password = ? AND es.estado = 'Activo' AND mt.anho = '".(date('Y') - 1)."'";
 			try {
 				$stm = $this->Conexion->prepare($this->sql);
 				$stm->bindParam(1, $this->usuario);
@@ -143,18 +129,57 @@
 		}
 
 		public function listar(){
-			$this->sql = "SELECT est.Documento, est.PrimerNombre, est.SegundoNombre, est.PrimerApellido, est.SegundoApellido, est.sexo, cur.CODGRADO, cur.grupo, j.abreviatura AS 'jornada', j.Nombre AS 'jornadaNombre', mt.idMatricula, mt.anho, s.CODINST, est.tipoDocumento, mt.NombreAcudiente, est.num_interno, g.`NOMGRADO`,g.`nomCampo`,est.correo FROM estudiantes est INNER JOIN matriculas mt ON mt.Documento = est.Documento INNER JOIN sedes s ON mt.codsede = s.CODSEDE INNER JOIN cursos cur ON mt.Curso = cur.codCurso INNER JOIN jornadas j ON j.idJornada = cur.idJornada INNER JOIN grados g ON g.`CODGRADO` = cur.`CODGRADO` WHERE mt.CODSEDE = ? AND mt.Curso= ? AND mt.anho = ? AND (mt.estado = 'Matriculado' OR mt.estado = 'Promovido') ORDER BY  cur.CODGRADO, cur.grupo, est.PrimerApellido, est.SegundoApellido, est.PrimerNombre, est.SegundoNombre ASC"; 
-            if(isset($this->Rinicio) && isset($this->registros)){
-                $this->sql .= " LIMIT ".$this->Rinicio.", ".$this->registros." ";
-            }
+			$this->sql = "SELECT * FROM usuarios"; 
+            
             try {
                 $stm = $this->Conexion->prepare($this->sql);
-                $stm->bindparam(1,$this->sede);
-                $stm->bindparam(2,$this->curso);
-                $stm->bindparam(3,$this->anho);
                 $stm->execute();
                 $data = $stm->fetchAll(PDO::FETCH_ASSOC);
                 return $data;
+            } catch (Exception $e) {
+                echo "Error al consultar los datos de los estudiantes";
+            }
+		}
+
+		public function encriptacionMasiva($tabla){
+			switch ($tabla) {
+				case 'profesores':
+					$string = "SELECT cen.id,p.Documento,p.IDUsuario, p.Password, p.Rol, CONCAT(p.PrimerNombre,' ', p.SegundoNombre,' ', p.PrimerApellido,' ', p.SegundoApellido) AS nombre, p.email, CONCAT(p.Dir,' - ', p.Barrio) AS direccion, p.celular, nv.NivelEstudio,p.foto,p.estado,p.fecha_reg 
+					FROM profesores p 
+					INNER JOIN nivelestudioprofe nv ON nv.id = p.idNivelEstudios 
+					INNER JOIN sedes sd ON sd.CODSEDE = p.codsede 
+					INNER JOIN centroeducativo cen ON cen.id = sd.CODINST 
+					WHERE  p.estado = 'Activo'";
+					break;
+				case 'estudiantes':
+					$string = "SELECT sd.`CODINST` AS 'institucion',es.Documento,es.IDUsuario, es.Password, es.Rol, CONCAT(es.PrimerNombre,' ', es.SegundoNombre,' ', es.PrimerApellido,' ', es.SegundoApellido) AS nombre, es.tipoDocumento, es.sexo, es.fechaNacimiento, es.estado,es.foto,es.estado,es.fechaIngreso 
+					FROM matriculas mt 
+					INNER JOIN estudiantes es ON es.Documento = mt.Documento 
+					INNER JOIN sedes sd ON sd.`CODSEDE` = mt.codsede 
+					WHERE es.estado = 'Activo'";
+					break;
+				default:
+					exit;
+					break;
+			}
+
+			$this->sql = $string;			 
+            
+            try {
+                $stm = $this->Conexion->prepare($this->sql);
+                $stm->execute();
+                $data = $stm->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($data as $usuario) {
+					$this->setDatos($usuario['IDUsuario'], $usuario['Password']);
+					$sql2 = "UPDATE ".$tabla." SET Password = ? WHERE IDUsuario = ? AND Password= ?";
+					$stm2 = $this->Conexion->prepare($sql2);
+					$stm2->bindparam(1,$this->password);
+					$stm2->bindparam(2,$this->usuario);
+					$stm2->bindparam(3,$usuario['Password']);
+					if($stm2->execute()){
+						echo "<br>Usuario: ".$this->usuario." actualizado nueva contraseña: ".$this->password;
+					}
+				}
             } catch (Exception $e) {
                 echo "Error al consultar los datos de los estudiantes";
             }

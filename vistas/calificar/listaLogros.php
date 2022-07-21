@@ -9,13 +9,14 @@
     $objArea = new Area();
     $objArea->curso = $_POST['curso'];
     $objArea->anho = $_POST['anho'];
-    /*
+    $tabla = "Asignatura";
+    /*    */
     foreach ($objArea->cargarTodasLasAreas() as $value) {
         if($value['id'] == $_POST['area']){
             $tabla = $value['tipo'];
         }        
     }
-    */
+
     $objIndicador->tabla = $tabla;
     $objIndicador->codArea  = $_POST['area'];
     $objIndicador->periodo  = $_POST['periodo'];

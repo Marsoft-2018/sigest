@@ -32,6 +32,7 @@
 		$notaArea = 0;
 		$notaPromedioArea = 0;
 		$inasistencias  = 0;
+		$tabla = "Area";
 		foreach ($obj->cargar() as  $value) {
 		 	$notaArea = $value['NOTA'];
 		 	$inasistencias  = $value['Faltas'];
@@ -48,7 +49,9 @@
 				</p>
 		    </td>
 		<?php 
-		}else{//en caso de que no exista nota en el area se coloca el espacio vacio
+		}else{
+			$tabla = "Asignatura";
+			//en caso de que no exista nota en el area se coloca el espacio vacio
 		?>
 			<td style='width:20pt; border-top:none; border-left:none; border-bottom:solid windowtext 1.0pt; border-right:solid windowtext 1.0pt; padding:0cm 5.4pt 0cm 5.4pt;'>
 		        <p class=MsoNormal align=center style='margin-bottom:0cm; margin-bottom:.0001pt; text-align:center; line-height:normal'>
@@ -98,7 +101,7 @@
 		                $objLogros->periodo = $periodoBol;
 		                $objLogros->codCurso = $curso;
 		                $objLogros->codArea = $area['id'];
-		    			$objLogros->tabla = "Area";
+		    			$objLogros->tabla = $tabla;
     					$objLogros->calificacion = $nc['nota'];
     					$objLogros->codCriterio = $nc['idCriterio'];
 		            	$objLogros->cargarLogrosCriterios();
@@ -108,7 +111,7 @@
 	                $objLogros->periodo = $periodoBol;
 	                $objLogros->codCurso = $curso;
 	                $objLogros->codArea = $area['id'];
-	    			$objLogros->tabla = "Area";
+	    			$objLogros->tabla = $tabla;
 		            if($notaPromedioArea > 0){
 						$objLogros->calificacion = $notaPromedioArea;
 		            	$objLogros->cargar();

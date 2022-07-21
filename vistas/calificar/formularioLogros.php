@@ -25,7 +25,7 @@
                     <div class='col-md-12'>
                         <div class='row'>
                             <div class='col-md-3'> * CRITERIO:</div>
-                            <div class='col-md-4'>
+                            <div class='col-md-9'>
                                 <select id='codCriterio' class='form form-control'>
                                     <option value=''>Seleccione...</option>
                                     <?php  
@@ -39,7 +39,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h4>* Por favor digite el INDICADOR en el sigiente campo en forma <strong>INFINITIVA</strong></h4>
-                                <textarea class="form form-control" style='font-size:1.2em;padding:2px;text-align:left; width:100%;' id='logroInfinitivo' placeholder="digite el indicador en este espacio" onkeyup="concatenarLogro(this.value)"></textarea>
+                                <textarea class="form form-control" style='font-size:1.2em;padding:2px; text-align:left; min-height:120px; width:100%;' id='logroInfinitivo' placeholder="digite el indicador en este espacio" onkeyup="concatenarLogro(this.value)"></textarea>
                             </div>
                         </div>
                         <div class="row" style="padding: 15px 0px;">

@@ -275,59 +275,6 @@
             $planilla=new calificar();
             $planilla->modificarObservacionAsignatura($estudiante,$curso,$area,$periodo,$anho,$observacion,$inst);            
             break;
-        case 'cargarLogro':
-            $objLogros = new Logro();
-            $objLogros->periodo = $_POST['periodo'];
-            $objLogros->codCurso = $_POST['curso'];
-            $objLogros->codArea = $_POST['area'];
-            $objLogros->calificacion = $_POST['nota'];
-            $objLogros->cargar();            
-            break;
-        case 'cargarListadoLogro':
-            $curso        = $_POST['curso'];
-            $area         = $_POST['area'];
-            $periodo      = $_POST['periodo'];
-            $objIndicador = new Logro();
-            $objIndicador->cargarLista($periodo,$area,$inst,$curso);            
-            break;
-        case 'cargarNuevo':
-            $indicador=new Logro();
-            $tabla=$_POST['tabla'];
-            $inst=$_POST['inst'];
-            $indicador->nuevo($inst,$tabla);            
-            break;
-        case 'cargarEdicionLogro':
-            $indicador=new Logro();
-            $indicador->CODIND = $_POST['id'];
-            echo json_encode($indicador->cargarIndicador());            
-            break;
-        case 'cambiarEstadoLogro':
-            $objindicador = new Logro();
-            $objindicador->estado = $_POST['estado'];
-            $objindicador->CODIND = $_POST['id'];        
-            $objindicador->cambiarEstado();             
-            break;
-        case 'guardarLogro':
-            $objIndicador = new Logro();
-            $objIndicador->codCurso     = $_POST['curso'];
-            $objIndicador->codArea  = $_POST['area'];
-            $objIndicador->periodo  = $_POST['periodo'];
-            $objIndicador->INDICADOR    = $_POST['indicador'];
-            $objIndicador->codCriterio  = $_POST['codCriterio']; 
-            $objIndicador->agregar();            
-            break;
-        case 'eliminarIndicador':
-            $objindicador = new Logro();
-            $objindicador->CODIND = $_POST['id'];
-            $objindicador->eliminar();            
-            break;
-        case 'modificarLogro':
-            $objindicador = new Logro();
-            $objindicador->CODIND = $_POST['id'];
-            $objindicador->INDICADOR = $_POST['indicador'];
-            $objindicador->codCriterio = $_POST['codCriterio'];
-            $objindicador->modificar();            
-            break;
         case 'listaFaltas':
             $curso=$_POST['curso'];
             $area=$_POST['codArea'];
