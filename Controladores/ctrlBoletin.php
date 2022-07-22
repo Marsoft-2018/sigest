@@ -172,7 +172,7 @@
             
             break;
         case 'Constancia':
-            include("../vistas/reportes/certificaciones/Constancia.php");
+            include("../vistas/reportes/certificaciones/constancia.php");
             
             break;
     }
